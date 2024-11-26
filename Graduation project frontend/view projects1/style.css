@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    background-color: #E9EFEC;
+    font-family: 'Poppins', sans-serif;
+}
+h1 {
+    font-size: 30px;
+    margin-top: 27px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.wrapper {
+    padding: 10px;
+    position: relative;
+    overflow-x: hidden;
+    max-width: 83%;
+    background: #fff;
+    border-radius: 13px;
+  }
+  .wrapper .icon {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 120px;
+    display: flex;
+    align-items: center;
+  }
+  .icon:first-child {
+    left: 0;
+    display: none;
+    background: linear-gradient(90deg, #fff 70%, transparent);
+  }
+  .icon:last-child {
+    right: 0;
+    justify-content: flex-end;
+    background: linear-gradient(-90deg, #fff 70%, transparent);
+  }
+  .icon i {
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 55px;
+    border-radius: 50%;
+  }
+  .icon i:hover {
+    background: E2F1E7;
+  }
+  .icon:first-child i {
+    margin-left: 15px;
+  } 
+  .icon:last-child i {
+    margin-right: 15px;
+  } 
+  .wrapper .tabs-box {
+    display: flex;
+    gap: 12px;
+    list-style: none;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  .tabs-box.dragging {
+    scroll-behavior: auto;
+    cursor: grab;
+  }
+  .tabs-box .tab {
+    cursor: pointer;
+    font-size: 1rem;
+    white-space: nowrap;
+    background: #f3fdf9;
+    padding: 13px 20px;
+    border-radius: 30px;
+    border: 1px solid #6A9C89;
+  }
+  .tabs-box .tab:hover{
+    background: E2F1E7;
+  }
+  .tabs-box.dragging .tab {
+    user-select: none;
+    pointer-events: none;
+  }
+  .tabs-box .tab.active{
+    color: #fff;
+    background: #16423C;
+    border-color: transparent;
+  }
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo-image {
+    width: 45px;
+    height: 90px;
+}
+
+nav .logo-image img {
+    width: auto;
+    height: 60px;
+    object-fit: cover;
+    padding-left: 18px;
+    margin-top: 10px;
+}
+
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #16423C;
+    padding: 10px 0 10px 10px;
+}
+
+nav .menu-items {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    justify-content: space-between;
+}
+
+nav .menu-items li {
+    list-style: none;
+}
+
+nav .menu-items li a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+}
+
+
+
+nav .menu-items li.active a {
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    position: relative;
+}
+
+nav .menu-items li a ion-icon {
+    color: white;
+    font-size: 20px;
+    min-width: 45px;
+}
+
+nav .menu-items li a .links {
+    font-size: 18px;
+    color: white;
+}
+
+nav .menu-items li.active a {
+    background-color: #E9EFEC;
+}
+
+nav .menu-items li.active a:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    top: -40px;
+    border-radius: 50%;
+    box-shadow: 20px 20px #E9EFEC;
+    pointer-events: none;
+}
+
+nav .menu-items li.active a:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    bottom: -40px;
+    border-radius: 50%;
+    box-shadow: 20px -20px #E9EFEC;
+    pointer-events: none;
+}
+
+
+nav .menu-items li.active a .links {
+    color: #6A9C89;
+}
+
+nav .menu-items li.active a ion-icon {
+    color: #6A9C89;
+}
+
+.dashboard {
+    position: relative;
+    left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    background-color: #E9EFEC;
+    padding: 0px 15px;
+}
+
+
+.container {
+    padding-left: 20px;
+}
+
+.container .title {
+    display: flex;
+    align-items: center;
+    margin: 60px 0 30px;
+}
+
+.container .title ion-icon {
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    background-color: #6A9C89;
+    color: White;
+    border-radius: 6px;
+}
+
+.container .title .text {
+    font-size: 24px;
+    font-weight: 500;
+    color: #6A9C89;
+    margin-left: 10px;
+}
+
+.container .boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: none;
+}
+
+.container .boxes .box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100%/4 - 15px);
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #6A9C89;
+}
+
+.boxes .box ion-icon {
+    font-size: 35px;
+    color: black;
+    margin: 5px;
+}
+
+.boxes .box .text {
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+
+.boxes .box .number {
+    font-size: 40px;
+    font-weight: 500;
+    color: black;
+}
+
+
+
+.container .table-design{
+padding: 0px 20px 40px 70px;
+}
+
+.container .activity {
+    width: 90%;
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.container .activity thead tr th{
+    text-align: left;
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.container .activity tbody tr td{
+    color: #333;
+    white-space: nowrap;
+    padding: 4px;
+}
+
+.container .activity tbody tr td a.delete-btn{
+    color: #000;
+    text-decoration: none;
+}
+
+.container .activity tbody tr.odd{
+    background-color: #6A9C89;
+
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#searchInput {
+    width: 83%;
+    padding:30px 30px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(200, 195, 195, 0.1);
+    transition: width 0.3s ease-in-out;
+    word-wrap: break-word;
+    margin-right: 190px;
+     /* خصائص تجعل النص يتدفق على سطرين */
+     white-space: normal; /* للسماح بالنص المتعدد الأسطر */
+     word-break: break-word; /* لفصل الكلمات عند الحواف */
+     height: auto; 
+    
+}
+
+#searchInput:focus {
+    width: 500px; /* Expands when focused */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#searchButton {
+    position: absolute;
+    right: 240px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #16423C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#searchButton ion-icon {
+    font-size: 25px;
+}
+
+
+/* تنسيق الرسالة المخصصة */
+.alert-box {
+    display: none; /* إخفاء الرسالة في البداية */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #16423C;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 90%; /* يحد من الحجم الأقصى للنوافذ الأكبر */
+    word-wrap: break-word; /* يسمح بالتفاف الكلمات الطويلة */
+}
+
+.alert-box p {
+    margin: 1;
+}
+
+/* زر موافق */
+.alert-box button {
+    margin-top: 30px;
+    padding: 20px 20px;
+    border: none;
+    background-color: #fff;
+    color: #16423C;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.alert-box button:hover {
+    background-color: #f0f0f0;
+}
+   /* Styling for the table */
+   table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  th, td {
+    padding: 16px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    position: sticky;
+    top: 29;
+    background-color: #16423C;
+    color: white;
+    cursor: pointer;
+  }
+
+  td {
+    color: #555;
+  }
+
+  /* Alternate row colors for better readability */
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #ebeaea;
+  }
+
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Scrollable table body */
+  .table-container {
+    height: 1400px; /* Fixed height for scrollable area */
+    overflow-y: scroll;  /* Enable vertical scrolling */
+    border: 1px solid #808080; /* Border around the scrollable container */
+    border-radius: 8px;
+    width: 100%; /* Set width to 80% for larger table */
+    margin:  auto; /* Center the table horizontally */
+  }
+
+  thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tbody {
+    display: block;
+    height: 1000px; /* Height to make scrolling possible */
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Adding subtle hover effect for table headers */
+  th:hover {
+    background-color: #35665a;
+  }
+
+  
+
+  /* Button styling for 'Display' column */
+  .btn-display {
+    background-color: #35665a;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .btn-display:hover {
+    background-color: #428171;
+  }
+.table-container {
+    width:950px; /* Adjusts width based on screen size */
+    height: 920px;
+    max-width: 900px;
+    margin-top: 40px;
+    margin-left: 20px;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+#customAlert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000; /* Make sure it's on top */
+}
+
+#alertMessage {
+    margin-bottom: 10px;
+}
+/* النمط الأساسي للنافذة */
+.popup {
+    display: none; /* مخفي بشكل افتراضي */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* خلفية شفافة */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* محتوى النافذة */
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 80%;
+}
+
+/* زر الإغلاق */
+.close-btn {
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    float: right;
+}
