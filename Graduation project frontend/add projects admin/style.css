@@ -800,6 +800,8 @@ textarea {
     .btn-icon.show {
         background-color: #35665a;
         color: white;
+        
+        
     }
 
     .btn-icon.show:hover {
@@ -837,3 +839,4 @@ textarea {
     .btn.add i {
         margin-right: 5px;
     }
+  
