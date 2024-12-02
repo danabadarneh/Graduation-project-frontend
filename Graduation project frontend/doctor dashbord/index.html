@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    
+    <nav>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.png" alt="">
+            </div>
+        </div>
+        <div class="menu-items">
+            <ul class="navLinks">
+                <li class="navList active">
+                    <a href="#">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span class="links">Dashboard</span>
+                    </a>
+                </li>
+                <li class="navList">
+                    <a href="#">
+                        <ion-icon name="folder-outline"></ion-icon>
+                        <span class="links">Requests Group</span>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="bottom-link">
+                <li>
+                    <a href="#">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span class="links">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="container">
+            <div class="overview">
+                <div class="title">
+                    <ion-icon name="speedometer"></ion-icon>
+                    <span class="text">Dashboard</span>
+                </div>
+                <div class="boxes">
+                    <div class="box box1">
+                        <ion-icon name="school-outline"></ion-icon>
+                          <span class="text"> Number proposed projects</span>
+                            <span class="number">25</span>
+                          
+                    </div>
+                    <div class="box box2">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span class="text">Registered Students Count</span>
+                        <span class="number">60</span>
+                    </div>
+                    <div class="box box3">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                        <span class="text">Number of Requests</span>
+                        <span class="number">20</span>
+                    </div>
+                    <div class="box box4">
+                        <ion-icon name="people-circle-outline"></ion-icon>
+                        <span class="text">Graduation Students Groups</span>
+                        <span class="number">20</span>
+                    </div>
+                </div> 
+            </div>
+          
+            <!-- Recent Activities -->
+            <div class="data-table activityTable">
+                <div class="title">
+                    <ion-icon name="server-outline"></ion-icon>
+                    <span class="text">Suggested projects</span>
+                </div>
+               
+                <div>
+                    <a href="add_project.html" class="btn add">
+                        <i class="fa fa-plus"></i>Add New Project
+                    </a>
+                    <table border="1">
+                        <tr>
+                          <th>Supervisor</th>
+                          <th>Project name</th>
+                          <th>College</th>
+                          <th>Department</th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                         <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                           <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                           <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                           <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                           <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                             <td>engineering</td>
+                             <td>computer system engineering</td>
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                            <div id="deleteModal" class="modal">
+                                <div class="modal-content">
+                                    <p>Do you need to delete this project?</p>
+                                    <button class="btn-confirm" onclick="confirmDelete()">Yes</button>
+                                    <button class="btn-cancel" onclick="closeModal()">No</button>
+                                </div>
+                            </div>
+                      </table>
+                    
+                          </section>
+                          <script src="index.js"></script>
+                          <script>
+                             // دالة عرض رسالة وصف المشروع
+                        function showDescription(description) {
+                          alert(description);
+                          
+                        }  
+                            </script>
+                          <!-- Sources for icons -->
+                          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+                          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                      
+                          </section>
+                </div>
+            </div>
+    <script src="index.js"></script>
+    <!-- Sources for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        let currentButton; // To store the clicked button reference
+
+        // Show the delete confirmation modal
+        function showDeleteConfirmation(button) {
+            currentButton = button; // Save the clicked button
+            document.getElementById('deleteModal').style.display = 'block'; // Show the modal
+        }
+
+        // Confirm delete: delete the row and close the modal
+        function confirmDelete() {
+            if (currentButton) {
+                deleteRow(currentButton); // Call the deleteRow function with the saved button
+            }
+            closeModal(); // Close the modal
+        }
+
+        // Close the modal without deleting
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none'; // Hide the modal
+        }
+
+        // Function to delete the row
+        function deleteRow(button) {
+            const row = button.closest('tr'); // Find the closest table row
+            row.remove(); // Remove the row
+        }
+    </script>
+
+</body>
+
+</html>
