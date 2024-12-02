@@ -621,7 +621,7 @@ textarea {
     color: white;
   }
   table {
-          width: 95%;
+          width: 97%;
           border-collapse: collapse;
           margin-top: 30px; /* المسافة العلوية */
           margin-bottom: 30px; /* المسافة السفلية */
@@ -827,6 +827,7 @@ textarea {
 .btn-confirm:hover, .btn-cancel:hover {
     opacity: 0.8;
 }
+
 
 
   
