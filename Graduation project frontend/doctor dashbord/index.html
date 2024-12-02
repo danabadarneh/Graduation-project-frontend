@@ -31,7 +31,7 @@
                 <li class="navList">
                     <a href="#">
                         <ion-icon name="folder-outline"></ion-icon>
-                        <span class="links">Requests Group</span>
+                        <span class="links">Suggested projects</span>
                     </a>
                 </li>
 
@@ -78,19 +78,55 @@
                     </div>
                 </div> 
             </div>
-          
+                  <!-- Recent Activities -->
+            <div class="data-table activityTable">
+                <div class="title">
+                    <ion-icon name="time-outline"></ion-icon>
+                    <span class="text">Requests Group</span>
+                </div>
+                <div>
+                    <table border1="1">
+                        <tr>
+                          <th>Department</th>
+                          <th>College</th>
+                          <th>Project name</th>
+                          <th>students name </th>
+                          <th>STUDENT'S ID</th>
+
+                         
+                          <th></th>
+                        </tr>
+                        <tr>
+                            <td>computer system engineering</td>
+                            <td>engineering</td>
+                            <td>ai for project</td>
+                            <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                            <td>2022010567,20208789,20209876</td>     
+                             <td>
+                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                             </td>
+                           </tr>
+                         <tr>
+                       
+                      </table>
+                </div>
+            </div>
             <!-- Recent Activities -->
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="server-outline"></ion-icon>
                     <span class="text">Suggested projects</span>
                 </div>
-               
                 <div>
                     <a href="add_project.html" class="btn add">
                         <i class="fa fa-plus"></i>Add New Project
                     </a>
-                    <table border="1">
+                    <table border1="1">
                         <tr>
                           <th>Supervisor</th>
                           <th>Project name</th>
@@ -182,21 +218,30 @@
                                 <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
                                     <i class="fa fa-search"></i> Show
                                 </button>
-                                
                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
                              </td>
                            </tr>
                          <tr>
-                            <div id="deleteModal" class="modal">
-                                <div class="modal-content">
-                                    <p>Do you need to delete this project?</p>
-                                    <button class="btn-confirm" onclick="confirmDelete()">Yes</button>
-                                    <button class="btn-cancel" onclick="closeModal()">No</button>
-                                </div>
-                            </div>
+                            <!-- Delete Confirmation Modal -->
+                      <div id="deleteModal" class="modal">
+                        <div class="modal-content">
+                           <p>Do you need to delete this project?</p>
+                           <button class="btn-confirm" onclick="confirmDelete()">Yes</button>
+                           <button class="btn-cancel" onclick="closeModal('deleteModal')">No</button>
+                        </div>
+                      </div>
                       </table>
+                </div>
+                <div style="display:none" class="data-table userDetailsTable">
+                    <div class="title">
+                      <ion-icon name="folder-outline"></ion-icon>
+                      <span class="text">Content</span>
+                    </div>
+                  <div> 
+           
+            </div>
                     
                           </section>
                           <script src="index.js"></script>
@@ -221,32 +266,8 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
-        let currentButton; // To store the clicked button reference
-
-        // Show the delete confirmation modal
-        function showDeleteConfirmation(button) {
-            currentButton = button; // Save the clicked button
-            document.getElementById('deleteModal').style.display = 'block'; // Show the modal
-        }
-
-        // Confirm delete: delete the row and close the modal
-        function confirmDelete() {
-            if (currentButton) {
-                deleteRow(currentButton); // Call the deleteRow function with the saved button
-            }
-            closeModal(); // Close the modal
-        }
-
-        // Close the modal without deleting
-        function closeModal() {
-            document.getElementById('deleteModal').style.display = 'none'; // Hide the modal
-        }
-
-        // Function to delete the row
-        function deleteRow(button) {
-            const row = button.closest('tr'); // Find the closest table row
-            row.remove(); // Remove the row
-        }
+      let currentButton; // To store the clicked button reference
+       
     </script>
 
 </body>
