@@ -635,6 +635,8 @@ textarea {
           padding: 10px;
           text-align: center;
       }
+   
+    
        /* تصميم جديد للنافذة */
        .modal {
           display: none;
@@ -827,6 +829,46 @@ textarea {
 .btn-confirm:hover, .btn-cancel:hover {
     opacity: 0.8;
 }
+ /* مؤشر التحميل */
+ .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.loader.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.loader .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid  #35665a;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 
 
