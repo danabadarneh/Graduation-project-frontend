@@ -153,4 +153,7 @@ function deleteRow(button) {
             alert("New project added successfully!");
             closeModal();
         }
+        function navigateToPage() {
+            window.location.href = 'details.html';
+        }
         
