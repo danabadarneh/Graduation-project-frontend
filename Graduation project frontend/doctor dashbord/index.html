@@ -11,9 +11,11 @@
 
     <title>Admin Dashboard</title>
 </head>
-
 <body>
-    
+    <a href="" class="btn add" >
+        <ion-icon name="home-outline">Home page </i>
+    </a>
+   
     <nav>
         <div class="logo">
             <div class="logo-image">
@@ -24,8 +26,8 @@
             <ul class="navLinks">
                 <li class="navList active">
                     <a href="#">
-                        <ion-icon name="home-outline"></ion-icon>
-                        <span class="links">Dashboard</span>
+                        <ion-icon name="grid-outline"></ion-icon>  
+                         <span class="links">Dashboard</span>
                     </a>
                 </li>
                 <li class="navList">
@@ -82,7 +84,7 @@
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="time-outline"></ion-icon>
-                    <span class="text">Requests Group</span>
+                    <span class="text">Requests Groups</span>
                 </div>
                 <div>
                     <table border1="1">
@@ -92,8 +94,6 @@
                           <th>Project name</th>
                           <th>students name </th>
                           <th>STUDENT'S ID</th>
-
-                         
                           <th></th>
                         </tr>
                         <tr>
@@ -101,18 +101,81 @@
                             <td>engineering</td>
                             <td>ai for project</td>
                             <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
-                            <td>2022010567,20208789,20209876</td>     
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
+                            <td>
+                                202100123<br>
+                                202100124<br>
+                                202100125
+                            </td> 
+                            <td>
+                                <button class="btn-icon show" >
+                                    <i class="fa fa-check"></i> accept
                                 </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
+                                <button class="btn-icon delete" >
+                                    <i class="fa fa-trash"></i> reject
                                 </button>
                              </td>
                            </tr>
                          <tr>
-                       
+                            <tr>
+                                <td>computer system engineering</td>
+                                <td>engineering</td>
+                                <td>ai for project</td>
+                                <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                <td>
+                                    202100123<br>
+                                    202100124<br>
+                                    202100125
+                                </td> 
+                                <td>
+                                    <button class="btn-icon show" >
+                                        <i class="fa fa-check"></i> accept
+                                    </button>
+                                    <button class="btn-icon delete" >
+                                        <i class="fa fa-trash"></i> reject
+                                    </button>
+                                 </td>
+                               </tr>
+                             <tr>
+                                <tr>
+                                    <td>computer system engineering</td>
+                                    <td>engineering</td>
+                                    <td>ai for project</td>
+                                    <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                    <td>
+                                        202100123<br>
+                                        202100124<br>
+                                        202100125
+                                    </td> 
+                                    <td>
+                                        <button class="btn-icon show" >
+                                            <i class="fa fa-check"></i> accept
+                                        </button>
+                                        <button class="btn-icon delete" >
+                                            <i class="fa fa-trash"></i> reject
+                                        </button>
+                                     </td>
+                                   </tr>
+                                 <tr>
+                                    <tr>
+                                        <td>computer system engineering</td>
+                                        <td>engineering</td>
+                                        <td>ai for project</td>
+                                        <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                        <td>
+                                            202100123<br>
+                                            202100124<br>
+                                            202100125
+                                        </td> 
+                                         <td>
+                                            <button class="btn-icon show" >
+                                                <i class="fa fa-check"></i> accept
+                                            </button>
+                                            <button class="btn-icon delete" >
+                                                <i class="fa fa-trash"></i> reject
+                                            </button>
+                                         </td>
+                                       </tr>
+                                     <tr>
                       </table>
                 </div>
             </div>
@@ -123,7 +186,7 @@
                     <span class="text">Suggested projects</span>
                 </div>
                 <div>
-                    <a href="add_project.html" class="btn add">
+                    <a href="add_project.html" class="btn add" >
                         <i class="fa fa-plus"></i>Add New Project
                     </a>
                     <table border1="1">
@@ -135,34 +198,92 @@
                           <th></th>
                         </tr>
                         <tr>
-                            <td>DR.mohammad khaili</td>
-                            <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
-                                </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                             </td>
-                           </tr>
+                            <tr>
+                             <td>DR.mohammad khaili</td>
+                             <td>ai for project</td>
+                              <td>engineering</td>
+                              <td>computer system engineering</td>
+                              <td>
+                                 <button class="btn-icon show" onclick="navigateToPage()">
+                                     <i class="fa fa-search"></i> Show
+                                 </button>
+                                 
+                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                     <i class="fa fa-trash"></i> Delete
+                                 </button>
+                              </td>
+                            </tr>
+                          <tr>
                          <tr>
+                            <tr>
+                                <tr>
+                                 <td>DR.mohammad khaili</td>
+                                 <td>ai for project</td>
+                                  <td>engineering</td>
+                                  <td>computer system engineering</td>
+                                  <td>
+                                     <button class="btn-icon show" onclick="navigateToPage()">
+                                         <i class="fa fa-search"></i> Show
+                                     </button>
+                                     
+                                     <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                         <i class="fa fa-trash"></i> Delete
+                                     </button>
+                                  </td>
+                                </tr>
+                              <tr>
+                           <tr>
+                            <tr>
+                             <td>DR.mohammad khaili</td>
+                             <td>ai for project</td>
+                              <td>engineering</td>
+                              <td>computer system engineering</td>
+                              <td>
+                                 <button class="btn-icon show" onclick="navigateToPage()">
+                                     <i class="fa fa-search"></i> Show
+                                 </button>
+                                 
+                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                     <i class="fa fa-trash"></i> Delete
+                                 </button>
+                              </td>
+                            </tr>
+                          <tr>
+                           <tr>
+                            <tr>
+                             <td>DR.mohammad khaili</td>
+                             <td>ai for project</td>
+                              <td>engineering</td>
+                              <td>computer system engineering</td>
+                              <td>
+                                 <button class="btn-icon show" onclick="navigateToPage()">
+                                     <i class="fa fa-search"></i> Show
+                                 </button>
+                                 
+                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                     <i class="fa fa-trash"></i> Delete
+                                 </button>
+                              </td>
+                            </tr>
+                          <tr>
                          <tr>
-                            <td>DR.mohammad khaili</td>
-                            <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
-                                </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                             </td>
-                           </tr>
+                            <tr>
+                                <tr>
+                                 <td>DR.mohammad khaili</td>
+                                 <td>ai for project</td>
+                                  <td>engineering</td>
+                                  <td>computer system engineering</td>
+                                  <td>
+                                     <button class="btn-icon show" onclick="navigateToPage()">
+                                         <i class="fa fa-search"></i> Show
+                                     </button>
+                                     
+                                     <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                         <i class="fa fa-trash"></i> Delete
+                                     </button>
+                                  </td>
+                                </tr>
+                              <tr>
                          <tr>
                            <tr>
                             <td>DR.mohammad khaili</td>
@@ -170,54 +291,10 @@
                              <td>engineering</td>
                              <td>computer system engineering</td>
                              <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
+                                <button class="btn-icon show" onclick="navigateToPage()">
                                     <i class="fa fa-search"></i> Show
                                 </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                             </td>
-                           </tr>
-                         <tr>
-                           <tr>
-                            <td>DR.mohammad khaili</td>
-                            <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
-                                </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                             </td>
-                           </tr>
-                         <tr>
-                           <tr>
-                            <td>DR.mohammad khaili</td>
-                            <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
-                                </button>
-                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                    <i class="fa fa-trash"></i> Delete
-                                </button>
-                             </td>
-                           </tr>
-                         <tr>
-                           <tr>
-                            <td>DR.mohammad khaili</td>
-                            <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
-                                <button class="btn-icon show" onclick="showDescription('A project to simulate particle behavior in different environments.')">
-                                    <i class="fa fa-search"></i> Show
-                                </button>
+                                
                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
@@ -233,6 +310,10 @@
                         </div>
                       </div>
                       </table>
+                      <div class="loader" id="loader">
+                        <div class="spinner"></div>
+                    </div>
+                
                 </div>
                 <div style="display:none" class="data-table userDetailsTable">
                     <div class="title">
@@ -246,11 +327,7 @@
                           </section>
                           <script src="index.js"></script>
                           <script>
-                             // دالة عرض رسالة وصف المشروع
-                        function showDescription(description) {
-                          alert(description);
-                          
-                        }  
+                    
                             </script>
                           <!-- Sources for icons -->
                           <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -259,6 +336,7 @@
                           <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                       
                           </section>
+                          
                 </div>
             </div>
     <script src="index.js"></script>
@@ -266,8 +344,37 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
-      let currentButton; // To store the clicked button reference
-       
+    function showDescription(projectDetails) {
+            // Redirect to a new page with project details passed as URL parameters
+            const projectName = "Team Alpha";
+            const supervisor = "Dr.Nagham Hamad";
+            const college = "Engineering College";
+            const department = "Computer Science";
+            
+
+            // Construct URL with query parameters
+            const url = `details.html?groupName=${encodeURIComponent(projectName)}&supervisor=${encodeURIComponent(supervisor)}&projectDetails=${encodeURIComponent(projectDetails)}&college=${encodeURIComponent(department)}&college=${encodeURIComponent(department)}`;
+            
+            // Redirect to the new page
+            window.location.href = url;
+        }
+        // Reset loader when the page is loaded
+    window.onload = () => {
+        const loader = document.getElementById('loader');
+        loader.classList.remove('active');
+    };
+
+    // Show loader and navigate to the next page
+    function navigateToPage() {
+        const loader = document.getElementById('loader');
+        loader.classList.add('active');
+
+        // Navigate to the next page after a delay
+        setTimeout(() => {
+            window.location.href = "details.html";
+        },500); // Adjust delay as needed
+    }
+
     </script>
 
 </body>
