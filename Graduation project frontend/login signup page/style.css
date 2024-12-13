@@ -64,6 +64,7 @@ body {
 .wrapper form .input-box{
   height: 52px;
   margin: 18px 0;
+  margin-bottom: 9px;
 }
 form .input-box input{
 
@@ -258,5 +259,76 @@ form .text h3 a:hover{
 .input-box select {
     transition: border-color 0.3s ease-in-out;
   }
+    
+  .input-box {
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #1d3d37;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+   
+}
+
+.student-hint {
+    font-size: 12px;
+    font-style: italic;
+    color: #18423542; /* Subtle gray color */
+    display: block;
+    margin-top: -1px;
+    margin-left: 19px;
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+   
+    font-style: normal;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Back Button */
+.back-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-icon a i {
+  margin-right: 5px;
+}
+
+/* Input Box */
+.input-box {
+  margin: 15px 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Message Box */
+.message-box {
+  display: none; /* Hidden by default */
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  background-color: #d4edda;
+  color: #155724;
+  font-size: 14px;
+}
+
     
   
