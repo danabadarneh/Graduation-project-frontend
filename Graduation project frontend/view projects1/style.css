@@ -19,10 +19,10 @@ h1 {
     font-family: 'Poppins', sans-serif;
 }
 .wrapper {
-    padding: 10px;
+    padding: 20px;
     position: relative;
     overflow-x: hidden;
-    max-width: 83%;
+    max-width: 98%;
     background: #fff;
     border-radius: 13px;
   }
@@ -228,8 +228,8 @@ nav .menu-items li.active a ion-icon {
 }
 
 .container .title .text {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight:100;
     color: #6A9C89;
     margin-left: 10px;
 }
@@ -268,92 +268,6 @@ nav .menu-items li.active a ion-icon {
     color: black;
 }
 
-
-
-.container .table-design{
-padding: 0px 20px 40px 70px;
-}
-
-.container .activity {
-    width: 90%;
-    font-size: 18px;
-    color: #333;
-    margin-top: 20px;
-}
-
-.container .activity thead tr th{
-    text-align: left;
-    padding-bottom: 20px;
-    font-size: 20px;
-}
-
-.container .activity tbody tr td{
-    color: #333;
-    white-space: nowrap;
-    padding: 4px;
-}
-
-.container .activity tbody tr td a.delete-btn{
-    color: #000;
-    text-decoration: none;
-}
-
-.container .activity tbody tr.odd{
-    background-color: #6A9C89;
-
-}
-
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-#searchInput {
-    width: 83%;
-    padding:30px 30px;
-    border: none;
-    border-radius: 15px;
-    font-size: 16px;
-    outline: none;
-    box-shadow: 0 4px 10px rgba(200, 195, 195, 0.1);
-    transition: width 0.3s ease-in-out;
-    word-wrap: break-word;
-    margin-right: 190px;
-     /* خصائص تجعل النص يتدفق على سطرين */
-     white-space: normal; /* للسماح بالنص المتعدد الأسطر */
-     word-break: break-word; /* لفصل الكلمات عند الحواف */
-     height: auto; 
-    
-}
-
-#searchInput:focus {
-    width: 500px; /* Expands when focused */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-#searchButton {
-    position: absolute;
-    right: 240px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #16423C;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-}
 
 #searchButton ion-icon {
     font-size: 25px;
@@ -405,7 +319,7 @@ padding: 0px 20px 40px 70px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0);
   }
 
   th, td {
@@ -443,7 +357,7 @@ padding: 0px 20px 40px 70px;
   .table-container {
     height: 1400px; /* Fixed height for scrollable area */
     overflow-y: scroll;  /* Enable vertical scrolling */
-    border: 1px solid #808080; /* Border around the scrollable container */
+    border: 1px solid #fdfcfc; /* Border around the scrollable container */
     border-radius: 8px;
     width: 100%; /* Set width to 80% for larger table */
     margin:  auto; /* Center the table horizontally */
@@ -546,3 +460,385 @@ padding: 0px 20px 40px 70px;
     cursor: pointer;
     float: right;
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+/* Ensure the overlay takes up the whole screen with blur effect */
+#overlay {
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+
+.success-message {
+    display: none; /* مخفي بشكل افتراضي */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية شفافة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.success-content {
+    background-color: #fff;
+    padding: 70px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 30%;
+}
+
+.success-content i {
+    font-size: 60px;
+    color:  #35665a;
+    margin-bottom: 10px;
+    animation: bounce 0.5s infinite alternate;
+}
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* تحسينات عامة */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        padding: 10px 20px;
+    }
+
+    .modal-content, .success-content {
+        padding: 20px;
+    }
+}
+button {
+    background-color: #35665a;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 50px; /* زوايا دائرية بالكامل */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل الزر */
+}
+
+button.cancel {
+    background-color: #dc3545;
+}
+
+button:hover {
+    background-color:  #35665a;
+    transform: translateY(-2px); /* رفع الزر قليلاً عند التحويم */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* ظل أعمق عند التحويم */
+}
+
+/* إعدادات النافذة المنبثقة */
+.modal {
+    display: none; /* مخفي بشكل افتراضي */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* خلفية شفافة */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* إعدادات محتوى النافذة */
+.popup {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    height: 56%;
+}
+
+label {
+    font-size: 16px;
+    text-align: right;
+    margin-bottom: 10px;
+    display: block;
+    color: #555; /* لون النص */
+}
+
+input[type="text"], textarea {
+    width: calc(100% - 20px); /* خصم مساحة الحواف */
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    margin-bottom: 15px;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #35665a; /* تغيير لون الحدود عند التركيز */
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+   /* تصميم النافذة (modal) */
+   .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 500px;
+          text-align: center;
+         
+      }
+     
+  .modal input[type="text"] {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+  }
+  .btn {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  .btn-reserve {
+    background-color: 16423C;
+    color: white;
+  }
+  .btn-cancel {
+    background-color: rgba(255, 0, 0, 0.542);
+    color: white;
+  }
+  table {
+          width: 95%;
+          border-collapse: collapse;
+          margin-top: 30px; /* المسافة العلوية */
+          margin-bottom: 30px; /* المسافة السفلية */
+          margin-left: 30px;
+      }
+      table, th, td {
+          border: 1px solid black;
+      }
+      th, td {
+          padding: 10px;
+          text-align: center;
+      }
+       /* تصميم جديد للنافذة */
+       .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7); /* خلفية شفافة داكنة */
+          backdrop-filter: blur(4px); /* تأثير ضبابي للخلفية */
+      }
+      .modal-content {
+          background-color: #f9f9f9;
+          margin: 10% auto;
+          padding: 20px;
+          border-radius: 15px;
+          width: 90%;
+          max-width: 400px;
+          text-align: center;
+          color: #333;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* تأثير ظل */
+          position: relative;
+          animation: slideDown 0.4s ease; /* تأثير انزلاق لأسفل */
+      }
+      /* زر الإغلاق */
+      .close-btn {
+          color: #555;
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 24px;
+          font-weight: bold;
+          cursor: pointer;
+      }
+      .close-btn:hover {
+          color: #e74c3c; /* لون أحمر عند التمرير */
+      }
+
+      /* تأثير انزلاق لأسفل */
+      @keyframes slideDown {
+          from {
+              transform: translateY(-20px);
+              opacity: 0;
+          }
+          to {
+              transform: translateY(0);
+              opacity: 1;
+          }
+      }
+     
+      
+        .alert-box {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 10px;
+          width: 300px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          text-align: center;
+          animation: fadeIn 0.3s ease;
+      }
+      .alert-box p {
+          font-size: 16px;
+          color: #333;
+          margin: 0 0 20px;
+      }
+      .close:hover {
+        color: #000;
+    }
+
+    /* Custom alert modal styling */
+    .custom-alert {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .custom-alert-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        max-width: 300px;
+        width: 80%;
+    }
+    .custom-alert-content h2 {
+        color: #4CAF50; /* Green color for success */
+        margin-bottom: 10px;
+    }
+    .custom-alert-content p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .custom-alert-content .success-icon {
+        font-size: 40px;
+        color: #4CAF50;
+        margin-bottom: 10px;
+    }
+    .custom-alert-content button {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .custom-alert-content button:hover {
+        background-color: #45a049;
+    }
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px;
+      font-size: 13px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0 4px;
+      
+  }
+
+  .btn-icon.show {
+      background-color: #35665a;
+      color: white;
+      
+      
+  }
+
+  .btn-icon.show:hover {
+      background-color:#a0c2b9;
+  }
+ /* Modal styles */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+  }
+  .modal-content h2 {
+    margin-top: 09;
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover {
+    color: black;
+  }
