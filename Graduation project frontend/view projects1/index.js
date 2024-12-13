@@ -1,3 +1,53 @@
+
+let dropdownBtnText = document.getElementById("drop-text");
+let span = document.getElementById("span");
+let icon = document.getElementById("icon");
+let list = document.getElementById("list");
+let input = document.getElementById("search-input");
+let listItems = document.querySelectorAll(".dropdown-list-item");
+let searchButton = document.querySelector(".search-button");
+
+// Toggle dropdown when clicking the dropdown button
+dropdownBtnText.onclick = function () {
+  list.classList.toggle("show");
+  icon.style.rotate = list.classList.contains("show") ? "-180deg" : "0deg";
+};
+
+// Toggle dropdown when clicking the search button
+searchButton.onclick = function () {
+  list.classList.toggle("show");
+  icon.style.rotate = list.classList.contains("show") ? "-180deg" : "0deg";
+};
+
+// Close dropdown when clicking outside
+window.onclick = function (e) {
+  if (
+    e.target.id !== "drop-text" &&
+    e.target.id !== "icon" &&
+    e.target.id !== "span" &&
+    e.target.className !== "search-button" &&
+    !e.target.closest(".dropdown")
+  ) {
+    list.classList.remove("show");
+    icon.style.rotate = "0deg";
+  }
+};
+
+// Update placeholder and dropdown text based on the selected item
+for (item of listItems) {
+  item.onclick = function (e) {
+    span.innerText = e.target.innerText;
+    if (e.target.innerText == "Everything") {
+      input.placeholder = "Search Anything...";
+    } else {
+      input.placeholder = "Search in " + e.target.innerText + "...";
+    }
+    list.classList.remove("show"); // Close the dropdown after selection
+    icon.style.rotate = "0deg";
+  };
+}
+
+
 document.querySelectorAll(".navList").forEach(function(element) {
     element.addEventListener('click', function() {
       
@@ -109,3 +159,17 @@ function navigateToPage() {
     const modal = document.getElementById('detailsModal');
     modal.style.display = 'none';
   }
+
+// Get all navigation items
+const navItems = document.querySelectorAll(".navList");
+
+// Add click event listener to each item
+navItems.forEach(item => {
+    item.addEventListener("click", function () {
+        // Remove 'active' class from all items
+        navItems.forEach(nav => nav.classList.remove("active"));
+
+        // Add 'active' class to the clicked item
+        this.classList.add("active");
+    });
+});
