@@ -23,91 +23,7 @@ document.querySelectorAll(".navList").forEach(function(element) {
       }
     });
   });
-const data = {
-    columns: [
-        { label: 'Project Name', field: 'name' },
-        { label: 'College', field: 'College' },
-        { label: 'Department', field: 'Department' },
-        { label: 'Supervisor', field: 'Supervisor' },
-        { label: 'Display', field: 'Display' },
-        { label: 'Similarity', field: 'Similarity' }
-    ],
-    rows: [
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Anas Melhem', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'R.Anas Melhem', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'R.Anas Melhem', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'R.Anas Melhem', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'R.Anas Melhem', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.mohammad khaili', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
-        { name: 'answerflow', College: 'engineering', Department: 'computer system engineering', Supervisor: 'DR.Osama Hamed', Display: 'Show', Similarity: '100%' },
 
-        // أضف المزيد من الصفوف إذا لزم الأمر
-    ]
-};
-
-// Function to generate and display the table
-function generateTable(data) {
-    const tableContainer = document.getElementById('datatable');
-    let table = '<table>';
-
-    // Table headers
-    table += '<thead><tr>';
-    data.columns.forEach(column => {
-        table += `<th onclick="sortTable('${column.field}')">${column.label}</th>`;
-    });
-    table += '</tr></thead>';
-
-    // Table body
-    table += '<tbody>';
-    data.rows.forEach(row => {
-        table += '<tr>';
-        data.columns.forEach(column => {
-            if (column.field === 'Display') {
-                table += `<td><button class="btn-display" onclick="showMessage('${row.name}')">${row[column.field]}</button></td>`;
-            } else {
-                table += `<td>${row[column.field]}</td>`;
-            }
-        });
-        table += '</tr>';
-    });
-    table += '</tbody></table>';
-
-    tableContainer.innerHTML = table;
-}
-// Function to display message when button is clicked
-
-// Sort function
-function sortTable(field) {
-    data.rows.sort((a, b) => (a[field] > b[field]) ? 1 : -1);
-    generateTable(data);
-}
-
-// Generate the initial table
-generateTable(data);
-// دالة لعرض الرسالة داخل النافذة المنبثقة
-function showMessage(projectName, supervisorName) {
-    document.getElementById('popupMessage').innerHTML = `<strong>THE NAME OF PROJECT:</strong> ${projectName}<br><strong>SUPERVISOR:</strong> ${supervisorName}<br><strong>ABSTRACT:</strong> ${supervisorName}`;
-    document.getElementById('customPopup').style.display = 'flex';
-}
 
 // دالة لإغلاق النافذة
 function closePopup() {
@@ -148,3 +64,48 @@ const dragStop = () => {
 tabsBox.addEventListener("mousedown", () => isDragging = true);
 tabsBox.addEventListener("mousemove", dragging);
 document.addEventListener("mouseup", dragStop);
+function navigateToPage() {
+    // Redirect to details.html
+    window.location.href = "detailss.html";
+}
+  // Function to show the modal and fetch project details
+  async function showProjectDetails(projectId) {
+    // Display the modal
+    const modal = document.getElementById('detailsModal');
+    modal.style.display = 'flex';
+
+    // Fetch project details (simulate with static data or replace with an API call)
+    try {
+      // Simulating a backend call to fetch project details
+      const projectDetails = await fetchProjectFromDatabase(projectId);
+
+      // Update the modal content
+      document.getElementById('projectName').textContent = projectDetails.name;
+      document.getElementById('projectAbstract').textContent = projectDetails.abstract;
+    } catch (error) {
+      console.error("Error fetching project details:", error);
+      document.getElementById('projectName').textContent = "Error loading project details.";
+      document.getElementById('projectAbstract').textContent = "Error loading project details.";
+    }
+  }
+
+  // Function to fetch project details (replace with an actual database call or backend API)
+  async function fetchProjectFromDatabase(projectId) {
+    // Example data, replace with a backend call
+    const projects = {
+      '1': { name: 'AI-Powered Chatbot', abstract: 'This project focuses on building a chatbot using AI and NLP techniques.' }
+    };
+
+    // Simulate a delay
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(projects[projectId]);
+      }, 500);
+    });
+  }
+
+  // Function to close the modal
+  function closeModal() {
+    const modal = document.getElementById('detailsModal');
+    modal.style.display = 'none';
+  }
