@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <title>Proposed projects</title>
+    <title>View Projects</title>
 </head>
 
 <body>
@@ -57,21 +57,31 @@
         </div>
     </nav>
     <section class="dashboard">
-        <div class="container">
-            <h1>Proposed projects</h1>
-            <div class="wrapper">
-                <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
-                <ul class="tabs-box">
-                    <li class="tab">Computer System Engineering</li>
-                    <li class="tab active">Electrical Engineering</li>
-                    <li class="tab">Mechanical engineering</li>
-                    <li class="tab">communction engineering</li>
-                    <li class="tab">Math</li>
-                    <li class="tab">physics</li>
-                </ul>
-                <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
-            </div>
-        </div>
+     <div class="container">
+            <h1>View Projects</h1>
+            <div class="search-container">
+                <!-- Dropdown -->
+                <div class="dropdown">
+                  <button id="drop-text" class="dropdown-button">
+                    <span id="span">Department</span> 
+                    <i id="icon" class="fa fa-chevron-down"></i>
+                  </button>
+                  <ul id="list" class="dropdown-list">
+                    <li class="dropdown-list-item">Computer system Engineering</li>
+                    <li class="dropdown-list-item">Civil Engineering</li>
+                    <li class="dropdown-list-item">Mechanical Engineering</li>
+                    <li class="dropdown-list-item">Electrical Engineering</li>
+                    <li class="dropdown-list-item">Chemical Engineering</li>
+                  </ul>
+                </div>
+                <!-- Search Input -->
+                <input id="search-input" type="text" class="search-input" placeholder="Search department...">
+            
+                <!-- Search Button -->
+                <button class="search-button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
         </head>
 
         <body>
@@ -107,7 +117,7 @@
                 </div>
             </div>
     </section>
-
+   <div>
 
     <script src="index.js"></script>
     <script>
