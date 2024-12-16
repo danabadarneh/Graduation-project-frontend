@@ -6,37 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Project</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 20px;
-            background-color:  #E9EFEC;
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #E9EFEC;
+        }
+
+        .container {
+            display: flex; /* Flexbox layout */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Space between the image and form */
+            width: 80%; /* Set a width for the container */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Section */
+        .image-container {
+            flex: 1; /* Image takes up equal space as the form */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%; /* Ensure the image does not overflow */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Form Section */
+        .form-container {
+            flex: 1; /* Form takes up equal space as the image */
         }
 
         h1 {
-            text-align: center;
-            color:  black;
-        }
-
-        form {
-            max-width: 650px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         label {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 8px;
             display: block;
-            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
         }
 
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Form Buttons */
+        .form-actions {
+            display: flex;
+            gap: 10px; /* Add spacing between buttons */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn.cancel {
+            background-color: #ac08086d;
+        }
+
+        .btn.save {
+            background-color:#35665a;
+        }
+
+        .btn.back {
+            background-color:  #35665a;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn.cancel {
+            background-color: #dc3546bd;
+            color: white;
+        }
+
+        .btn.cancel:hover {
+            background-color: #c82333;
+        }
         input, select, textarea {
-            width: 100%;
-            padding: 6px 5px;
+            width: 98%;
+            padding: 10px 5px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -47,182 +119,68 @@
             -moz-appearance: none;
             appearance: none;
             position: relative;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23aaa%22 d%3D%22M2 0L0 2h4zM2 5L0 3h4z%22/%3E%3C/svg%3E');
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 12px 10px;
         }
-
-        input[type="text"], textarea {
-            height: 40px;
-        }
-
-        textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        select:hover {
-            border-color:  #35665a;
-        }
-
-        select:focus, input:focus, textarea:focus {
-            outline: none;
-            border-color: #35665a;
-            box-shadow: 0 0 3px  #35665a(0, 123, 255, 0.5);
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .btn {
-            padding: 10px 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .btn.save {
-            background-color:  #35665a;
-            color: white;
-        }
-
-        .btn.save:hover {
-            background-color:  #1f4138;
-        }
-
-        .btn.cancel {
-            background-color: #dc3546bd;
-            color: white;
-        }
-
-        .btn.cancel:hover {
-            background-color: #c82333;
-        }
-
-        .btn.back {
-            background-color:  #35665abe;
-            color: white;
-        }
-
-        .btn.back:hover {
-            background-color: #35665a;
-        }
-
-        .success-message {
-            display: none;
-            padding: 20px;
-            background-color: #35665a;
-            color: white;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        .success-message i {
-            margin-right: 10px;
-            font-size: 24px;
-        }
+       select{
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23aaa%22 d%3D%22M2 0L0 2h4zM2 5L0 3h4z%22/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px 10px;
+            width: 100%;
+       }
 
     </style>
 </head>
 
 <body>
-    <h1>Add a New Project</h1>
-    <form onsubmit="handleFormSubmit(event)">
-        <label for="projectName">Project Name:</label>
-        <input type="text" id="projectName" placeholder="Enter project name" required>
-
-        <label for="supervisor">Supervisor:</label>
-        <input type="text" id="supervisor" placeholder="Enter supervisor name" required>
-
-        <label for="college">College:</label>
-        <select id="college" required onchange="updateDepartments()">
-            <option value="Engineering">Engineering</option>
-            <option value="Science">Science</option>
-            <option value="Business">Business</option>
-        </select>
-
-        <label for="department">Department:</label>
-        <select id="department" required>
-            <!-- Departments will be updated dynamically based on the selected college -->
-        </select>
-
-        <label for="projectIdea">Project Idea:</label>
-        <textarea id="projectIdea" placeholder="Describe your project idea" required></textarea>
-
-        <div class="form-actions">
-            <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
-            <button type="submit" class="btn save">Save</button>
-            <!-- New Back button -->
-            <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Index</button>
+  
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="img/img4.png" alt="College Image">
         </div>
-    </form>
 
-    <!-- Success Message -->
-    <div class="success-message" id="successMessage">
-        <i class="fa fa-check-circle"></i> Project has been successfully added!
+        <!-- Form Section -->
+        <div class="form-container">
+            <h1>Add a New Project</h1>
+            <form onsubmit="handleFormSubmit(event)">
+                <label for="projectName">Project Name</label>
+                <input type="text" id="projectName" placeholder="Enter project name" required>
+        
+                <label for="supervisor">Supervisor</label>
+                <input type="text" id="supervisor" placeholder="Enter supervisor name" required>
+        
+                <label for="college">College</label>
+                <select id="college" required onchange="updateDepartments()">
+                    <option value="Engineering">Engineering</option>
+                    <option value="Science">Science</option>
+                    <option value="Business">Business</option>
+                </select>
+        
+                <label for="department">Department</label>
+                <select id="department" required>
+                    <!-- Departments will be updated dynamically based on the selected college -->
+                </select>
+        
+                <label for="projectIdea">Project Idea</label>
+                <textarea id="projectIdea" placeholder="Describe your project idea" required></textarea>
+        
+                <div class="form-actions">
+                    <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn save">Save</button>
+                    <!-- New Back button -->
+                    <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Index</button>
+                </div>
+            </form>
     </div>
-
-    <script>
-        // Update department options based on selected college
-        function updateDepartments() {
-            const college = document.getElementById('college').value;
-            const departmentSelect = document.getElementById('department');
-
-            // Clear current options
-            departmentSelect.innerHTML = '';
-
-            let departments = [];
-            if (college === 'Engineering') {
-                departments = ['Computer Engineering', 'Mechanical Engineering', 'Electrical Engineering'];
-            } else if (college === 'Science') {
-                departments = ['Physics', 'Chemistry', 'Biology'];
-            } else if (college === 'Business') {
-                departments = ['Marketing', 'Finance', 'Management'];
-            }
-
-            // Populate the department options
-            departments.forEach(function(department) {
-                const option = document.createElement('option');
-                option.value = department;
-                option.textContent = department;
-                departmentSelect.appendChild(option);
-            });
-        }
-
-        // Handle form submission
-        function handleFormSubmit(event) {
-            event.preventDefault();
-
-            const projectName = document.getElementById('projectName').value;
-            const supervisor = document.getElementById('supervisor').value;
-            const college = document.getElementById('college').value;
-            const department = document.getElementById('department').value;
-            const projectIdea = document.getElementById('projectIdea').value;
-
-            // Show success message
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
-
-            // Clear the form after submission
-            document.querySelector('form').reset();
-
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Initialize the departments based on the default college
-        updateDepartments();
-    </script>
+  
+ 
 
     <!-- Font Awesome for the check icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </body>
 
 </html>
+
