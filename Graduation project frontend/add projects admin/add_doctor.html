@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Department</title>
+    <style>
+    /* General Styling */
+    body {font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #E9EFEC;
+        }
+
+        .container {
+            display: flex; /* Flexbox layout */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Space between the image and form */
+            width: 80%; /* Set a width for the container */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Section */
+        .image-container {
+            flex: 1; /* Image takes up equal space as the form */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%; /* Ensure the image does not overflow */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Form Section */
+        .form-container {
+            flex: 1; /* Form takes up equal space as the image */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Form Buttons */
+        .form-actions {
+            display: flex;
+            gap: 10px; /* Add spacing between buttons */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn.cancel {
+            background-color: #ac08086d;
+        }
+
+        .btn.save {
+            background-color:#35665a;
+        }
+
+        .btn.back {
+            background-color:  #35665a;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+        input, select, textarea {
+            width: 98%;
+            padding: 10px 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #555;
+            background-color: #fff;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px 10px;
+        }
+       select{
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http://www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23aaa%22 d%3D%22M2 0L0 2h4zM2 5L0 3h4z%22/%3E%3C/svg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px 10px;
+            width: 100%;
+       }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="img/img3.png" alt="College Image">
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h1>Add a new Doctor </h1>
+            <form onsubmit="handleFormSubmit(event)">
+                <label for="DoctortName">Doctor Name</label>
+                <input type="text" id="DoctortName" placeholder="Enter Doctor name" required>
+                <label for="college">College:</label>
+                <select id="college" required onchange="updateDepartments()">
+                    <option value="Engineering">Engineering</option>
+                    <option value="Science">Science</option>
+                    <option value="Business">Business</option>
+                </select>
+                <label for="department">Department</label>
+                <select id="department" required>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Science">Science</option>
+                    <option value="Business">Business</option>
+                </select>
+                <label for="DoctorEmail">Email :</label>
+                <input type="email" id="DoctorEmail" placeholder="Enter Doctor Email" required>
+                <label for="Password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+              
+        
+                <div class="form-actions">
+                    <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn save">Save</button>
+                    <!-- New Back button -->
+                    <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Dashboard</button>
+                </div>
+            </form>
+        
+        </div>
+    
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('College added successfully!');
+        }
+    </script>
+</body>
+
+</html>

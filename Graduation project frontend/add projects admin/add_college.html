@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #E9EFEC;
+        }
+
+        .container {
+            display: flex; /* Flexbox layout */
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px; /* Space between the image and form */
+            width: 80%; /* Set a width for the container */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Image Section */
+        .image-container {
+            flex: 1; /* Image takes up equal space as the form */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%; /* Ensure the image does not overflow */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Form Section */
+        .form-container {
+            flex: 1; /* Form takes up equal space as the image */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Form Buttons */
+        .form-actions {
+            display: flex;
+            gap: 10px; /* Add spacing between buttons */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn.cancel {
+            background-color: #ac08086d;
+        }
+
+        .btn.save {
+            background-color:#35665a;
+        }
+
+        .btn.back {
+            background-color:  #35665a;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .btn.cancel {
+            background-color: #dc3546bd;
+            color: white;
+        }
+
+        .btn.cancel:hover {
+            background-color: #c82333;
+        }
+
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container">
+            <img src="img/img2.png" alt="College Image">
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h1>Add a New College</h1>
+            <form onsubmit="handleFormSubmit(event)">
+                <label for="collegename">College Name</label>
+                <input type="text" id="collegename" placeholder="Enter College Name" required>
+                <div class="form-actions">
+                    <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn save">Add</button>
+                    <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Dashboard</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('College added successfully!');
+        }
+    </script>
+</body>
+</html>
