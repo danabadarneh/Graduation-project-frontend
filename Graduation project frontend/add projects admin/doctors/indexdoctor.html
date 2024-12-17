@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.png" alt="">
+            </div>
+        </div>
+        <div class="menu-items">
+            <ul class="navLinks">
+                <li class="navList">
+                    <a href="index.html">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span class="links">Admin Dashboard</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <ion-icon name="folder-outline"></ion-icon>
+                        <span class="links">Requests</span>
+                    </a>
+                </li>
+                <li class="navList active">
+                    <a href="Doctors/Doctors.html">
+                        <ion-icon name="server-outline"></ion-icon>
+                        <span class="links">Doctors</span>
+                    </a>
+                </li>
+                <li class="navList">
+                    <a href="Doctors/Doctors.html">
+                        <ion-icon name="today-outline"></ion-icon>
+                        <span class="links">Projects Book</span>
+                    </a>
+                </li>
+            </ul>
+           
+                <li>
+                    <a href="#">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span class="links">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="dashboard">
+        <div class="container">
+            <div class="title">
+                <ion-icon name="people-outline"></ion-icon>               
+                <span class="text">Doctors</span>
+            </div>
+            
+</div>
+</head>
+<body>
+
+<table border="1">
+  <tr>
+    <th>Doctor name</th>
+    <th>College</th>
+    <th>Department</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>dr.naqam</td>
+    <td>engineering</td>
+    <td>computer system engineering</td>
+     <td>nagham@12gmail.com</td>
+     <td>
+        <button class="btn-icon delete" onclick="deleteRow(this)">
+            <i class="fa fa-trash"></i> Delete
+        </button>
+     </td>
+   </tr>
+ 
+    
+</table>
+
+    </section>
+    <script src="index.js"></script>
+    <script>
+       // دالة عرض رسالة وصف المشروع
+  function showDescription(description) {
+    alert(description);
+    
+  }  
+      </script>
+    <!-- Sources for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+
+</body>
+
+</html>
