@@ -148,25 +148,29 @@
             <form onsubmit="handleFormSubmit(event)">
                 <label for="projectName">Project Name</label>
                 <input type="text" id="projectName" placeholder="Enter project name" required>
-        
+            
                 <label for="supervisor">Supervisor</label>
                 <input type="text" id="supervisor" placeholder="Enter supervisor name" required>
-        
+            
                 <label for="college">College</label>
                 <select id="college" required onchange="updateDepartments()">
                     <option value="Engineering">Engineering</option>
                     <option value="Science">Science</option>
                     <option value="Business">Business</option>
                 </select>
-        
+            
                 <label for="department">Department</label>
                 <select id="department" required>
                     <!-- Departments will be updated dynamically based on the selected college -->
                 </select>
-        
+            
                 <label for="projectIdea">Project Idea</label>
                 <textarea id="projectIdea" placeholder="Describe your project idea" required></textarea>
-        
+            
+                <!-- New PDF Upload Field -->
+                <label for="projectFile">Upload Project PDF</label>
+                <input type="file" id="projectFile" accept=".pdf" required>
+            
                 <div class="form-actions">
                     <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
                     <button type="submit" class="btn save">Save</button>
@@ -174,6 +178,7 @@
                     <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Index</button>
                 </div>
             </form>
+            
     </div>
   
  
