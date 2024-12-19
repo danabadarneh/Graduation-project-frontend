@@ -63,3 +63,32 @@ tabsBox.addEventListener("mousedown", () => isDragging = true);
 tabsBox.addEventListener("mousemove", dragging);
 document.addEventListener("mouseup", dragStop);
 // Function to generate and display the table
+  // Function to add a new input field for student names
+  function addStudentNameField() {
+    const container = document.getElementById('studentNamesContainer');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Enter Additional Name';
+    container.appendChild(input);
+}
+
+// Function to add a new input field for student IDs
+function addStudentIDField() {
+    const container = document.getElementById('studentIDsContainer');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Enter Additional ID';
+    container.appendChild(input);
+}
+
+// Reserve function (for demonstration)
+function reserve() {
+    alert('Booking completed!');
+    closeModal();
+}
+
+// Close modal function
+function closeModal() {
+    const modal = document.getElementById('bookingModal');
+    modal.style.display = 'none';
+}
