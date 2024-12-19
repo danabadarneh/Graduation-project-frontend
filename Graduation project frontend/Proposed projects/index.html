@@ -21,7 +21,7 @@
         </div>
         <div class="menu-items">
             <ul class="navLinks">
-                <li class="navList active">
+                <li class="navList">
                     <a href="#">
                         <ion-icon name="home-outline"></ion-icon>
                         <span class="links">Home</span>
@@ -33,32 +33,16 @@
                         <span class="links">view projects</span>
                     </a>
                 </li>
-                <li class="navList">
+                <li class="navList active">
                     <a href="#">
                         <ion-icon name="analytics-outline"></ion-icon>
                         <span class="links">Proposed projects</span>
                     </a>
                 </li>
-                <li class="navList">
-                    <a href="#">
-                        <ion-icon name="folder-outline"></ion-icon>
-                        <span class="links">Book a Project</span>
-                    </a>
-                </li>
-                <li class="navList">
-                    <a href="#">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                        <span class="links">Questions and answers</span>
-                    </a>
-                </li>
+               
+               
             </ul>
             <ul class="bottom-link">
-                <li>
-                    <a href="#">
-                        <ion-icon name="person-circle-outline"></ion-icon>
-                        <span class="links">Profile</span>
-                    </a>
-                </li>
                 <li>
                     <a href="#">
                         <ion-icon name="log-out-outline"></ion-icon>
@@ -241,18 +225,31 @@
   </tr>
 </table>
 
-<!-- النافذة (modal) -->
 <div id="bookingModal" class="modal">
   <div class="modal-content">
-    <h3>Book the project</h3>
-    <label>Team names:</label>
-    <input type="text" id="teamNames" placeholder="Enter team names">
-    <label>Team skills:</label>
-    <input type="text" id="teamSkills" placeholder="Enter team skills">
-    <br>
-    <button class="btn btn-reserve" onclick="reserve()">Book</button>
-    <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+      <h3>Book the Project</h3>
+      <!-- Student Names -->
+      <label>Student Names:</label>
+      <div id="studentNamesContainer">
+          <input type="text" placeholder="Enter First Name">
+      </div>
+      <button type="button" class="btn btn-add" onclick="addStudentNameField()">+</button>
+
+      <!-- Student IDs -->
+      <label>Student IDs:</label>
+      <div id="studentIDsContainer">
+          <input type="text" placeholder="Enter ID for First Name">
+  
+      </div>
+      <button type="button" class="btn btn-add" onclick="addStudentIDField()">+</button>
+
+      <div class="form-actions">
+          <button class="btn btn-reserve" onclick="reserve()">Book</button>
+          <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+      </div>
   </div>
+</div>
+
 </div>
      <!-- Custom alert modal -->
      <div class="custom-alert" id="customAlert">
