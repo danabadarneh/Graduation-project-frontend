@@ -71,7 +71,7 @@
 </div>
 </head>
 <body>
-
+  <button class="btn" onclick="openModal()">Book</button>
 <table border="1">
   <tr>
     <th>Supervisor</th>
@@ -115,114 +115,9 @@
       <button onclick="openModal()">Book</button>
     </td>
   </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
+
+
+
 </table>
 
 <div id="bookingModal" class="modal">
@@ -231,15 +126,14 @@
       <!-- Student Names -->
       <label>Student Names:</label>
       <div id="studentNamesContainer">
-          <input type="text" placeholder="Enter First Name">
+          <input type="text" placeholder="Enter Your University Email ">
       </div>
       <button type="button" class="btn btn-add" onclick="addStudentNameField()">+</button>
 
       <!-- Student IDs -->
       <label>Student IDs:</label>
       <div id="studentIDsContainer">
-          <input type="text" placeholder="Enter ID for First Name">
-  
+          <input type="text" placeholder="Enter University Id">
       </div>
       <button type="button" class="btn btn-add" onclick="addStudentIDField()">+</button>
 
@@ -269,53 +163,53 @@
         <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
     </div>
 </div>
-
-        </div>
-        
     </section>
 
     <script src="index.js"></script>
     <script>
-       // دالة عرض رسالة وصف المشروع
-  function showDescription(description) {
-    alert(description);
-    
-  }
-
-  // فتح النافذة (modal)
-  function openModal() {
-    document.getElementById("bookingModal").style.display = "block";
-  }
-
-  // غلق النافذة (modal)
-  function closeModal() {
-    document.getElementById("bookingModal").style.display = "none";
-  }
-
-  // دالة تنفيذ الحجز
-  function reserve() {
-    const teamNames = document.getElementById("teamNames").value;
-    const teamSkills = document.getElementById("teamSkills").value;
-    
-    if (teamNames && teamSkills) {
-      alert("Booked:" + teamNames + "\n Skills " + teamSkills);
-      closeModal();  // غلق النافذة بعد الحجز
-    } else {
-      alert("Please enter team names and skills");
+    // Open the modal
+    function openModal() {
+      document.getElementById("bookingModal").style.display = "block";
     }
-  }
-  function bookIdea(button) {
-            // Show success alert with SweetAlert
-            Swal.fire({
-                icon: 'success',
-                title: 'Booking successful!',
-                text: 'Your booking has been completed.',
-                confirmButtonText: 'OK'
-            });
 
-            // Disable the Book button
-            button.disabled = true;
-        }
+    // Close the modal
+    function closeModal() {
+      document.getElementById("bookingModal").style.display = "none";
+    }
+
+    // Add a new input field for student names
+    function addStudentNameField() {
+      const container = document.getElementById("studentNamesContainer");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Enter Additional Name";
+      container.appendChild(input);
+    }
+
+    // Add a new input field for student IDs
+    function addStudentIDField() {
+      const container = document.getElementById("studentIDsContainer");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "Enter ID for Additional Name";
+      container.appendChild(input);
+    }
+
+    // Show a success message when booking
+    function reserve() {
+      // Close the modal
+      closeModal();
+
+      Swal.fire({
+  icon: 'success',
+  title: 'Booking Successful!',
+  text: 'The project has been successfully booked.',
+  confirmButtonText: 'OK',
+  customClass: {
+    confirmButton: 'custom-confirm-button'
+  }
+    });
+  }
       </script>
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -323,5 +217,4 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
-
 </html>
