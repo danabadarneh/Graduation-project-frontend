@@ -68,7 +68,7 @@ document.addEventListener("mouseup", dragStop);
     const container = document.getElementById('studentNamesContainer');
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Enter Additional Name';
+    input.placeholder = 'Enter Your University Email ';
     container.appendChild(input);
 }
 
@@ -77,7 +77,7 @@ function addStudentIDField() {
     const container = document.getElementById('studentIDsContainer');
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Enter Additional ID';
+    input.placeholder = 'Enter University ID';
     container.appendChild(input);
 }
 
@@ -92,3 +92,4 @@ function closeModal() {
     const modal = document.getElementById('bookingModal');
     modal.style.display = 'none';
 }
+
