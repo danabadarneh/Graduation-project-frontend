@@ -71,7 +71,7 @@
 </div>
 </head>
 <body>
-  <button class="btn" onclick="openModal()">Book</button>
+ 
 <table border="1">
   <tr>
     <th>Supervisor</th>
@@ -84,7 +84,7 @@
     <td>engineering</td>
     <td>computer system engineering</td>
     <td>
-      <button onclick="showDescription('This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the universitys needs.')">Show</button>
+      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
       <button onclick="openModal()">Book</button>
     </td>
   </tr>
@@ -93,7 +93,7 @@
     <td>engineering</td>
     <td>computer system engineering</td>
     <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
+      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
       <button onclick="openModal()">Book</button>
     </td>
   </tr>
@@ -102,7 +102,7 @@
     <td>engineering</td>
     <td>computer system engineering</td>
     <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
+      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
       <button onclick="openModal()">Book</button>
     </td>
   </tr>
@@ -111,13 +111,10 @@
     <td>engineering</td>
     <td>computer system engineering</td>
     <td>
-      <button onclick="showDescription('وصف المشروعjg 1')">Show</button>
+      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
       <button onclick="openModal()">Book</button>
     </td>
   </tr>
-
-
-
 </table>
 
 <div id="bookingModal" class="modal">
@@ -163,8 +160,16 @@
         <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
     </div>
 </div>
+<!-- Project Description Modal -->
+<div id="projectDescriptionModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 id="projectName"></h2>
+    <p id="projectDescription"></p>
+    <p id="projectID"></p> <!-- Project ID -->
+    <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
+  </div>
+</div>
     </section>
-
     <script src="index.js"></script>
     <script>
     // Open the modal
@@ -176,25 +181,22 @@
     function closeModal() {
       document.getElementById("bookingModal").style.display = "none";
     }
-
     // Add a new input field for student names
     function addStudentNameField() {
       const container = document.getElementById("studentNamesContainer");
       const input = document.createElement("input");
       input.type = "text";
-      input.placeholder = "Enter Additional Name";
+      input.placeholder = "Enter Additional Email";
       container.appendChild(input);
     }
-
     // Add a new input field for student IDs
     function addStudentIDField() {
       const container = document.getElementById("studentIDsContainer");
       const input = document.createElement("input");
       input.type = "text";
-      input.placeholder = "Enter ID for Additional Name";
+      input.placeholder = "Enter ID for Additional Email";
       container.appendChild(input);
     }
-
     // Show a success message when booking
     function reserve() {
       // Close the modal
