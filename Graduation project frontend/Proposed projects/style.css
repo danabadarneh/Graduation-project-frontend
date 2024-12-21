@@ -531,7 +531,7 @@ button:hover {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8); /* خلفية شفافة */
     display: flex;
-    align-items: center;
+    align-items:start;
     justify-content: center;
     z-index: 1000;
 }
@@ -543,9 +543,10 @@ button:hover {
     border-radius: 10px;
     width: 100%;
     max-width: 480px;
-    text-align: center;
+    text-align: start;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     height: 56%;
+
 }
 
 label {
@@ -597,7 +598,7 @@ textarea {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-height: 80vh; /* Ensure modal doesn't exceed viewport height */
     overflow-y: auto; 
-         
+    align-items: start;  
       }
      
   .modal input[type="text"] {
@@ -652,25 +653,27 @@ textarea {
           border-radius: 15px;
           width: 100%;
           max-width: 700px;
-          text-align: center;
+          text-align: center; 
           color: #333;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* تأثير ظل */
           position: relative;
           animation: slideDown 0.4s ease; /* تأثير انزلاق لأسفل */
       }
-      /* زر الإغلاق */
-      .close-btn {
-          color: #555;
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          font-size: 30px;
-          font-weight: bold;
-          cursor: pointer;
-      }
-      .close-btn:hover {
-          color: #e74c3c; /* لون أحمر عند التمرير */
-      }
+      .modal-content label {
+        display: block; /* Makes the label appear on its own line */
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-align: left; /* Aligns text to the left */
+    }
+  /* Input fields styling */
+  .modal-content input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}  
+   
 
       /* تأثير انزلاق لأسفل */
       @keyframes slideDown {
@@ -755,10 +758,11 @@ textarea {
         background-color: #35665a;
         color: #fff;
         border: none;
-        border-radius: 4px;
+        border-radius: 20px;
         padding: 5px 10px;
         cursor: pointer;
         width: 70px;
+        font-size: medium;
     }
 
     .btn-add:hover {
@@ -776,5 +780,38 @@ textarea {
     
       .custom-confirm-button:hover {
         background-color: #35665a6e!important; /* Darker green on hover */
+      }
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+        padding-top: 60px;
+      }
+      
+      .modal-content {
+        background-color: white;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be adjusted */
+      }
+      
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
       }
 
