@@ -92,4 +92,70 @@ function closeModal() {
     const modal = document.getElementById('bookingModal');
     modal.style.display = 'none';
 }
+function showCustomAlert(message) {
+    document.getElementById('customAlertContent').innerText = message;
+    document.getElementById('customAlertOverlay').style.display = 'block';
+}
+
+function showProjectModal(projectName, projectDescription) {
+    document.getElementById('projectName').innerText = projectName;
+    document.getElementById('projectDescription').innerText = projectDescription;
+    document.getElementById('myModal').style.display = 'block';
+}
+function showDescription(name, description, projectID) {
+    // Get modal elements
+    const modal = document.getElementById('projectDescriptionModal');
+    const projectNameElement = document.getElementById('projectName');
+    const projectDescriptionElement = document.getElementById('projectDescription');
+    const projectIDElement = document.getElementById('projectID');
+  
+    // Update modal content
+    projectNameElement.innerText = name;
+    projectDescriptionElement.innerText = description;
+    projectIDElement.innerText = "Project ID: " + projectID;
+  
+    // Show the modal
+    modal.style.display = 'block';
+  }
+  
+  function closeModal() {
+    const modal = document.getElementById('projectDescriptionModal');
+    modal.style.display = 'none';
+  }
+  function closeModal() {
+    const modal = document.getElementById('projectDescriptionModal');
+    
+    // Reset the content of the modal (optional)
+    const projectNameElement = document.getElementById('projectName');
+    const projectDescriptionElement = document.getElementById('projectDescription');
+    const projectIDElement = document.getElementById('projectID');
+  
+    projectNameElement.innerText = '';
+    projectDescriptionElement.innerText = '';
+    projectIDElement.innerText = '';
+  
+    // Hide the modal
+    modal.style.display = 'none';
+  }
+  function showDescription(name, description, projectID) {
+    // Get modal elements
+    const modal = document.getElementById('projectDescriptionModal');
+    const projectNameElement = document.getElementById('projectName');
+    const projectDescriptionElement = document.getElementById('projectDescription');
+    const projectIDElement = document.getElementById('projectID');
+  
+    // Set modal content
+    projectNameElement.innerText = name;
+    projectDescriptionElement.innerText = description;
+    projectIDElement.innerText = "Project ID: " + projectID;
+  
+    // Show the modal
+    modal.style.display = 'block';
+  }
+  
+  function closeCustomAlert() {
+    const modal = document.getElementById('projectDescriptionModal');
+    modal.style.display = 'none';  // Close the modal when "Cancel" is clicked
+  }
+  
 
