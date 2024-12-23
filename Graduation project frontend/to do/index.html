@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management with Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            min-height: 400px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin: 0 0 15px;
+            text-align: center;
+        }
+
+        .task {
+            background-color: #e7f3ff;
+            border: 1px solid #0095ff;
+            border-radius: 3px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .task:hover {
+            background-color: #d6eaff;
+        }
+
+        .drop-zone {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 250px;
+            color: #999;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        .progress-form {
+            margin-top: 10px;
+        }
+
+        .progress-form input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .progress-form textarea {
+            width: 10%;
+            margin-top: 5px;
+            padding: 5px;
+            resize: none;
+            font-size: 14px;
+        }
+
+        .progress-details {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #doneForm textarea {
+            width: 100%;
+            margin-top: 5px;
+            padding: 5px;
+            resize: none;
+        }
+
+        #doneForm input[type="file"] {
+            margin-top: 10px;
+        }
+
+        #doneForm button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #0095ff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        #doneForm button:hover {
+            background-color: #007bcc;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 3px;
+            margin-top: 5px;
+            height: 10px;
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            background-color: #4caf50;
+            border-radius: 3px;
+        }
+
+        .task-completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* Specific styling for Done Card */
+        #doneCard {
+            background-color: #e0ffe0; /* Light green background */
+            border: 2px solid #80e080; /* Soft green border */
+            box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); /* Soft green shadow */
+        }
+
+        #doneTasks {
+            padding: 10px;
+            background-color: #f0f9f0; /* Lighter green background for task list */
+            border-radius: 5px;
+            border: 1px solid #c8e6c9;
+        }
+
+        #doneTasks .task {
+            background-color: #c8e6c9; /* Light green background for tasks */
+            border: 1px solid #80e080; /* Soft green border for tasks */
+        }
+
+        #doneTasks .task-completed {
+            color: #388e3c; /* Darker green color for completed tasks */
+        }
+
+        #doneForm {
+            margin-top: 15px;
+        }
+        /* Styling for Done Card Textbox */
+#doneForm textarea {
+    width:93%;
+    height: 100px; /* Adjust height for better user experience */
+    margin-top: 10px;
+    padding: 10px;
+    resize: none; /* Disable resizing */
+    border: 1px solid #80e080; /* Soft green border for consistency */
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333; /* Text color */
+    background-color: #f9f9f9; /* Light background for the textarea */
+}
+
+/* Styling for PDF Upload Input */
+#doneForm input[type="file"] {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #80e080; /* Soft green border for consistency */
+    border-radius: 5px;
+    font-size: 14px;
+    width: 95%;
+}
+
+/* Styling for Submit Button */
+#doneForm button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #0095ff; /* Blue background for Submit button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    width: 100%;
+}
+
+/* Hover effect for Submit Button */
+#doneForm button:hover {
+    background-color: #007bcc; /* Darker blue when hovered */
+}
+
+/* Styling for Form Layout */
+#doneForm {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f9f0; /* Light green background for the form */
+    border: 1px solid #80e080; /* Soft green border for consistency */
+    border-radius: 10px; /* Rounded corners for the form */
+}
+/* Styling for Progress Form Container in Doing Card */
+.progress-form {
+    background-color: #e7f3ff; /* Light blue background to match the card */
+    padding: 15px;
+    border: 1px solid #0095ff; /* Border with matching blue color */
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for Progress Input Field */
+.progress-form input[type="number"] {
+    width: 80px; /* Width to fit the number input */
+    padding: 8px;
+    font-size: 14px;
+    margin-right: 10px; /* Space between the input and the button */
+    border: 1px solid #0095ff; /* Matching blue border */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for the input */
+    color: #333; /* Dark text for readability */
+}
+
+/* Styling for Progress Textbox */
+.progress-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #0095ff; /* Blue border to match the card */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for the textarea */
+    font-size: 14px;
+    color: #333; /* Text color for readability */
+    resize: none; /* Disable resizing */
+}
+
+/* Styling for Update Button */
+.progress-form button {
+    background-color: #0095ff; /* Blue background for the button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+/* Hover Effect for Update Button */
+.progress-form button:hover {
+    background-color: #007bcc; /* Darker blue when hovered */
+}
+/* Styling for Progress Textbox with Scrollable Comment */
+.progress-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #0095ff; /* Blue border to match the card */
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for the textarea */
+    font-size: 14px;
+    color: #333; /* Text color for readability */
+    resize: none; /* Disable resizing */
+    max-height: 120px; /* Set a maximum height for the textarea */
+    overflow-y: auto; /* Add vertical scrollbar when the text exceeds the max height */
+}
+/* Done Card */
+#doneCard {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    min-height: 400px;
+}
+
+/* Styling for the comment textarea in Done Card */
+#doneForm textarea {
+    width: 93%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #0095ff;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+    resize: none;
+    height: 100px;
+}
+
+/* Styling for the PDF upload button */
+#doneForm input[type="file"] {
+    margin-top: 10px;
+}
+
+/* Button Styling */
+#doneForm button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #0095ff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#doneForm button:hover {
+    background-color: #007bcc;
+}
+
+/* Task style when marked as done (100% completion) */
+.task-finished {
+    background-color: #e0ffe0; /* Light green background */
+    border-color: #80e080; /* Green border */
+    color: green; /* Green text */
+    font-weight: bold;
+    text-decoration: line-through; /* Strike-through text */
+}
+
+/* Scrollable comment box */
+#doneForm textarea {
+    max-height: 120px; /* Limit the height */
+    overflow-y: auto; /* Scroll when exceeding max height */
+}
+
+/* Task style when marked as done (100% completion) */
+.task-finished {
+    background-color: #e0ffe0; /* Light green background */
+    border-color: #80e080; /* Green border */
+    color: green; /* Green text */
+    font-weight: bold;
+    text-decoration: line-through; /* Strike-through text */
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- To Do Card -->
+    <div class="card" id="todoCard">
+        <h3>To Do</h3>
+        <div id="todoTasks">
+            <!-- Pre-filled tasks by admin -->
+            <div class="task" draggable="true" id="task1">Task 1: Research</div>
+            <div class="task" draggable="true" id="task2">Task 2: Write Report</div>
+            <div class="task" draggable="true" id="task3">Task 3: Prepare Slides</div>
+        </div>
+    </div>
+
+    <!-- Doing Card -->
+    <div class="card" id="doingCard">
+        <h3>Doing</h3>
+        <div id="doingTasks" class="drop-zone">
+            Drag tasks here
+        </div>
+    </div>
+
+    <!-- Done Card -->
+    <div class="card" id="doneCard">
+        <h3>Done</h3>
+        <div id="doneTasks">
+            <!-- Completed tasks will appear here -->
+        </div>
+        <form id="doneForm">
+            <textarea id="doneComment" placeholder="Add a comment"></textarea>
+            <label for="pdfUpload">Upload a PDF:</label>
+            <input type="file" id="pdfUpload" accept=".pdf" />
+            <button type="button" onclick="submitDoneTask()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const tasks = document.querySelectorAll('.task');
+        const dropZones = document.querySelectorAll('.drop-zone');
+
+        tasks.forEach(task => {
+            task.addEventListener('dragstart', dragStart);
+        });
+
+        dropZones.forEach(zone => {
+            zone.addEventListener('dragover', dragOver);
+            zone.addEventListener('drop', dropTask);
+        });
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.id);
+            e.target.classList.add('dragging');
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function dropTask(e) {
+            e.preventDefault();
+            const taskId = e.dataTransfer.getData('text/plain');
+            const task = document.getElementById(taskId);
+
+            e.target.appendChild(task);
+            task.classList.remove('dragging');
+
+            // If moved to Doing Card, add progress form
+            if (e.target.id === "doingTasks") {
+                if (!task.querySelector('.progress-form')) {
+                    const progressForm = document.createElement('div');
+                    progressForm.classList.add('progress-form');
+                    progressForm.innerHTML = `
+                        <label>Progress (%):</label>
+                        <input type="number" min="0" max="100" step="10" placeholder="0">
+                        <button onclick="updateProgress('${taskId}', this)">Update</button>
+                        <textarea rows="3" placeholder="Add comments for doctor"></textarea>
+                        <div class="progress-bar"><div class="progress-bar-inner" style="width: 0%;"></div></div>
+                    `;
+                    task.appendChild(progressForm);
+                }
+            }
+        }
+
+        function updateProgress(taskId, button) {
+            const task = document.getElementById(taskId);
+            const progressInput = button.previousElementSibling;
+            const commentInput = button.nextElementSibling;
+            const progressValue = progressInput.value;
+            const comment = commentInput.value;
+            const progressBar = task.querySelector('.progress-bar-inner');
+
+            if (progressValue && comment) {
+                const detailsDiv = document.createElement('div');
+                detailsDiv.classList.add('progress-details');
+                detailsDiv.innerHTML = `
+                    <p><strong>Progress:</strong> ${progressValue}%</p>
+                    <p><strong>Comment:</strong> ${comment}</p>
+                `;
+                task.appendChild(detailsDiv);
+
+                // Update progress bar width
+                progressBar.style.width = `${progressValue}%`;
+
+                // If progress reaches 100%, automatically move the task to the Done card
+                if (progressValue == 100) {
+                    const doneCard = document.getElementById("doneTasks");
+                    task.classList.add('task-finished');
+                    doneCard.appendChild(task);
+
+                    // Disable editing for finished task
+                    task.querySelector('.progress-form').remove();
+
+                    // Clear progress and comments
+                    progressInput.value = "";
+                    commentInput.value = "";
+                }
+            } else {
+                alert("Please fill in both progress and comments.");
+            }
+        }
+
+        function submitDoneTask() {
+            const comment = document.getElementById("doneComment").value;
+            const pdfFile = document.getElementById("pdfUpload").files[0];
+
+            if (!comment) {
+                alert("Please add a comment.");
+                return;
+            }
+
+            if (!pdfFile || pdfFile.type !== "application/pdf") {
+                alert("Please upload a valid PDF file.");
+                return;
+            }
+
+            const taskNumber = document.querySelector(".task-finished").id; // Get the task number (ID)
+            const taskName = taskNumber ? document.getElementById(taskNumber).innerText : "Task";
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const taskDiv = document.createElement("div");
+                taskDiv.className = "task task-completed";
+
+                const commentText = document.createElement("p");
+                commentText.innerText = `${taskName}: Comment: ${comment}`; // Include task name and comment
+                taskDiv.appendChild(commentText);
+
+                const pdfLink = document.createElement("a");
+                pdfLink.href = reader.result;
+                pdfLink.download = pdfFile.name;
+                pdfLink.textContent = "Download Uploaded PDF";
+                taskDiv.appendChild(pdfLink);
+
+                document.getElementById("doneTasks").appendChild(taskDiv);
+
+                document.getElementById("doneComment").value = "";
+                document.getElementById("pdfUpload").value = "";
+            };
+
+            reader.readAsDataURL(pdfFile);
+        }
+    </script>
+</body>
+
+</html>
