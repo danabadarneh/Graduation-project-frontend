@@ -6,16 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
-
-    <title>Proposed projects</title>
-
+    <title>My task</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management with Progress</title>
-   
-    </style>
 </head>
 
 <body>
@@ -36,13 +30,13 @@
                 <li class="navList">
                     <a href="#">
                         <ion-icon name="folder-outline"></ion-icon>
-                        <span class="links">view projects</span>
+                        <span class="links">View Projects</span>
                     </a>
                 </li>
-                <li class="navList ">
+                <li class="navList">
                     <a href="#">
                         <ion-icon name="analytics-outline"></ion-icon>
-                        <span class="links">Proposed projects</span>
+                        <span class="links">Proposed Projects</span>
                     </a>
                 </li>
                 <li class="navList active">
@@ -51,7 +45,6 @@
                         <span class="links">My Tasks</span>
                     </a>
                 </li>
-               
             </ul>
             <ul class="bottom-link">
                 <li>
@@ -63,15 +56,15 @@
             </ul>
         </div>
     </nav>
-    
+
     <!-- To Do Card -->
     <div class="card" id="todoCard">
         <h3>To Do</h3>
         <div id="todoTasks">
             <!-- Pre-filled tasks by admin -->
-            <div class="task" draggable="true" id="task1">Task 1: Research</div>
-            <div class="task" draggable="true" id="task2">Task 2: Write Report</div>
-            <div class="task" draggable="true" id="task3">Task 3: Prepare Slides</div>
+            <div class="task" draggable="true" id="task1" onclick="openTaskForm('Task 1: Research')">Task 1: Research</div>
+            <div class="task" draggable="true" id="task2" onclick="openTaskForm('Task 2: Write Report')">Task 2: Write Report</div>
+            <div class="task" draggable="true" id="task3" onclick="openTaskForm('Task 3: Prepare Slides')">Task 3: Prepare Slides</div>
         </div>
     </div>
 
@@ -98,114 +91,80 @@
     </div>
 
     <script>
-        const tasks = document.querySelectorAll('.task');
-        const dropZones = document.querySelectorAll('.drop-zone');
+       const tasks = document.querySelectorAll('.task');
+    const dropZones = document.querySelectorAll('.drop-zone');
 
-        tasks.forEach(task => {
-            task.addEventListener('dragstart', dragStart);
-        });
+    tasks.forEach(task => {
+        task.addEventListener('dragstart', dragStart);
+    });
 
-        dropZones.forEach(zone => {
-            zone.addEventListener('dragover', dragOver);
-            zone.addEventListener('drop', dropTask);
-        });
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', dragOver);
+        zone.addEventListener('drop', dropTask);
+    });
 
-        function dragStart(e) {
-            e.dataTransfer.setData('text/plain', e.target.id);
-            e.target.classList.add('dragging');
-        }
+    function dragStart(e) {
+        e.dataTransfer.setData('text/plain', e.target.id);
+        e.target.classList.add('dragging');
+    }
 
-        function dragOver(e) {
-            e.preventDefault();
-        }
+    function dragOver(e) {
+        e.preventDefault();
+    }
 
-        function dropTask(e) {
-            e.preventDefault();
-            const taskId = e.dataTransfer.getData('text/plain');
-            const task = document.getElementById(taskId);
+    function dropTask(e) {
+        e.preventDefault();
+        const taskId = e.dataTransfer.getData('text/plain');
+        const task = document.getElementById(taskId);
 
-            e.target.appendChild(task);
-            task.classList.remove('dragging');
+        e.target.appendChild(task);
+        task.classList.remove('dragging');
 
-            // If moved to Doing Card, add progress form
-            if (e.target.id === "doingTasks") {
-                if (!task.querySelector('.progress-form')) {
-                    const progressForm = document.createElement('div');
-                    progressForm.classList.add('progress-form');
-                    progressForm.innerHTML = `
-                        <label>Progress (%):</label>
-                        <input type="number" min="0" max="100" step="10" placeholder="0">
-                        <button onclick="updateProgress('${taskId}', this)">Update</button>
-                        <textarea rows="3" placeholder="Add comments for doctor"></textarea>
-                        <div class="progress-bar"><div class="progress-bar-inner" style="width: 0%;"></div></div>
-                    `;
-                    task.appendChild(progressForm);
-                }
+        // If moved to Doing Card, add progress bar
+        if (e.target.id === "doingTasks") {
+            if (!task.querySelector('.progress-bar-container')) {
+                const progressContainer = document.createElement('div');
+                progressContainer.classList.add('progress-bar-container');
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('progress-bar');
+                progressContainer.appendChild(progressBar);
+                task.appendChild(progressContainer);
+                task.dataset.progress = 0; // Initialize progress
             }
         }
+    }
 
-        function updateProgress(taskId, button) {
-            const task = document.getElementById(taskId);
-            const progressInput = button.previousElementSibling;
-            const commentInput = button.nextElementSibling;
-            const progressValue = progressInput.value;
-            const comment = commentInput.value;
-            const progressBar = task.querySelector('.progress-bar-inner');
-
-            if (progressValue && comment) {
-                const detailsDiv = document.createElement('div');
-                detailsDiv.classList.add('progress-details');
-                detailsDiv.innerHTML = `
-                    <p><strong>Progress:</strong> ${progressValue}%</p>
-                    <p><strong>Comment:</strong> ${comment}</p>
-                `;
-                task.appendChild(detailsDiv);
-
-                // Update progress bar width
-                progressBar.style.width = `${progressValue}%`;
-
-                // If progress reaches 100%, automatically move the task to the Done card
-                if (progressValue == 100) {
-                    const doneCard = document.getElementById("doneTasks");
-                    task.classList.add('task-finished');
-                    doneCard.appendChild(task);
-
-                    // Disable editing for finished task
-                    task.querySelector('.progress-form').remove();
-
-                    // Clear progress and comments
-                    progressInput.value = "";
-                    commentInput.value = "";
-                }
-            } else {
-                alert("Please fill in both progress and comments.");
-            }
+    function updateProgress(task) {
+        const progressBar = task.querySelector('.progress-bar');
+        let progress = parseInt(task.dataset.progress);
+        progress += 25; // Increment progress by 25% for demonstration
+        if (progress >= 100) {
+            progress = 100;
+            moveToDone(task);
         }
+        task.dataset.progress = progress;
+        progressBar.style.width = progress + '%';
+    }
 
-        function submitDoneTask() {
-            const comment = document.getElementById("doneComment").value;
-            const pdfFile = document.getElementById("pdfUpload").files[0];
+    function moveToDone(task) {
+        const doneTasks = document.getElementById('doneTasks');
+        doneTasks.appendChild(task);
+        task.querySelector('.progress-bar-container').remove(); // Remove progress bar
+        task.dataset.progress = 0; // Reset progress
+    }
 
-            if (!comment) {
-                alert("Please add a comment.");
-                return;
-            }
+    function submitDoneTask() {
+        const comment = document.getElementById("doneComment").value;
+        const pdfFile = document.getElementById("pdfUpload").files[0];
 
-            if (!pdfFile || pdfFile.type !== "application/pdf") {
-                alert("Please upload a valid PDF file.");
-                return;
-            }
-
-            const taskNumber = document.querySelector(".task-finished").id; // Get the task number (ID)
-            const taskName = taskNumber ? document.getElementById(taskNumber).innerText : "Task";
-
+        if (comment && pdfFile) {
             const reader = new FileReader();
             reader.onload = function () {
                 const taskDiv = document.createElement("div");
                 taskDiv.className = "task task-completed";
 
                 const commentText = document.createElement("p");
-                commentText.innerText = `${taskName}: Comment: ${comment}`; // Include task name and comment
+                commentText.innerText = `Comment: ${comment}`; // Include comment
                 taskDiv.appendChild(commentText);
 
                 const pdfLink = document.createElement("a");
@@ -221,13 +180,19 @@
             };
 
             reader.readAsDataURL(pdfFile);
+        } else {
+            alert('Please enter a comment and upload a PDF before submitting.');
         }
+    }
+
+    function openTaskForm(taskName) {
+        // Redirect to a new page with the task name as a query parameter
+        window.location.href = `task_form.html?taskName=${encodeURIComponent(taskName)}`;
+    }
     </script>
-       <!-- Sources for icons -->
-       <script src="index.js"></script> 
-       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-       <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
+
+
+  
