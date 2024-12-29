@@ -1,539 +1,304 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Form</title>
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    <style>
+        /* General Reset */
+        body, h1, h2, h3, p, ul, ol, li, form, label, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color:#E9EFEC; /* Light background for contrast */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: #ffffff; /* White background for the form */
+            padding: 30px; /* Increased padding for better spacing */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+            width: 800px;
+            max-width: 90%;
+            max-height: 80vh; /* Set a max height for the form */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Heading Styling */
+        #taskName {
+            font-size: 1.8rem; /* Larger font size for the title */
+            margin-bottom: 20px;
+            text-align: center;
+            color:#16423C; /* Blue color for the title */
+        }
+
+        /* Form Labels */
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        /* Textarea Styling */
+        textarea {
+            width: 100%;
+            padding: 12px; /* Increased padding for comfort */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px;
+            resize: none;
+            font-size: 1rem;
+            transition: border-color 0.3s; /* Smooth transition for focus */
+        }
+
+        textarea:focus {
+            border-color: #16423C; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Buttons */
+        button {
+            background:#16423C; /* Primary button color */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background 0.3s ease, transform 0.2s; /* Smooth transition */
+        }
+
+        button:hover {
+            background: #16423cc9; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        button[type="button"] {
+            background: #ddd; /* Secondary button color */
+            color: #333;
+        }
+
+        button[type="button"]:hover {
+            background: #bbb; /* Darker gray on hover */
+        }
+
+        /* Task Container */
+        .task-container {
+            background: #ffffff; /* White background for task container */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            margin: 20px 0;
+            max-height: 200px; /* Set a max height for scrolling */
+            margin-top: 10px;
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        /* Section Heading */
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background:#16423C; /* Green color for progress */
+            width: 0;
+        }
+
+        /* List Styles */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Comment Section */
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        /* Comment Section Styles */
+.comment-section {
+    margin-top: 20px; /* Space above the comment section */
+    padding: 15px; /* Padding inside the comment section */
+    background-color: #f9f9f9; /* Light background for the comment section */
+    border: 1px solid #ddd; /* Light border around the comment section */
+    border-radius: 5px; /* Rounded corners */
 }
 
-body {
-    width: 100%;
-    background-color: #E9EFEC;
-    font-family: 'Poppins', sans-serif;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: f;
-    padding: 20px;
-    gap: 20px;
-}
-h1 {
-    font-size: 30px;
-    margin-top: 27px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-}
-.wrapper {
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden;
-    max-width: 98%;
-    background: #fff;
-    border-radius: 13px;
-  }
-  .wrapper .icon {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 120px;
-    display: flex;
-    align-items: center;
-  }
-  .icon:first-child {
-    left: 0;
-    display: none;
-    background: linear-gradient(90deg, #fff 70%, transparent);
-  }
-  .icon:last-child {
-    right: 0;
-    justify-content: flex-end;
-    background: linear-gradient(-90deg, #fff 70%, transparent);
-  }
-  .icon i {
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    font-size: 1rem;
-    text-align: center;
-    line-height: 55px;
-    border-radius: 50%;
-  }
-  .icon i:hover {
-    background: E2F1E7;
-  }
-  .icon:first-child i {
-    margin-left: 15px;
-  } 
-  .icon:last-child i {
-    margin-right: 15px;
-  } 
-  .wrapper .tabs-box {
-    display: flex;
-    gap: 12px;
-    list-style: none;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  .tabs-box.dragging {
-    scroll-behavior: auto;
-    cursor: grab;
-  }
-  .tabs-box .tab {
-    cursor: pointer;
-    font-size: 1rem;
-    white-space: nowrap;
-    background: #f3fdf9;
-    padding: 13px 20px;
-    border-radius: 30px;
-    border: 1px solid #6A9C89;
-  }
-  .tabs-box .tab:hover{
-    background: E2F1E7;
-  }
-  .tabs-box.dragging .tab {
-    user-select: none;
-    pointer-events: none;
-  }
-  .tabs-box .tab.active{
-    color: #fff;
-    background: #16423C;
-    border-color: transparent;
-  }
-nav .logo {
-    display: flex;
-    align-items: center;
+.comment-section h3 {
+    margin-bottom: 10px; /* Space below the heading */
+    color: #333; /* Dark color for the heading */
 }
 
-nav .logo-image {
-    width: 45px;
-    height: 90px;
+/* Individual Comment Styles */
+.comment {
+    background: #ffffff; /* White background for individual comments */
+    border: 1px solid #ccc; /* Light border for comments */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside each comment */
+    margin-bottom: 10px; /* Space between comments */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 id="taskName">Task Form</h2>
+        <form onsubmit="return false;"> <!-- Prevent form submission -->
+            <label for="datasetCollection">
+                <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
+                Dataset Collection:
+            </label>
+            <textarea id="taskDetails" rows="4" cols="50" placeholder="Enter task details here"></textarea>
+            <button type="button">Save</button>
+            <br><br>
+            <label for="datasetCollection">
+                <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
+                Dataset Collection:
+            </label>
+            <div class="task-container">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+                </div>
+                <ul id="taskList">
+                    <li>
+                        <label>
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Dataset
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Cleaning
+                        </label>
+                    </li>  
+                </ul>
+                <button type="button" onclick="deleteChecked()">Delete Checked Items</button>
+                <button type="button" onclick="addTask()">Add an Item</button>
+            </div>
+     
+        <div class="comment-section" id="commentSection">
+            <h3>Supervisor Comments:</h3>
+        </div>
+        <br><br>
+        <button type="submit">Submit</button>
+        <button type="button" onclick="goBack()">Cancel</button>
 
-nav .logo-image img {
-    width: auto;
-    height: 60px;
-    object-fit: cover;
-    padding-left: 18px;
-    margin-top: 10px;
-}
+        </form>
+    </div>
 
+    <script>
+        // Populate the task name from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const taskName = urlParams.get('taskName');
+        if (taskName) {
+            document.getElementById('taskName').innerText = taskName;
+        }
 
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
- margin-right: 1000px;
-    height: 100vh;
-    width: 230px;
-    background-color: #16423C;
-    padding: 10px 0 10px 10px;
-}
+        // Go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
 
-nav .menu-items {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 150px);
-    justify-content: space-between;
-}
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const checked = document.querySelectorAll('.task-checkbox:checked');
+            const progressBar = document.getElementById('progressBar');
 
-nav .menu-items li {
-    list-style: none;
-}
+            const progress = (checked.length / checkboxes.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
 
-nav .menu-items li a {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    text-decoration: none;
-}
+        function deleteChecked() {
+            const checkboxes = document.querySelectorAll('.task-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                checkbox.closest('li').remove();
+            });
+            updateProgress();
+        }
 
+        function addTask() {
+            const taskList = document.getElementById('taskList');
+            const newTaskText = prompt("Enter the new task:");
+            if (newTaskText) {
+                const newTask = document.createElement('li');
+                newTask.innerHTML = `
+                    <label>
+                        <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> ${newTaskText}
+                    </label>
+                `;
+                taskList.appendChild(newTask);
+            }
+        }
 
+        function submitComment() {
+            const comment = document.getElementById('activityContent').value;
+            if (comment) {
+                const commentSection = document.getElementById('commentSection');
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment');
+ newComment.innerText = comment;
+                commentSection.appendChild(newComment);
+                document.getElementById('activityContent').value = ''; // Clear the textarea
+            } else {
+                alert("Please enter a comment before submitting.");
+            }
+        }
+        function saveTask() {
+  const taskDetails = document.getElementById('taskDetails').value;
+  const taskContainer = document.getElementById('taskContainer');
 
-nav .menu-items li.active a {
-    border-top-left-radius: 13px;
-    border-bottom-left-radius: 13px;
-    position: relative;
-}
+  if (taskDetails) {
+ const taskDiv = document.createElement('div');
+ taskDiv.className = 'comment'; // Use the comment class for styling
+taskDiv.textContent = taskDetails; // Set the text content to the task details
+ taskContainer.appendChild(taskDiv); // Append the new task to the task container
+    document.getElementById('taskDetails').value = ''; // Clear the textarea
+   } else {
+  alert('Please enter task details before saving.'); // Alert if textarea is empty
+        }
+   }
 
-nav .menu-items li a ion-icon {
-    color: white;
-    font-size: 20px;
-    min-width: 45px;
-}
-
-nav .menu-items li a .links {
-    font-size: 18px;
-    color: white;
-}
-
-nav .menu-items li.active a {
-    background-color: #E9EFEC;
-}
-
-nav .menu-items li.active a:before {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 0;
-    top: -40px;
-    border-radius: 50%;
-    box-shadow: 20px 20px #E9EFEC;
-    pointer-events: none;
-}
-
-nav .menu-items li.active a:after {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 0;
-    bottom: -40px;
-    border-radius: 50%;
-    box-shadow: 20px -20px #E9EFEC;
-    pointer-events: none;
-}
-
-
-nav .menu-items li.active a .links {
-    color: #6A9C89;
-}
-
-nav .menu-items li.active a ion-icon {
-    color: #6A9C89;
-}
-
-
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 90px;
-    gap: 10px;
-}
-
-
-      .card {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 15px;
-        width: 300px;
-        margin-top: 40px;
-        min-height: 400px;
-        background-color: #f9f9f9;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-   
-    .card h3 {
-        margin: 0 0 15px;
-        text-align: center;
-    }
-
-    .task {
-        background-color: #C4DAD2;
-        border: 1px solid #C4DAD2;
-        border-radius: 3px;
-        padding: 10px;
-        margin: 10px 0;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .task:hover {
-        background-color: #c4dad2e0;
-    }
-
-    .drop-zone {
-        border: 2px dashed #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        min-height: 250px;
-        color: #999;
-        font-size: 14px;
-        overflow-y: auto;
-    }
-
-    .progress-form {
-        margin-top: 10px;
-    }
-
-    .progress-form input[type="number"] {
-        width: 60px;
-        padding: 5px;
-        margin-right: 10px;
-    }
-
-    .progress-form textarea {
-        width: 10%;
-        margin-top: 5px;
-        padding: 5px;
-        resize: none;
-        font-size: 14px;
-    }
-
-    .progress-details {
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #E9EFEC;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-
-    #doneForm textarea {
-        width: 100%;
-        margin-top: 5px;
-        padding: 5px;
-        resize: none;
-    }
-
-    #doneForm input[type="file"] {
-        margin-top: 10px;
-    }
-
- 
-    .progress-bar {
-        width: 100%;
-        background-color: #ddd;
-        border-radius: 3px;
-        margin-top: 5px;
-        height: 10px;
-    }
-
-    .progress-bar-inner {
-        height: 100%;
-        background-color: #6A9C89;
-        border-radius: 3px;
-    }
-
-    .task-completed {
-        color: #6A9C89;
-        font-weight: bold;
-    }
-
-    /* Specific styling for Done Card */
-    #doneCard {
-        background-color: #6A9C89; /* Light green background */
-        border: 2px solid #6A9C89; /* Soft green border */
-        box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2); /* Soft green shadow */
-    }
-
-    #doneTasks {
-        padding: 10px;
-        background-color: #E9EFEC; /* Lighter green background for task list */
-        border-radius: 5px;
-        border: 1px solid #E9EFEC;
-    }
-
-    #doneTasks .task {
-        background-color: #6A9C89; /* Light green background for tasks */
-        border: 1px solid #C4DAD2; /* Soft green border for tasks */
-    }
-
-    #doneTasks .task-completed {
-        color: #333; /* Darker green color for completed tasks */
-    }
-
-    #doneForm {
-        margin-top: 15px;
-    }
-    /* Styling for Done Card Textbox */
-#doneForm textarea {
-width:93%;
-height: 100px; /* Adjust height for better user experience */
-margin-top: 10px;
-padding: 10px;
-resize: none; /* Disable resizing */
-border: 1px solid #C4DAD2; /* Soft green border for consistency */
-border-radius: 5px;
-font-size: 14px;
-color: #333; /* Text color */
-background-color: #f9f9f9; /* Light background for the textarea */
-}
-
-/* Styling for PDF Upload Input */
-#doneForm input[type="file"] {
-margin-top: 10px;
-padding: 5px;
-border: 1px solid #C4DAD2; /* Soft green border for consistency */
-border-radius: 5px;
-font-size: 14px;
-width: 95%;
-}
-
-/* Styling for Submit Button */
-#doneForm button {
-margin-top: 15px;
-padding: 10px 20px;
-background-color: #C4DAD2; /* Blue background for Submit button */
-color: white;
-border: none;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-transition: background-color 0.3s ease; /* Smooth hover effect */
-width: 100%;
-}
-
-/* Hover effect for Submit Button */
-#doneForm button:hover {
-background-color: #C4DAD2; /* Darker blue when hovered */
-}
-
-/* Styling for Form Layout */
-#doneForm {
-margin-top: 20px;
-padding: 15px;
-background-color: #f0f9f0; /* Light green background for the form */
-border: 1px solid #C4DAD2; /* Soft green border for consistency */
-border-radius: 10px; /* Rounded corners for the form */
-
-}
-/* Styling for Progress Form Container in Doing Card */
-.progress-form {
-background-color: #e7f3ff; /* Light blue background to match the card */
-padding: 15px;
-border: 1px solid #16423C; /* Border with matching blue color */
-border-radius: 5px;
-margin-top: 10px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* Styling for Progress Input Field */
-.progress-form input[type="number"] {
-width: 80px; /* Width to fit the number input */
-padding: 8px;
-font-size: 14px;
-margin-right: 10px; /* Space between the input and the button */
-border: 1px solid #16423C; /* Matching blue border */
-border-radius: 5px;
-background-color: #f9f9f9; /* Light background for the input */
-color: #333; /* Dark text for readability */
-}
-
-/* Styling for Progress Textbox */
-.progress-form textarea {
-width: 90%;
-padding: 10px;
-margin-top: 10px;
-border: 1px solid #16423C; /* Blue border to match the card */
-border-radius: 5px;
-background-color: #f9f9f9; /* Light background for the textarea */
-font-size: 14px;
-color: #333; /* Text color for readability */
-resize: none; /* Disable resizing */
-}
-
-/* Styling for Update Button */
-.progress-form button {
-background-color: #16423C; /* Blue background for the button */
-color: white;
-border: none;
-padding: 10px 20px;
-margin-top: 10px;
-margin-bottom: 10px;
-border-radius: 5px;
-font-size: 14px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-width: 100%;
-}
-
-/* Hover Effect for Update Button */
-.progress-form button:hover {
-background-color: #16423cbc; /* Darker blue when hovered */
-}
-/* Styling for Progress Textbox with Scrollable Comment */
-.progress-form textarea {
-width: 100%;
-padding: 10px;
-margin-top: 10px;
-border: 1px solid #6A9C89; /* Blue border to match the card */
-border-radius: 5px;
-background-color: #f9f9f9; /* Light background for the textarea */
-font-size: 14px;
-color: #333; /* Text color for readability */
-resize: none; /* Disable resizing */
-max-height: 120px; /* Set a maximum height for the textarea */
-overflow-y: auto; /* Add vertical scrollbar when the text exceeds the max height */
-}
-/* Done Card */
-#doneCard {
-border: 1px solid #ccc;
-border-radius: 5px;
-padding: 15px;
-background-color: #f9f9f9;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-width: 300px;
-min-height: 400px;
-}
-
-/* Styling for the comment textarea in Done Card */
-#doneForm textarea {
-width: 93%;
-padding: 10px;
-margin-top: 10px;
-margin-bottom: 10px;
-border: 1px solid #16423C;
-border-radius: 5px;
-background-color: #f9f9f9;
-font-size: 14px;
-color: #333;
-resize: none;
-height: 100px;
-}
-
-/* Styling for the PDF upload button */
-#doneForm input[type="file"] {
-margin-top: 10px;
-}
-
-/* Button Styling */
-#doneForm button {
-margin-top: 10px;
-padding: 5px 10px;
-background-color: #16423C;
-color: white;
-border: none;
-border-radius: 3px;
-cursor: pointer;
-}
-
-#doneForm button:hover {
-background-color: #16423cb6;
-}
-
-/* Task style when marked as done (100% completion) */
-.task-finished {
-background-color: #C4DAD2; /* Light green background */
-border-color: #C4DAD2; /* Green border */
-color: #333; /* Green text */
-font-weight: bold;
-text-decoration: line-through; /* Strike-through text */
-}
-
-/* Scrollable comment box */
-#doneForm textarea {
-max-height: 120px; /* Limit the height */
-overflow-y: auto; /* Scroll when exceeding max height */
-}
-
-/* Task style when marked as done (100% completion) */
-.task-finished {
-background-color: #E9EFEC; /* Light green background */
-border-color: #16423C; /* Green border */
-color: 16423C; /* Green text */
-font-weight: bold;
-text-decoration: line-through; /* Strike-through text */
-}
-#doingCard textarea {
-width: 90%;
-color: #16423C;
-}
-.drop-zone{
-background-color:#E9EFEC;
-}
+    </script>
+</body>
+</html>
