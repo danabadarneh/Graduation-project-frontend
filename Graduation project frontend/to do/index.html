@@ -1,17 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>My task</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            width: 300px;
+            min-height: 400px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .task {
+            background-color: #C4DAD2;
+            border: 1px solid #C4DAD2;
+            border-radius: 3px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .task:hover {
+            background-color: #c4dad2e0;
+        }
+        .drop-zone {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 100px;
+            color: #999;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+        .finish-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #6A9C89;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .finish-button:hover {
+            background-color: #5a8b76;
+        }
+        .add-task-container {
+            margin-bottom: 15px; /* Space below the add task container */
+        }
+        .add-task-container input {
+            padding: 10px; /* Padding for the input field */
+            border: 1px solid #ccc; /* Border similar to other card elements */
+            border-radius: 3px; /* Rounded corners */
+            width: 100%; /* Full width to match the card */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            margin-bottom: 10px; /* Space below the input field */
+            font-size: 14px;
+        }
+        .add-task-container button {
+            padding: 10px; /* Padding for the button */
+            background-color: #6A9C89; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* No border */
+            border-radius: 3px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width to match the card */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            font-size: 14px;
+        }
+        .add-task-container button:hover {
+            background-color: #5a8b76; /* Darker shade on hover */
+        }
+    </style>
 </head>
-
 <body>
     <nav>
         <div class="logo">
@@ -21,7 +95,7 @@
         </div>
         <div class="menu-items">
             <ul class="navLinks">
-                <li class="navList">
+                <li class="navList active">
                     <a href="#">
                         <ion-icon name="home-outline"></ion-icon>
                         <span class="links">Home</span>
@@ -37,12 +111,6 @@
                     <a href="#">
                         <ion-icon name="analytics-outline"></ion-icon>
                         <span class="links">Proposed Projects</span>
-                    </a>
-                </li>
-                <li class="navList active">
-                    <a href="#">
-                        <ion-icon name="today-outline"></ion-icon>
-                        <span class="links">My Tasks</span>
                     </a>
                 </li>
             </ul>
@@ -61,17 +129,20 @@
     <div class="card" id="todoCard">
         <h3>To Do</h3>
         <div id="todoTasks">
-            <!-- Pre-filled tasks by admin -->
-            <div class="task" draggable="true" id="task1" onclick="openTaskForm('Task 1: Research')">Task 1: Research</div>
-            <div class="task" draggable="true" id="task2" onclick="openTaskForm('Task 2: Write Report')">Task 2: Write Report</div>
-            <div class="task" draggable="true" id="task3" onclick="openTaskForm('Task 3: Prepare Slides')">Task 3: Prepare Slides</div>
+            <div class="task" id="task1" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 1: Research')">Task 1: Research</div>
+            <div class="task" id="task2" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 2: Write Report')">Task 2: Write Report</div>
+            <div class="task" id="task3" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 3: Prepare Slides')">Task 3: Prepare Slides</div>
+        </div>
+        <div class="add-task-container">
+            <input type="text" id="newTaskInput" placeholder="Add a new task...">
+            <button onclick="addTask()">Add Task</button>
         </div>
     </div>
 
     <!-- Doing Card -->
     <div class="card" id="doingCard">
         <h3>Doing</h3>
-        <div id="doingTasks" class="drop-zone">
+        <div id="doingTasks" class="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)">
             Drag tasks here
         </div>
     </div>
@@ -82,117 +153,76 @@
         <div id="doneTasks">
             <!-- Completed tasks will appear here -->
         </div>
-        <form class="card1" id="doneForm">
-            <textarea id="doneComment" placeholder="Add a comment"></textarea>
-            <label for="pdfUpload">Upload a PDF:</label>
-            <input type="file" id="pdfUpload" accept=".pdf" />
-            <button type="button" onclick="submitDoneTask()">Submit</button>
-        </form>
     </div>
 
     <script>
-       const tasks = document.querySelectorAll('.task');
-    const dropZones = document.querySelectorAll('.drop-zone');
+        function addTask() {
+            const taskInput = document.getElementById('newTaskInput');
+            const taskName = taskInput.value.trim();
+            if (taskName) {
+                const newTask = document.createElement('div');
+                newTask.className = 'task';
+                newTask.draggable = true;
+                newTask.id = 'task' + (document.querySelectorAll('.task').length + 1);
+                newTask.setAttribute('ondragstart', 'drag(event)');
+                newTask.setAttribute('onclick', `openTaskForm('${taskName}')`);
+                newTask.textContent = taskName;
 
-    tasks.forEach(task => {
-        task.addEventListener('dragstart', dragStart);
-    });
-
-    dropZones.forEach(zone => {
-        zone.addEventListener('dragover', dragOver);
-        zone.addEventListener('drop', dropTask);
-    });
-
-    function dragStart(e) {
-        e.dataTransfer.setData('text/plain', e.target.id);
-        e.target.classList.add('dragging');
-    }
-
-    function dragOver(e) {
-        e.preventDefault();
-    }
-
-    function dropTask(e) {
-        e.preventDefault();
-        const taskId = e.dataTransfer.getData('text/plain');
-        const task = document.getElementById(taskId);
-
-        e.target.appendChild(task);
-        task.classList.remove('dragging');
-
-        // If moved to Doing Card, add progress bar
-        if (e.target.id === "doingTasks") {
-            if (!task.querySelector('.progress-bar-container')) {
-                const progressContainer = document.createElement('div');
-                progressContainer.classList.add('progress-bar-container');
-                const progressBar = document.createElement('div');
-                progressBar.classList.add('progress-bar');
-                progressContainer.appendChild(progressBar);
-                task.appendChild(progressContainer);
-                task.dataset.progress = 0; // Initialize progress
+                const todoTasks = document.getElementById('todoTasks');
+                todoTasks.appendChild(newTask);
+                taskInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter a task name.');
             }
         }
-    }
 
-    function updateProgress(task) {
-        const progressBar = task.querySelector('.progress-bar');
-        let progress = parseInt(task.dataset.progress);
-        progress += 25; // Increment progress by 25% for demonstration
-        if (progress >= 100) {
-            progress = 100;
-            moveToDone(task);
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
         }
-        task.dataset.progress = progress;
-        progressBar.style.width = progress + '%';
-    }
 
-    function moveToDone(task) {
-        const doneTasks = document.getElementById('doneTasks');
-        doneTasks.appendChild(task);
-        task.querySelector('.progress-bar-container').remove(); // Remove progress bar
-        task.dataset.progress = 0; // Reset progress
-    }
+        function allowDrop(event) {
+            event.preventDefault();
+        }
 
-    function submitDoneTask() {
-        const comment = document.getElementById("doneComment").value;
-        const pdfFile = document.getElementById("pdfUpload").files[0];
+        function drop(event) {
+            event.preventDefault();
+            const taskId = event.dataTransfer.getData("text");
+            const task = document.getElementById(taskId);
+            const doingTasks = document.getElementById('doingTasks');
 
-        if (comment && pdfFile) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const taskDiv = document.createElement("div");
-                taskDiv.className = "task task-completed";
-
-                const commentText = document.createElement("p");
-                commentText.innerText = `Comment: ${comment}`; // Include comment
-                taskDiv.appendChild(commentText);
-
-                const pdfLink = document.createElement("a");
-                pdfLink.href = reader.result;
-                pdfLink.download = pdfFile.name;
-                pdfLink.textContent = "Download Uploaded PDF";
-                taskDiv.appendChild(pdfLink);
-
-                document.getElementById("doneTasks").appendChild(taskDiv);
-
-                document.getElementById("doneComment").value = "";
-                document.getElementById("pdfUpload").value = "";
+            // Move the task to the Doing card
+            const finishButton = document.createElement('button');
+            finishButton.className = 'finish-button';
+            finishButton.innerText = 'Finished';
+            finishButton.onclick = function(event) {
+                event.stopPropagation(); // Prevent triggering the task click event
+                moveToDone(task);
             };
 
-            reader.readAsDataURL(pdfFile);
-        } else {
-            alert('Please enter a comment and upload a PDF before submitting.');
+            // Append the task to the Doing card with the finish button
+            doingTasks.appendChild(task);
+            task.appendChild(finishButton);
         }
-    }
 
-    function openTaskForm(taskName) {
-        // Redirect to a new page with the task name as a query parameter
-        window.location.href = `task_form.html?taskName=${encodeURIComponent(taskName)}`;
-    }
+        function moveToDone(task) {
+            const doneTasks = document.getElementById('doneTasks');
+
+            // Move the task to the Done card
+            doneTasks.appendChild(task);
+
+            // Optionally, you can change the task's appearance to indicate it's done
+            task.classList.add('task-completed'); // Add a class for styling if needed
+            const finishButton = task.querySelector('.finish-button');
+            if (finishButton) {
+                finishButton.remove(); // Remove the Finished button
+            }
+        }
+
+        function openTaskForm(taskName) {
+            // Redirect to task_form.html with the task name as a query parameter
+            window.location.href = `task_form.html?task=${encodeURIComponent(taskName)}`;
+        }
     </script>
 </body>
-
 </html>
-
-
   
