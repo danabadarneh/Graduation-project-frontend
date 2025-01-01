@@ -7,23 +7,133 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            gap: 20px;
-        }
+      body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 80vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 20px; /* Add padding if needed */
+    background-color: #E9EFEC; /* Optional background color */
+    margin-left: 15%;
+    nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo-image {
+    width: 4500px;
+    height: 90px;
+}
+
+nav .logo-image img {
+    width: auto;
+    height: 60px;
+    object-fit: cover;
+    padding-left: 18px;
+    margin-top: 10px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+ margin-right: 1000px;
+    height: 100vh;
+    width: 250px;
+    background-color: #16423C;
+    padding: 10px 0 10px 10px;
+}
+
+nav .menu-items {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    justify-content: space-between;
+}
+
+nav .menu-items li {
+    list-style: none;
+}
+
+nav .menu-items li a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+}
+
+
+
+nav .menu-items li.active a {
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+    position: relative;
+}
+
+nav .menu-items li a ion-icon {
+    color: white;
+    font-size: 20px;
+    min-width: 45px;
+}
+
+nav .menu-items li a .links {
+    font-size: 18px;
+    color: white;
+}
+
+nav .menu-items li.active a {
+    background-color: #E9EFEC;
+}
+
+nav .menu-items li.active a:before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    top: -40px;
+    border-radius: 50%;
+    box-shadow: 20px 20px #E9EFEC;
+    pointer-events: none;
+}
+
+nav .menu-items li.active a:after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    bottom: -40px;
+    border-radius: 50%;
+    box-shadow: 20px -20px #E9EFEC;
+    pointer-events: none;
+}
+
+
+nav .menu-items li.active a .links {
+    color: #6A9C89;
+}
+
+nav .menu-items li.active a ion-icon {
+    color: #6A9C89;
+}
+}
+
+
         .card {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 15px;
-            width: 300px;
+            width: 350px;
             min-height: 400px;
             background-color: #f9f9f9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
         }
         .task {
             background-color: #C4DAD2;
@@ -68,7 +178,7 @@
             width: 100%; /* Full width to match the card */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
             margin-bottom: 10px; /* Space below the input field */
-            font-size: 14px;
+            font-size: 1;
         }
         .add-task-container button {
             padding: 10px; /* Padding for the button */
@@ -95,7 +205,7 @@
         </div>
         <div class="menu-items">
             <ul class="navLinks">
-                <li class="navList active">
+                <li class="navList">
                     <a href="#">
                         <ion-icon name="home-outline"></ion-icon>
                         <span class="links">Home</span>
@@ -113,6 +223,13 @@
                         <span class="links">Proposed Projects</span>
                     </a>
                 </li>
+                <li class="navList active">
+                    <a href="#">
+                        <ion-icon name="analytics-outline"></ion-icon>
+                        <span class="links">My schedule</span>
+                    </a>
+                </li>
+
             </ul>
             <ul class="bottom-link">
                 <li>
@@ -124,7 +241,7 @@
             </ul>
         </div>
     </nav>
-
+  
     <!-- To Do Card -->
     <div class="card" id="todoCard">
         <h3>To Do</h3>
@@ -225,4 +342,3 @@
     </script>
 </body>
 </html>
-  
