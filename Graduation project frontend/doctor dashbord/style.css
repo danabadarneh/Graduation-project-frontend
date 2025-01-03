@@ -868,7 +868,116 @@ textarea {
         transform: rotate(360deg);
     }
 }
+.card{
+    width: 18rem;
+    height: auto;
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+   margin-bottom:10%;
+  }
+  
+  .card-img-holder{
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .card-img-holder img{
+    width: 100%;
+    height: auto;
+    max-height: 15rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+  }
+  
+  .blog-title{
+    color: #22215B;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .description{
+    padding: 1rem 0;
+    color: #22215B80;
+    font-size: 1rem;
+  }
+  
+  .blog-time{
+    font-size: .8rem;
+    color: #22215B;
+  }
+  
+  .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
+  
+  .options span{
+    font-weight: 600;
+    color: #22215B;
+  }
+  
+  .btn{
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    font-weight: 400;
+    background: #EEF7FE;
+    color: #22215B;
+    cursor: pointer;
+  }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    gap: 20px; /* Space between cards */
+    justify-content: space-between; /* Aligns cards evenly */
+}
 
+.card {
+    background-color: #fff; /* Card background color */
+    border: 1px solid #ddd; /* Card border */
+    border-radius: 8px; /* Rounded corners */
+    width: calc(33.33% - 20px); /* Adjust width for three cards per row */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.card-img-holder {
+    overflow: hidden; /* Hide overflow for images */
+    border-top-left-radius: 8px; /* Rounded corners for the top */
+    border-top-right-radius: 8px; /* Rounded corners for the top */
+}
+
+.card-img-holder img {
+    width: 100%; /* Make image responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.blog-title {
+    font-size: 1.2em; /* Title font size */
+    margin: 10px 0; /* Margin for spacing */
+}
+
+.blog-time {
+    color: #888; /* Color for time text */
+    font-size: 0.9em; /* Smaller font size */
+}
+
+.options {
+    display: flex; /* Flexbox for options */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center align items */
+    padding: 10px; /* Padding for options */
+}
 
 
 
