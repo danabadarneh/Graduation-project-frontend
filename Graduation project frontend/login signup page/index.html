@@ -1,74 +1,66 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <title> Registration or Sign Up form in HTML CSS | CodingLab </title> 
-    <link rel="stylesheet" href="style.css">
-   </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
   <div class="wrapper">
     <h2>Registration</h2>
-    <form action="#">
-        <div class="input-box">
-            <input type="text" placeholder="Enter your Name" required>
-          </div>
+    <form id="registrationForm" action="#" method="POST">
+      <!-- Name -->
       <div class="input-box">
-        <div class="input-box">
-            <input type="email" placeholder="Enter your university email" required>
-      <div class="input-box">
-        <input type="password" placeholder="Create password" required>
+        <input type="text" placeholder="Enter your Name" required name="Name" />
       </div>
+
+      <!-- Email -->
+      <div class="input-box">
+        <input type="email" placeholder="Enter your university email" required name="email" />
+      </div>
+
+      <!-- Password -->
+      <div class="input-box">
+        <input type="password" placeholder="Create password" required name="password" />
+      </div>
+
+      <!-- College Dropdown -->
       <div class="input-box dropdown">
         <div class="custom-select">
-            <select id="college" required>
-                <option value="" disabled selected>Select your college</option>
-                <option value="engineering">Engineering</option>
-                <option value="math">Math</option>
-                <option value="sport">Sport</option>
-            </select>
-            <i class="fa fa-caret-down"></i>
+          <select id="college" required name="college">
+            <option value="" disabled selected>Select your college</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
         </div>
-    </div>
-    
-    <div class="input-box dropdown">
+      </div>
+
+      <!-- Department Dropdown -->
+      <div class="input-box dropdown">
         <div class="custom-select">
-            <select id="department" required>
-                <option value="" disabled selected>Select your department</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="sport">Sport</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-                <option value="engineering">coputer system Engineering</option>
-            </select>
-            <i class="fa fa-caret-down"></i>
+          <select id="department" required name="department">
+            <option value="" disabled selected>Select your department</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
         </div>
-    </div>
-    
-    <div class="input-box dropdown">
+      </div>
+
+      <!-- Rule Dropdown -->
+      <div class="input-box dropdown">
         <div class="custom-select">
-            <select id="rule" required>
-                <option value="" disabled selected>Select your Rule</option>
-                <option value="Douctor">Doctor</option>
-                <option value="student">student</option>
-                <option value="Admin">Admin</option>
-            </select>
-            <i class="fa fa-caret-down"></i>
+          <select id="rule" required name="role">
+            <option value="" disabled selected>Select your Role</option>
+            <option value="Doctor">Supervisor</option>
+            <option value="Student">Student</option>
+          </select>
+          <i class="fa fa-caret-down"></i>
         </div>
-    </div>
-      
-   
+      </div>
+
+      <!-- Submit Button -->
       <div class="input-box button">
-        <input type="Submit" value="Register Now">
+        <input type="submit" value="Register Now" />
       </div>
       <div class="text">
         <h3>Already have an account? <a href="login.html">Login now</a></h3>
@@ -76,7 +68,6 @@
     </form>
   </div>
 
- 
-  
+ <script src="signup.js"></script>
 </body>
 </html>
