@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="style1.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add padding if needed */
+            background-color: #E9EFEC; /* Optional background color */
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 200px;
+            background-color: #16423C;
+            padding: 10px 0 10px 10px;
+        }
+
+        nav .menu-items {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 150px);
+            justify-content: space-between;
+        }
+
+        nav .menu-items li {
+            list-style: none;
+        }
+
+        nav .menu-items li a {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            text-decoration: none;
+        }
+
+        nav .menu-items li.active a {
+            background-color: #E9EFEC;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            width: 320px;
+            min-height: 400px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px; /* Add margin for spacing between cards */
+            
+        }
+        .task {
+            background-color: #C4DAD2;
+            border: 1px solid #C4DAD2;
+            border-radius: 3px;
+            padding: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .task:hover {
+            background-color: #c4dad2e0;
+        }
+
+        .drop-zone {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            min-height: 100px;
+            color: #999;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        .finish-button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #6A9C89;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .finish-button:hover {
+            background-color: #5a8b76;
+        }
+
+ .add-task-container {
+            margin-bottom: 15px; /* Space below the add task container */
+        }
+
+        .add-task-container input {
+            padding: 10px; /* Padding for the input field */
+            border: 1px solid #ccc; /* Border similar to other card elements */
+            border-radius: 3px; /* Rounded corners */
+            width: 100%; /* Full width to match the card */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            margin-bottom: 10px; /* Space below the input field */
+            font-size: 1rem;
+        }
+
+        .add-task-container button {
+            padding: 10px; /* Padding for the button */
+            background-color: #6A9C89; /* Button background color */
+            color: white; /* Button text color */
+            border: none; /* No border */
+            border-radius: 3px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            width: 100%; /* Full width to match the card */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            font-size: 14px;
+        }
+
+        .add-task-container button:hover {
+            background-color: #5a8b76; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-image">
+                <img src="logo.png" alt="">
+            </div>
+        </div>
+        <div class="menu-items">
+            <ul class="navLinks">
+                <li class="navList">
+                    <a href="index.html">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span class="links">Dashboard</span>
+                    </a>
+                </li>
+                <li class="navList active">
+                    <a href="#">
+                        <ion-icon name="analytics-outline"></ion-icon>
+                        <span class="links">Group tasks</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="bottom-link">
+                <li>
+                    <a href="#">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        <span class="links">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  
+    <!-- To Do Card -->
+    <div class="card" id="todoCard">
+        <h3>To Do</h3>
+        <div id="todoTasks">
+            <div class="task" id="task1" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 1: Research')">Task 1: Research</div>
+            <div class="task" id="task2" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 2: Write Report')">Task 2: Write Report</div>
+            <div class="task" id="task3" draggable="true" ondragstart="drag(event)" onclick="openTaskForm('Task 3: Prepare Slides')">Task 3: Prepare Slides</div>
+        </div>
+        <div class="add-task-container">
+            <input type="text" id="newTaskInput" placeholder="Add a new task...">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+    </div>
+
+    <!-- Doing Card -->
+    <div class="card" id="doingCard">
+        <h3>Doing</h3>
+        <div id="doingTasks" class="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)">
+            Drag tasks here
+        </div>
+    </div>
+
+    <!-- Done Card -->
+    <div class="card" id="doneCard">
+        <h3>Done</h3>
+        <div id="doneTasks">
+            <!-- Completed tasks will appear here -->
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('newTaskInput');
+            const taskName = taskInput.value.trim();
+            if (taskName) {
+                const newTask = document.createElement('div');
+                newTask.className = 'task';
+                newTask.draggable = true;
+                newTask.id = 'task' + (document.querySelectorAll('.task').length + 1);
+                newTask.setAttribute('ondragstart', 'drag(event)');
+                newTask.setAttribute('onclick', `openTaskForm('${taskName}')`);
+                newTask.textContent = taskName;
+
+                const todoTasks = document.getElementById('todoTasks');
+                todoTasks.appendChild(newTask);
+                taskInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter a task name.');
+            }
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const taskId = event.dataTransfer.getData("text");
+            const task = document.getElementById(taskId);
+            const doingTasks = document.getElementById('doingTasks');
+
+            // Move the task to the Doing card
+            const finishButton = document.createElement('button');
+            finishButton.className = 'finish-button';
+            finishButton.innerText = 'Finished';
+            finishButton.onclick = function(event) {
+                event.stopPropagation(); // Prevent triggering the task click event
+                moveToDone(task);
+            };
+
+            // Append the task to the Doing card with the finish button
+            doingTasks.appendChild(task);
+            task.appendChild(finishButton);
+        }
+
+        function moveToDone(task) {
+            const doneTasks = document.getElementById('doneTasks');
+
+            // Move the task to the Done card
+            doneTasks.appendChild(task);
+
+            // Optionally, you can change the task's appearance to indicate it's done
+            task.classList.add('task-completed'); // Add a class for styling if needed
+            const finishButton = task.querySelector('.finish-button');
+            if (finishButton) {
+                finishButton.remove(); // Remove the Finished button
+            }
+        }
+
+        function openTaskForm(taskName) {
+            // Redirect to task_form.html with the task name as a query parameter
+            window.location.href = `task_form.html?task=${encodeURIComponent(taskName)}`;
+        }
+    </script>
+</body>
+</html>
