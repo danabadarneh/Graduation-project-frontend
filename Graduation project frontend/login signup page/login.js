@@ -25,8 +25,17 @@ document
       }
 
       const data = await response.json();
+      const role = data.role;
+      if(role === "Admin"){
+        window.location.href = "../add projects admin/index.html"
+      }
+      else if (role === "Student"){
+        window.location.href = "../Home Page/index.html"
+      }
+      else{
+        window.location.href = "../doctor dashbord/index.html"
+      }
       localStorage.setItem("token", data.token);
-      window.location.href = "index.html";
     } catch (error) {
       console.error("Error:", error.message);
       alert(error.message);
