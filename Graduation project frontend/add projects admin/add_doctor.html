@@ -135,26 +135,25 @@
         <!-- Form Section -->
         <div class="form-container">
             <h1>Add a new Doctor </h1>
-            <form onsubmit="handleFormSubmit(event)">
-                <label for="DoctortName">Doctor Name</label>
+            <form id="addDoctorForm">
+                <label for="DoctortName">Doctor Name:</label>
                 <input type="text" id="DoctortName" placeholder="Enter Doctor name" required>
                 <label for="college">College:</label>
-                <select id="college" required onchange="updateDepartments()">
-                    <option value="Engineering">Engineering</option>
-                    <option value="Science">Science</option>
-                    <option value="Business">Business</option>
+                <select id="college" required >
+                    <option value="">Select a College</option>
+                    <!-- <option value="Science">Science</option>
+                    <option value="Business">Business</option> -->
                 </select>
-                <label for="department">Department</label>
+                <label for="department">Department:</label>
                 <select id="department" required>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Science">Science</option>
-                    <option value="Business">Business</option>
+                    <option value="">Select a Department</option>
+                    <!-- <option value="Science">Science</option>
+                    <option value="Business">Business</option> -->
                 </select>
-                <label for="DoctorEmail">Email :</label>
+                <label for="DoctorEmail">Email:</label>
                 <input type="email" id="DoctorEmail" placeholder="Enter Doctor Email" required>
-                <label for="Password">Password</label>
+                <label for="Password">Password:</label>
                 <input type="password" id="password" placeholder="Enter password" required>
-              
         
                 <div class="form-actions">
                     <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
@@ -168,12 +167,6 @@
     
     </div>
 
-    <script>
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            alert('College added successfully!');
-        }
-    </script>
+    <script src="add_doctor.js"></script>
 </body>
-
 </html>
