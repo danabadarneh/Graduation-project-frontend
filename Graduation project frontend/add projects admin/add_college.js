@@ -10,13 +10,12 @@ async function handleFormSubmit(event) {
 
     try {
         // التوكن المستلم ضمن headers
-        const token = "Seraj__eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTZlMDliOTQ3Yjg3YmU3M2Y4MTM1NiIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTczNDI4MzE5MiwiZXhwIjoxNzM0Mjg2NzkyfQ.vi5imVYlyZrmqYlV7oTJ3EpacSJSJJ2p_ckf-I60jgo";
-
+        const token = localStorage.getItem("token");
         const response = await fetch("http://localhost:4000/College/AddCollege", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`, // تضمين التوكن في الطلب
+                "Authorization": `Seraj__ ${token}`, // تضمين التوكن في الطلب
             },
             body: JSON.stringify({ collegeName }), // إرسال اسم الكلية
         });
@@ -29,7 +28,7 @@ async function handleFormSubmit(event) {
         }
 
         alert("College added successfully!");
-        window.location.href = "index.html"; // الانتقال للداشبورد بعد النجاح
+        window.location.href = "./index.html"; // الانتقال للداشبورد بعد النجاح
     } catch (error) {
         console.error("Error:", error.message);
         alert(error.message);
