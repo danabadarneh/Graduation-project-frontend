@@ -2,176 +2,167 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
-    <link rel="stylesheet" href="style.css">
-
-    <title>Proposed projects</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Proposed projects</title>
 </head>
 
 <body>
-    <nav>
-        <div class="logo">
-            <div class="logo-image">
-                <img src="logo.png" alt="">
-            </div>
-        </div>
-        <div class="menu-items">
-            <ul class="navLinks">
-                <li class="navList">
-                    <a href="#">
-                        <ion-icon name="home-outline"></ion-icon>
-                        <span class="links">Home</span>
-                    </a>
-                </li>
-                <li class="navList">
-                    <a href="#">
-                        <ion-icon name="folder-outline"></ion-icon>
-                        <span class="links">view projects</span>
-                    </a>
-                </li>
-                <li class="navList active">
-                    <a href="#">
-                        <ion-icon name="analytics-outline"></ion-icon>
-                        <span class="links">Proposed projects</span>
-                    </a>
-                </li>
-               
-               
-            </ul>
-            <ul class="bottom-link">
-                <li>
-                    <a href="#">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                        <span class="links">Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <section class="dashboard">
-        <div class="container">
-            <h1>Proposed projects</h1>
-            <div class="wrapper">
-                <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
-                <ul class="tabs-box">
-                  <li class="tab">Computer System Engineering</li>
-                  <li class="tab active">Electrical Engineering</li>
-                  <li class="tab">Mechanical engineering</li>
-                  <li class="tab">communction engineering</li>
-                  <li class="tab">Math</li>
-                  <li class="tab">physics</li>
-                </ul>
-                <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
-              </div>
-</div>
-</head>
-<body>
- 
-<table border="1">
-  <tr>
-    <th>Supervisor</th>
-    <th>College</th>
-    <th>Department</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-  <tr>
-    <td>DR.mohammad khaili</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-    <td>
-      <button onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-      <button onclick="openModal()">Book</button>
-    </td>
-  </tr>
-</table>
-
-<div id="bookingModal" class="modal">
-  <div class="modal-content">
-      <h3>Book the Project</h3>
-      <!-- Student Names -->
-      <label>Student Names:</label>
-      <div id="studentNamesContainer">
-          <input type="text" placeholder="Enter Your University Email ">
+  <nav>
+    <div class="logo">
+      <div class="logo-image">
+        <img src="logo.png" alt="">
       </div>
-      <button type="button" class="btn btn-add" onclick="addStudentNameField()">+</button>
+    </div>
+    <div class="menu-items">
+      <ul class="navLinks">
+        <li class="navList">
+          <a href="#">
+            <ion-icon name="home-outline"></ion-icon>
+            <span class="links">Home</span>
+          </a>
+        </li>
+        <li class="navList">
+          <a href="#">
+            <ion-icon name="folder-outline"></ion-icon>
+            <span class="links">view projects</span>
+          </a>
+        </li>
+        <li class="navList active">
+          <a href="#">
+            <ion-icon name="analytics-outline"></ion-icon>
+            <span class="links">Proposed projects</span>
+          </a>
+        </li>
+      </ul>
 
-      <!-- Student IDs -->
-      <label>Student IDs:</label>
-      <div id="studentIDsContainer">
+      <ul class="bottom-link">
+        <li>
+          <a href="#">
+            <ion-icon name="log-out-outline"></ion-icon>
+            <span class="links">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="dashboard">
+    <div class="container">
+      <h1>Proposed projects</h1>
+      <div class="wrapper">
+        <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
+        <ul class="tabs-box">
+          <li class="tab">Computer System Engineering</li>
+          <li class="tab active">Electrical Engineering</li>
+          <li class="tab">Mechanical engineering</li>
+          <li class="tab">communction engineering</li>
+          <li class="tab">Math</li>
+          <li class="tab">physics</li>
+        </ul>
+        <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
+      </div>
+    </div>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Supervisor</th>
+          <th>College</th>
+          <th>Department</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="projectTableBody">
+        <tr>
+          <td>DR.mohammad khaili</td>
+          <td>engineering</td>
+          <td>computer system engineering</td>
+          <td>
+            <button
+              onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
+            <button onclick="openModal()">Book</button>
+          </td>
+        </tr>
+        <tr>
+          <td>DR.mohammad khaili</td>
+          <td>engineering</td>
+          <td>computer system engineering</td>
+          <td>
+            <button
+              onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
+            <button onclick="openModal()">Book</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Booking Model -->
+    <div id="bookingModal" class="modal">
+      <div class="modal-content">
+        <h3>Book the Project</h3>
+        <!-- Student Names -->
+        <label>Student Qroup Names:</label>
+        <div id="studentNamesContainer">
+          <input type="text" placeholder="Enter Your Name ">
+        </div>
+        <button type="button" class="btn btn-add" onclick="addStudentNameField()">+</button>
+
+        <!-- Student IDs -->
+        <label>Student IDs:</label>
+        <div id="studentIDsContainer">
           <input type="text" placeholder="Enter University Id">
-      </div>
-      <button type="button" class="btn btn-add" onclick="addStudentIDField()">+</button>
+        </div>
+        <button type="button" class="btn btn-add" onclick="addStudentIDField()">+</button>
 
-      <div class="form-actions">
+        <div class="form-actions">
           <button class="btn btn-reserve" onclick="reserve()">Book</button>
           <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
-      </div>
-  </div>
-</div>
-
-</div>
-     <!-- Custom alert modal -->
-     <div class="custom-alert" id="customAlert">
-        <div class="custom-alert-content">
-            <div class="success-icon">✔️</div>
-            <h2>تم الحجز بنجاح!</h2>
-            <p>تم إكمال الحجز بنجاح.</p>
-            <button onclick="closeCustomAlert()">موافق</button>
         </div>
+      </div>
     </div>
-</div>
 
-  <!-- Custom Alert Modal -->
-  <div id="customAlertOverlay" class="overlay" style="display: none;">
-    <div class="alert-box">
+    </div>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div id="customAlertOverlay" class="overlay" style="display: none;">
+      <div class="alert-box">
         <p id="customAlertContent"></p>
         <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
+      </div>
     </div>
-</div>
-<!-- Project Description Modal -->
-<div id="projectDescriptionModal" class="modal" style="display:none;">
-  <div class="modal-content">
-    <h2 id="projectName"></h2>
-    <p id="projectDescription"></p>
-    <p id="projectID"></p> <!-- Project ID -->
-    <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
-  </div>
-</div>
-    </section>
-    <script src="index.js"></script>
-    <script>
+
+    <!-- Project Description Modal -->
+    <div id="projectDescriptionModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h2 id="projectName"></h2>
+        <p id="projectDescription"></p>
+        <p id="projectID"></p> <!-- Project ID -->
+        <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="index.js"></script>
+  <script>
+    // Function to close the custom alert modal
+function closeCustomAlert() {
+  document.getElementById("customAlert").style.display = "none";
+  document.getElementById("customAlertOverlay").style.display = "none";
+}
+
+// Function to show the custom alert
+function showCustomAlert(message) {
+  const alertContent = document.getElementById("customAlertContent");
+  alertContent.textContent = message;
+  document.getElementById("customAlert").style.display = "block";
+  document.getElementById("customAlertOverlay").style.display = "block";
+}
+
     // Open the modal
     function openModal() {
       document.getElementById("bookingModal").style.display = "block";
@@ -186,7 +177,7 @@
       const container = document.getElementById("studentNamesContainer");
       const input = document.createElement("input");
       input.type = "text";
-      input.placeholder = "Enter Additional Email";
+      input.placeholder = "Enter your colleague's name";
       container.appendChild(input);
     }
     // Add a new input field for student IDs
@@ -194,7 +185,7 @@
       const container = document.getElementById("studentIDsContainer");
       const input = document.createElement("input");
       input.type = "text";
-      input.placeholder = "Enter ID for Additional Email";
+      input.placeholder = "Enter Enter your colleague's ID ";
       container.appendChild(input);
     }
     // Show a success message when booking
@@ -203,20 +194,21 @@
       closeModal();
 
       Swal.fire({
-  icon: 'success',
-  title: 'Booking Successful!',
-  text: 'The project has been successfully booked.',
-  confirmButtonText: 'OK',
-  customClass: {
-    confirmButton: 'custom-confirm-button'
-  }
-    });
-  }
-      </script>
-    <!-- Sources for icons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        icon: 'success',
+        title: 'Booking Successful!',
+        text: 'The project has been successfully booked.',
+        confirmButtonText: 'OK',
+        customClass: {
+          confirmButton: 'custom-confirm-button'
+        }
+      });
+    }
+  </script>
+  <!-- Sources for icons -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
+
 </html>
