@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,28 +16,33 @@
             align-items: center;
             height: 100vh;
         }
+
         form {
             width: 95%;
             max-width: 600px;
-            background-color:#fff;
+            background-color: #fff;
             padding: 50px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 1700px;
         }
+
         form h2 {
             text-align: center;
             margin-bottom: 20px;
             font-size: 1.5em;
             color: #333;
         }
+
         form label {
             font-weight: bold;
             color: #555;
             display: block;
             margin-bottom: 5px;
         }
-        form input, form textarea {
+
+        form input,
+        form textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -46,11 +52,14 @@
             background-color: #f9f9f9;
             transition: background-color 0.3s ease, border 0.3s ease;
         }
-        form input:focus, form textarea:focus {
+
+        form input:focus,
+        form textarea:focus {
             border: 1px solid #35665a;
             background-color: #ffffff;
             outline: none;
         }
+
         form button {
             width: 103%;
             padding: 15px;
@@ -62,9 +71,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         form button:hover {
             background-color: #35665a;
         }
+
         form button:active {
             transform: scale(.99);
         }
@@ -90,19 +101,20 @@
             document.getElementById('projectIdea').value = projectIdea || 'this project talked about the ai , and how to used it in our live ';
         };
         function navigateToIndex() {
-    // Show the loader
-    const loader = document.getElementById('loader');
-    loader.classList.add('active');
+            // Show the loader
+            const loader = document.getElementById('loader');
+            loader.classList.add('active');
 
-    // Navigate to index.html after a small delay
-    setTimeout(() => {
-        window.location.href = "index.html"; // Replace with the correct path if needed
-    }, 500); // Adjust the delay as needed
-}
+            // Navigate to index.html after a small delay
+            setTimeout(() => {
+                window.location.href = "index.html"; // Replace with the correct path if needed
+            }, 500); // Adjust the delay as needed
+        }
 
-       
+
     </script>
 </head>
+
 <body>
     <form>
         <h2>Project Details</h2>
@@ -119,13 +131,13 @@
         <input type="text" id="department" name="department" readonly>
 
         <label for="projectIdea">Project Idea</label>
-        <textarea id="projectIdea" name="projectIdea" rows="4" readonly></textarea>
+        <textarea id="projectIdea" name="projectIdea" rows="5" readonly></textarea>
 
         <button type="button" onclick="navigateToIndex()">Back</button>
 
-
-    <div class="loader" id="loader">
-        <div class="spinner"></div>
-    </div>
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+        </div>
+    </form>    
 </body>
 </html>

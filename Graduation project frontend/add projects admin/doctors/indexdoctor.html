@@ -20,91 +20,82 @@
         <div class="menu-items">
             <ul class="navLinks">
                 <li class="navList">
-                    <a href="index.html">
+                    <a href="/Graduation project frontend/add projects admin/index.html">
                         <ion-icon name="home-outline"></ion-icon>
                         <span class="links">Admin Dashboard</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#">
+                <li class="navList">
+                    <a href="/Graduation project frontend/add projects admin/request/index.html">
                         <ion-icon name="folder-outline"></ion-icon>
                         <span class="links">Requests</span>
                     </a>
                 </li>
                 <li class="navList active">
-                    <a href="Doctors/Doctors.html">
+                    <a href="/Graduation project frontend/add projects admin/doctors/indexdoctor.html">
                         <ion-icon name="server-outline"></ion-icon>
                         <span class="links">Doctors</span>
                     </a>
                 </li>
                 <li class="navList">
-                    <a href="Doctors/Doctors.html">
+                    <a href="/Graduation project frontend/add projects admin/Projects Book/indexbook.html">
                         <ion-icon name="today-outline"></ion-icon>
                         <span class="links">Projects Book</span>
                     </a>
                 </li>
             </ul>
-           
-                <li>
-                    <a href="#">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                        <span class="links">Logout</span>
-                    </a>
-                </li>
-            </ul>
+            <li>
+                <a href="/Graduation project frontend/login signup page/index.html">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span class="links">Logout</span>
+                </a>
+            </li>
         </div>
     </nav>
-    
+
     <section class="dashboard">
         <div class="container">
             <div class="title">
-                <ion-icon name="people-outline"></ion-icon>               
+                <ion-icon name="people-outline"></ion-icon>
                 <span class="text">Doctors</span>
             </div>
-            
-</div>
-</head>
-<body>
 
-<table border="1">
-  <tr>
-    <th>Doctor name</th>
-    <th>College</th>
-    <th>Department</th>
-    <th>Email</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>dr.naqam</td>
-    <td>engineering</td>
-    <td>computer system engineering</td>
-     <td>nagham@12gmail.com</td>
-     <td>
-        <button class="btn-icon delete" onclick="deleteRow(this)">
-            <i class="fa fa-trash"></i> Delete
-        </button>
-     </td>
-   </tr>
- 
-    
-</table>
-
+            <table border="1">
+                <tr>
+                    <th>Doctor name</th>
+                    <th>College</th>
+                    <th>Department</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>dr.naqam</td>
+                    <td>engineering</td>
+                    <td>computer system engineering</td>
+                    <td>nagham@12gmail.com</td>
+                    <td>
+                        <button class="btn-icon delete" onclick="deleteRow(this)">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </section>
+
     <script src="index.js"></script>
     <script>
-       // دالة عرض رسالة وصف المشروع
-  function showDescription(description) {
-    alert(description);
-    
-  }  
-      </script>
+        // دالة عرض رسالة وصف المشروع
+        function showDescription(description) {
+            alert(description);
+        }  
+    </script>
+
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- 
 
 </body>
-
 </html>
