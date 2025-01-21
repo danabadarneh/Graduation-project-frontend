@@ -1,7 +1,9 @@
+const from = document.getElementById("form");
 async function handleFormSubmit(event) {
     event.preventDefault();
 
     const collegeName = document.getElementById("collegename").value;
+    console.log(collegeName);
 
     if (!collegeName) {
         alert("Please enter a college name.");
@@ -15,7 +17,7 @@ async function handleFormSubmit(event) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Seraj__ ${token}`, // تضمين التوكن في الطلب
+                "Authorization": `Seraj__${token}`, // تضمين التوكن في الطلب
             },
             body: JSON.stringify({ collegeName }), // إرسال اسم الكلية
         });
@@ -34,3 +36,5 @@ async function handleFormSubmit(event) {
         alert(error.message);
     }
 }
+
+form.addEventListener("submit",handleFormSubmit);

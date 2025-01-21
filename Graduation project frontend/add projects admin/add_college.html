@@ -121,7 +121,7 @@
         <!-- Form Section -->
         <div class="form-container">
             <h1>Add a New College</h1>
-            <form onsubmit="handleFormSubmit(event)">
+            <form id="form">
                 <label for="collegename">College Name</label>
                 <input type="text" id="collegename" placeholder="Enter College Name" required>
                 <div class="form-actions">
@@ -132,13 +132,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            alert('College added successfully!');
-        }
-    </script>
 
 <script src="add_college.js" type="module"></script>
 

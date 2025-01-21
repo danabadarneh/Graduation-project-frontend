@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       email: document.getElementById("DoctorEmail").value,
       password: document.getElementById("password").value,
     };
+    console.log(doctorData)
 
     fetch("http://localhost:4000/Supervisor/AddSupervisor", {
       method: "POST",
@@ -58,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify(doctorData),
     })
       .then(async (response) => {
-        const text = await response.text(); // Read as text for debugging
+        const text = await response.text();
         console.log("Server Response:", text);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

@@ -144,9 +144,9 @@
         <!-- Form Section -->
         <div class="form-container">
             <h1>Add a New Department</h1>
-            <form onsubmit="handleFormSubmit(event)">
+            <form id="form">
                 <label for="college">College</label>
-                <select id="college" required onchange="updateDepartments()">
+                <select id="college">
                     <option value="Engineering">Engineering</option>
                     <option value="Science">Science</option>
                     <option value="Business">Business</option>
@@ -161,13 +161,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            alert('College added successfully!');
-        }
-    </script>
     <script src="add_dep.js"></script>
 
 </body>

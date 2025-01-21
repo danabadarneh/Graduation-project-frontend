@@ -80,66 +80,21 @@
         </div>
 
         <table border="1">
-            <tr>
-                <th>Project name</th>
-                <th>Supervisor</th>
-                <th>College</th>
-                <th>Department</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>computer system engineering</td>
-                <td>DR.mohammad khaili</td>
-                <td>engineering</td>
-                <td>computer system engineering</td>
-                <td>
-                    <button class="btn-icon show" onclick="navigateToPage()">
-                        <i class="fa fa-search"></i> Show
-                    </button>
-                    <button class="btn-icon delete" onclick="deleteRow(this)">
-                        <i class="fa fa-trash"></i> Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>computer system engineering</td>
-                <td>DR.mohammad khaili</td>
-                <td>engineering</td>
-                <td>computer system engineering</td>
-                <td>
-                    <button class="btn-icon show" onclick="navigateToPage()">
-                        <i class="fa fa-search"></i> Show
-                    </button>
-                    <button class="btn-icon delete" onclick="deleteRow(this)">
-                        <i class="fa fa-trash"></i> Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>computer system engineering</td>
-                <td>DR.mohammad khaili</td>
-                <td>engineering</td>
-                <td>computer system engineering</td>
-                <td>
-                    <button class="btn-icon show" onclick="navigateToPage()">
-                        <i class="fa fa-search"></i> Show
-                    </button>
-                    <button class="btn-icon delete" onclick="deleteRow(this)">
-                        <i class="fa fa-trash"></i> Delete
-                    </button>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Supervisor</th>
+                    <th>College</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
     </section>
 
-    <script src="index.js"></script>
-    <script>
-        // دالة عرض رسالة وصف المشروع
-        function showDescription(description) {
-            alert(description);
-
-        }  
-    </script>
+    <script src="view_projects.js"></script>
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

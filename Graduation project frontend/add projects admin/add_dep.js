@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const collegeSelect = document.getElementById("college");
     const departmentsSelect = document.getElementById("departments");
-    const addDepartmentForm = document.getElementById("addDepartmentForm");
+    const addDepartmentForm = document.getElementById("form");
 
     const authToken = localStorage.getItem("token");
 
