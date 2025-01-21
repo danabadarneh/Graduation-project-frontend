@@ -6,7 +6,12 @@ document
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     if (!email || !password) {
-      alert("Please fill in both fields.");
+      Swal.fire({
+        text: error.message,
+        customClass: {
+          confirmButton: 'please fill both the email and password',
+      },
+      });
       return;
     }
 
@@ -35,8 +40,13 @@ document
         window.location.href = "../doctor dashbord/index.html"
       }
       localStorage.setItem("token", data.token);
+      Swal.fire("SweetAlert2 is working!");
     } catch (error) {
-      console.error("Error:", error.message);
-      alert(error.message);
+      Swal.fire({
+        text: error.message,
+        customClass: {
+          confirmButton: 'custom-confirm-button',
+      },
+      });
     }
   });

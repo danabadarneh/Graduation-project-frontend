@@ -51,9 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            Swal.fire(data.message);
           })
-          .catch((error) => console.error("Error during registration:", error));
+          .catch((error) => 
+            Swal.fire({
+            text: error.message,
+            customClass: {
+              confirmButton: 'custom-confirm-button',
+          },
+          }));
       });
   });
   

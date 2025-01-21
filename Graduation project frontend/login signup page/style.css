@@ -330,5 +330,18 @@ h2 {
   font-size: 14px;
 }
 
-    
+.custom-confirm-button {
+  background-color: #35665a; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-confirm-button:hover {
+  background-color: #1d3d37;
+}
+
   

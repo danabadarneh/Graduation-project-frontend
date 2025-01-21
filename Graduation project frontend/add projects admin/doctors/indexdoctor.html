@@ -25,24 +25,13 @@
                         <span class="links">Admin Dashboard</span>
                     </a>
                 </li>
-                <li class="navList">
-                    <a href="/Graduation project frontend/add projects admin/request/index.html">
-                        <ion-icon name="folder-outline"></ion-icon>
-                        <span class="links">Requests</span>
-                    </a>
-                </li>
                 <li class="navList active">
                     <a href="/Graduation project frontend/add projects admin/doctors/indexdoctor.html">
                         <ion-icon name="server-outline"></ion-icon>
                         <span class="links">Doctors</span>
                     </a>
                 </li>
-                <li class="navList">
-                    <a href="/Graduation project frontend/add projects admin/Projects Book/indexbook.html">
-                        <ion-icon name="today-outline"></ion-icon>
-                        <span class="links">Projects Book</span>
-                    </a>
-                </li>
+                
             </ul>
             <li>
                 <a href="/Graduation project frontend/login signup page/index.html">
@@ -61,35 +50,22 @@
             </div>
 
             <table border="1">
-                <tr>
-                    <th>Doctor name</th>
-                    <th>College</th>
-                    <th>Department</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>dr.naqam</td>
-                    <td>engineering</td>
-                    <td>computer system engineering</td>
-                    <td>nagham@12gmail.com</td>
-                    <td>
-                        <button class="btn-icon delete" onclick="deleteRow(this)">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Doctor name</th>
+                        <th>College</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </section>
 
-    <script src="index.js"></script>
-    <script>
-        // دالة عرض رسالة وصف المشروع
-        function showDescription(description) {
-            alert(description);
-        }  
-    </script>
+    <script src="indexdoctor.js"></script>
+    <script src="view_doctors.js"></script>
 
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
