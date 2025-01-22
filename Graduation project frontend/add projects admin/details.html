@@ -7,137 +7,68 @@
     <title>Project Details</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #E9EFEC;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 20px;
+            background-color: #f4f4f9;
         }
 
-        form {
-            width: 95%;
+        .container {
             max-width: 600px;
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 1700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
-        form h2 {
+        h1 {
             text-align: center;
             margin-bottom: 20px;
-            font-size: 1.5em;
             color: #333;
         }
 
-        form label {
+        .detail {
+            margin-bottom: 15px;
+        }
+
+        .detail label {
             font-weight: bold;
             color: #555;
-            display: block;
-            margin-bottom: 5px;
         }
 
-        form input,
-        form textarea {
-            width: 100%;
+        .detail p {
+            margin: 5px 0 0;
             padding: 10px;
-            margin-bottom: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s ease, border 0.3s ease;
         }
 
-        form input:focus,
-        form textarea:focus {
-            border: 1px solid #35665a;
-            background-color: #ffffff;
-            outline: none;
+        .back-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: #35665a;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
         }
 
-        form button {
-            width: 103%;
-            padding: 15px;
-            background-color: #35665a;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        form button:hover {
-            background-color: #35665a;
-        }
-
-        form button:active {
-            transform: scale(.99);
+        .back-btn:hover {
+            background: #2a5248;
         }
     </style>
-    <script>
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                projectName: params.get('projectName'),
-                supervisor: params.get('supervisor'),
-                college: params.get('college'),
-                department: params.get('department'),
-                projectIdea: params.get('projectIdea')
-            };
-        }
 
-        window.onload = () => {
-            const { projectName, supervisor, college, department, projectIdea } = getQueryParams();
-            document.getElementById('projectName').value = projectName || 'ai for project';
-            document.getElementById('supervisor').value = supervisor || 'dr.nagham hamad';
-            document.getElementById('college').value = college || '';
-            document.getElementById('department').value = department || '';
-            document.getElementById('projectIdea').value = projectIdea || 'this project talked about the ai , and how to used it in our live ';
-        };
-        function navigateToIndex() {
-            // Show the loader
-            const loader = document.getElementById('loader');
-            loader.classList.add('active');
-
-            // Navigate to index.html after a small delay
-            setTimeout(() => {
-                window.location.href = "index.html"; // Replace with the correct path if needed
-            }, 500); // Adjust the delay as needed
-        }
-
-
-    </script>
 </head>
 
 <body>
-    <form>
-        <h2>Project Details</h2>
-        <label for="projectName">Project Name</label>
-        <input type="text" id="projectName" name="projectName" readonly>
-
-        <label for="supervisor">Supervisor</label>
-        <input type="text" id="supervisor" name="supervisor" readonly>
-
-        <label for="college">College</label>
-        <input type="text" id="college" name="college" readonly>
-
-        <label for="department">Department</label>
-        <input type="text" id="department" name="department" readonly>
-
-        <label for="projectIdea">Project Idea</label>
-        <textarea id="projectIdea" name="projectIdea" rows="5" readonly></textarea>
-
-        <button type="button" onclick="navigateToIndex()">Back</button>
-
-        <div class="loader" id="loader">
-            <div class="spinner"></div>
-        </div>
-    </form>    
+    <div class="container">
+        <p>Loading project details...</p>
+    </div>
+    <script src="details.js"></script>
 </body>
+
 </html>

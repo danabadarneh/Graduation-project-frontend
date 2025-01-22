@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${project.college.collegeName}</td>
                     <td>${project.department.departmentName}</td>
                     <td>
-                        <button class="btn-icon show" onclick="showDescription('${project.projectDescription || "No description available"}')">
+                        <button class="btn-icon show" onclick="redirectToProjectDetails('${project._id}')">
                             <i class="fa fa-search"></i> Show
                         </button>
                         <button class="btn-icon delete" onclick="deleteProject('${project._id}', this)">
@@ -42,12 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Failed to fetch projects. Please try again.");
         });
 });
-
-// Function to show project description
-function showDescription(description) {
-    alert(description);
+function redirectToProjectDetails(projectId) {
+    window.location.href = `details.html?projectId=${projectId}`;
 }
-
 // Function to delete a project
 function deleteProject(projectId, button) {
     const authToken = localStorage.getItem("token");
