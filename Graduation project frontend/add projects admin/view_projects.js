@@ -38,8 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch((error) => {
-            console.error("Error fetching projects:", error);
-            alert("Failed to fetch projects. Please try again.");
+            Swal.fire({
+                text: error.message,
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
         });
 });
 function redirectToProjectDetails(projectId) {
@@ -62,13 +66,22 @@ function deleteProject(projectId, button) {
             return response.json();
         })
         .then((data) => {
-            alert("Project deleted successfully.");
+            Swal.fire({
+                text: "project deleted successfully",
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
             // Remove the row from the table
             const row = button.closest("tr");
             row.remove();
         })
         .catch((error) => {
-            console.error("Error deleting project:", error);
-            alert("Failed to delete project. Please try again.");
+            Swal.fire({
+                text: error.message,
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
         });
 }

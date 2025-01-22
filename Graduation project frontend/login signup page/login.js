@@ -40,7 +40,6 @@ document
         window.location.href = "../doctor dashbord/index.html"
       }
       localStorage.setItem("token", data.token);
-      Swal.fire("SweetAlert2 is working!");
     } catch (error) {
       Swal.fire({
         text: error.message,

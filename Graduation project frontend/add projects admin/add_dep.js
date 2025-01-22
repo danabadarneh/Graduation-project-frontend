@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => {
             console.error("Error fetching colleges:", error);
-            alert("Failed to fetch colleges. Please try again.");
         });
 
     // تحديث الأقسام عند اختيار كلية
@@ -61,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => {
                 console.error("Error fetching departments:", error);
                 departmentsSelect.innerHTML = '<option value="">Error loading departments</option>';
-                alert("Failed to fetch departments. Please try again.");
             });
     });
 
@@ -82,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
             departmentName: departmentName
         };
 
-        console.log("Sending data:", requestData);
 
         fetch("http://localhost:4000/College/AddDepartment", {
             method: "POST",
@@ -100,15 +97,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 console.log("Success response:", responseData);
-                alert("Department added successfully!");
+                Swal.fire({
+                    text: "department added successfully", 
+                    customClass: {
+                      confirmButton: "custom-confirm-button",
+                    },
+                  });
                 document.getElementById("collegename").value = "";
                 
                 // تحديث قائمة الأقسام
                 collegeSelect.dispatchEvent(new Event('change'));
             })
             .catch(error => {
-                console.error("Error adding department:", error);
-                alert(error.message || "Failed to add department. Please try again.");
+                Swal.fire({
+                    text: error.message,
+                    customClass: {
+                      confirmButton: "custom-confirm-button",
+                    },
+                  });
             });
     });
 });

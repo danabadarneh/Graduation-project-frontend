@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       email: document.getElementById("DoctorEmail").value,
       password: document.getElementById("password").value,
     };
-    console.log(doctorData)
 
     fetch("http://localhost:4000/Supervisor/AddSupervisor", {
       method: "POST",
@@ -67,12 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return JSON.parse(text); // Parse as JSON
       })
       .then((data) => {
-        alert("Doctor added successfully!");
-        console.log(data);
+        Swal.fire({
+          text: "supervisor added successfully",
+          customClass: {
+            confirmButton: "custom-confirm-button",
+          },
+        });
       })
       .catch((error) => {
-        console.error("Error adding doctor:", error);
-        alert("Error adding doctor. Please try again.");
+        Swal.fire({
+          text: error.message,
+          customClass: {
+            confirmButton: "custom-confirm-button",
+          },
+        });
       });
   });
 });

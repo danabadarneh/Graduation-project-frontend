@@ -35,8 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
         .catch((error) => {
-            console.error("Error fetching projects:", error);
-            alert("Failed to fetch projects. Please try again.");
+            Swal.fire({
+                text: error.message,
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
         });
 });
 
@@ -58,13 +62,22 @@ function deleteProject(supervisorId, button) {
             return response.json();
         })
         .then((data) => {
-            alert("Supervisor deleted successfully.");
+            Swal.fire({
+                text: data.message,
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
             // Remove the row from the table
             const row = button.closest("tr");
             row.remove();
         })
         .catch((error) => {
-            console.error("Error deleting supervisor:", error);
-            alert("Failed to delete supervisor. Please try again.");
+            Swal.fire({
+                text: error.message,
+                customClass: {
+                  confirmButton: "custom-confirm-button",
+                },
+              });
         });
 }

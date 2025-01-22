@@ -918,3 +918,17 @@ textarea {
     flex: 1; /* Ensure both buttons take equal space */
     text-align: center; /* Center the button text */
 }
+
+.custom-confirm-button {
+    background-color: #35665a; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .custom-confirm-button:hover {
+    background-color: #1d3d37;
+  }

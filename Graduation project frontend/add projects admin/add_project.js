@@ -92,12 +92,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return JSON.parse(text);
           })
           .then((data) => {
-            alert("Project added successfully!");
-            console.log(data);
+            Swal.fire({
+              text: "project added successfully",
+              customClass: {
+                confirmButton: "custom-confirm-button",
+              },
+            });
           })
           .catch((error) => {
-            console.error("Error adding project:", error);
-            alert("Error adding project. Please try again.");
+            Swal.fire({
+              text: error.message,
+              customClass: {
+                confirmButton: "custom-confirm-button",
+              },
+            });
           });
       });
   });
