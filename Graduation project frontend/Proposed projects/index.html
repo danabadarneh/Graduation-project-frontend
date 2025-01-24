@@ -20,19 +20,19 @@
     <div class="menu-items">
       <ul class="navLinks">
         <li class="navList">
-          <a href="#">
+          <a href="/Graduation project frontend/Home Page/index.html">
             <ion-icon name="home-outline"></ion-icon>
             <span class="links">Home</span>
           </a>
         </li>
         <li class="navList">
-          <a href="#">
+          <a href="/Graduation project frontend/view projects1/index.html">
             <ion-icon name="folder-outline"></ion-icon>
             <span class="links">view projects</span>
           </a>
         </li>
         <li class="navList active">
-          <a href="#">
+          <a href="/Graduation project frontend/Proposed projects/index.html">
             <ion-icon name="analytics-outline"></ion-icon>
             <span class="links">Proposed projects</span>
           </a>
@@ -125,9 +125,6 @@
       </div>
     </div>
 
-    </div>
-    </div>
-
     <!-- Custom Alert Modal -->
     <div id="customAlertOverlay" class="overlay" style="display: none;">
       <div class="alert-box">
@@ -150,18 +147,18 @@
   <script src="index.js"></script>
   <script>
     // Function to close the custom alert modal
-function closeCustomAlert() {
-  document.getElementById("customAlert").style.display = "none";
-  document.getElementById("customAlertOverlay").style.display = "none";
-}
+    function closeCustomAlert() {
+      document.getElementById("customAlert").style.display = "none";
+      document.getElementById("customAlertOverlay").style.display = "none";
+    }
 
-// Function to show the custom alert
-function showCustomAlert(message) {
-  const alertContent = document.getElementById("customAlertContent");
-  alertContent.textContent = message;
-  document.getElementById("customAlert").style.display = "block";
-  document.getElementById("customAlertOverlay").style.display = "block";
-}
+    // Function to show the custom alert
+    function showCustomAlert(message) {
+      const alertContent = document.getElementById("customAlertContent");
+      alertContent.textContent = message;
+      document.getElementById("customAlert").style.display = "block";
+      document.getElementById("customAlertOverlay").style.display = "block";
+    }
 
     // Open the modal
     function openModal() {
@@ -209,6 +206,7 @@ function showCustomAlert(message) {
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <script src="prop.js"></script>
 </body>
 
 </html>
