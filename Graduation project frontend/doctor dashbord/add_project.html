@@ -137,25 +137,22 @@
 
 <body>
     <h1>Add a new proposed project</h1>
-    <form id="addSugProjForm">
+    <form id="form">
         <label for="projectName">Project name:</label>
         <input type="text" id="projectName" placeholder="Enter project name" required>
-
         <label for="supervisor">Supervisor name:</label>
-        <input type="text" id="supervisor" placeholder="Enter supervisor name" required>
+        <select id="supervisor">
+            <option value="" disabled selected>Select Supervisor</option>
+          </select>
 
-        <label for="college">College:</label>
-        <select id="college" required >
-            <option value="">Select a College</option>
-            <option value="Science">Science</option>
-            <option value="Business">Business</option>
-        </select>
-
+        <select id="college">
+            <option value="" disabled selected>Select College</option>
+          </select>
+          
         <label for="department">Department:</label>
-        <select id="department" required>
-            <option value="">Select a Department</option>
-            <!-- Departments will be updated dynamically based on the selected college -->
-        </select>
+        <select id="department">
+            <option value="" disabled selected>Select Department</option>
+          </select>
 
         <label for="projectIdea">Project Idea:</label>
         <textarea id="projectIdea" placeholder="Describe your project idea" required></textarea>
@@ -173,5 +170,7 @@
         <i class="fa fa-check-circle"></i> Project has been successfully added!
     </div>
     <script src="add_project.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
 </body>
 </html>
