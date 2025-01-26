@@ -11,11 +11,12 @@
 
     <title>Doctor Dashboard</title>
 </head>
+
 <body>
-    <a href="" class="btn add" >
+    <a href="" class="btn add">
         <ion-icon name="home-outline">Home page </i>
     </a>
-   
+
     <nav>
         <div class="logo">
             <div class="logo-image">
@@ -26,8 +27,8 @@
             <ul class="navLinks">
                 <li class="navList active">
                     <a href="#">
-                        <ion-icon name="grid-outline"></ion-icon>  
-                         <span class="links">Dashboard</span>
+                        <ion-icon name="grid-outline"></ion-icon>
+                        <span class="links">Dashboard</span>
                     </a>
                 </li>
                 <li class="navList">
@@ -64,9 +65,9 @@
                 <div class="boxes">
                     <div class="box box1">
                         <ion-icon name="school-outline"></ion-icon>
-                          <span class="text"> Number proposed projects</span>
-                            <span class="number">25</span>
-                          
+                        <span class="text"> Number proposed projects</span>
+                        <span class="number">25</span>
+
                     </div>
                     <div class="box box2">
                         <ion-icon name="people-outline"></ion-icon>
@@ -83,9 +84,9 @@
                         <span class="text">Graduation Students Groups</span>
                         <span class="number">20</span>
                     </div>
-                </div> 
+                </div>
             </div>
-                  <!-- Recent Activities -->
+            <!-- Request qroup -->
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="time-outline"></ion-icon>
@@ -93,34 +94,17 @@
                 </div>
                 <div>
                     <table border1="1">
-                        <tr>
-                          <th>Department</th>
-                          <th>College</th>
-                          <th>Project name</th>
-                          <th>students name </th>
-                          <th>STUDENT'S ID</th>
-                          <th></th>
-                        </tr>
-                        <tr>
-                            <td>computer system engineering</td>
-                            <td>engineering</td>
-                            <td>ai for project</td>
-                            <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
-                            <td>
-                                202100123<br>
-                                202100124<br>
-                                202100125
-                            </td> 
-                            <td>
-                                <button class="btn-icon show" >
-                                    <i class="fa fa-check"></i> accept
-                                </button>
-                                <button class="btn-icon delete" >
-                                    <i class="fa fa-trash"></i> reject
-                                </button>
-                             </td>
-                           </tr>
-                         <tr>
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>College</th>
+                                <th>Project name</th>
+                                <th>students name </th>
+                                <th>STUDENT'S ID</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <tr>
                                 <td>computer system engineering</td>
                                 <td>engineering</td>
@@ -130,307 +114,323 @@
                                     202100123<br>
                                     202100124<br>
                                     202100125
-                                </td> 
+                                </td>
                                 <td>
-                                    <button class="btn-icon show" >
+                                    <button class="btn-icon show">
                                         <i class="fa fa-check"></i> accept
                                     </button>
-                                    <button class="btn-icon delete" >
+                                    <button class="btn-icon delete">
                                         <i class="fa fa-trash"></i> reject
                                     </button>
-                                 </td>
-                               </tr>
-                             <tr>
-                                <tr>
-                                    <td>computer system engineering</td>
-                                    <td>engineering</td>
-                                    <td>ai for project</td>
-                                    <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
-                                    <td>
-                                        202100123<br>
-                                        202100124<br>
-                                        202100125
-                                    </td> 
-                                    <td>
-                                        <button class="btn-icon show" >
-                                            <i class="fa fa-check"></i> accept
-                                        </button>
-                                        <button class="btn-icon delete" >
-                                            <i class="fa fa-trash"></i> reject
-                                        </button>
-                                     </td>
-                                   </tr>
-                                 <tr>
-                                    <tr>
-                                        <td>computer system engineering</td>
-                                        <td>engineering</td>
-                                        <td>ai for project</td>
-                                        <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
-                                        <td>
-                                            202100123<br>
-                                            202100124<br>
-                                            202100125
-                                        </td> 
-                                         <td>
-                                            <button class="btn-icon show" >
-                                                <i class="fa fa-check"></i> accept
-                                            </button>
-                                            <button class="btn-icon delete" >
-                                                <i class="fa fa-trash"></i> reject
-                                            </button>
-                                         </td>
-                                       </tr>
-                                     <tr>
-                      </table>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td>computer system engineering</td>
+                                <td>engineering</td>
+                                <td>ai for project</td>
+                                <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                <td>
+                                    202100123<br>
+                                    202100124<br>
+                                    202100125
+                                </td>
+                                <td>
+                                    <button class="btn-icon show">
+                                        <i class="fa fa-check"></i> accept
+                                    </button>
+                                    <button class="btn-icon delete">
+                                        <i class="fa fa-trash"></i> reject
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td>computer system engineering</td>
+                                <td>engineering</td>
+                                <td>ai for project</td>
+                                <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                <td>
+                                    202100123<br>
+                                    202100124<br>
+                                    202100125
+                                </td>
+                                <td>
+                                    <button class="btn-icon show">
+                                        <i class="fa fa-check"></i> accept
+                                    </button>
+                                    <button class="btn-icon delete">
+                                        <i class="fa fa-trash"></i> reject
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td>computer system engineering</td>
+                                <td>engineering</td>
+                                <td>ai for project</td>
+                                <td>Dana Badarneh ,Maqdes Ahmad ,INAM KHAILED </td>
+                                <td>
+                                    202100123<br>
+                                    202100124<br>
+                                    202100125
+                                </td>
+                                <td>
+                                    <button class="btn-icon show">
+                                        <i class="fa fa-check"></i> accept
+                                    </button>
+                                    <button class="btn-icon delete">
+                                        <i class="fa fa-trash"></i> reject
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-              <!-- Recent Activities -->
-<div class="data-table activityTable">
-    <div class="title">
-        <ion-icon name="time-outline"></ion-icon>
-        <span class="text">My Groups</span>
-    </div>
-    <div class="card-container">
-        <div class="card">
-            <div class="card-img-holder">
-                <img src="img/img1.png" alt="Blog image">
+
+            <!-- My Groups -->
+            <div class="data-table activityTable">
+                <div class="title">
+                    <ion-icon name="time-outline"></ion-icon>
+                    <span class="text">My Groups</span>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-img-holder">
+                            <img src="img/img1.png" alt="Blog image">
+                        </div>
+                        <h3 class="blog-title">project name :Answer Flow</h3>
+                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
+                        <div class="options">
+                            <span>Follow the team's progress</span>
+                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-holder">
+                            <img src="img/img1.png" alt="Blog image">
+                        </div>
+                        <h3 class="blog-title">Project Name : AI FOR ALL</h3>
+                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
+                        <div class="options">
+                            <span>Follow the team's progress</span>
+                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img-holder">
+                            <img src="img/img1.png" alt="Blog image">
+                        </div>
+                        <h3 class="blog-title">Project Name: seraj</h3>
+                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
+                        <div class="options">
+                            <span>Follow the team's progress</span>
+                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
+                        </div>
+                    </div>
+                    <!-- Add more cards as needed -->
+                </div>
             </div>
-            <h3 class="blog-title">project name :Answer Flow</h3>
-            <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-            <div class="options">
-                <span>Follow the team's progress</span>
-                <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-img-holder">
-                <img src="img/img1.png" alt="Blog image">
-            </div>
-            <h3 class="blog-title">Project Name : AI FOR ALL</h3>
-            <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-            <div class="options">
-                <span>Follow the team's progress</span>
-                <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-img-holder">
-                <img src="img/img1.png" alt="Blog image">
-            </div>
-            <h3 class="blog-title">Project Name: seraj</h3>
-            <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-            <div class="options">
-                <span>Follow the team's progress</span>
-                <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-            </div>
-        </div>
-        <!-- Add more cards as needed -->
-    </div>
-</div>
-            <!-- Recent Activities -->
+
+            <!-- suggested projects -->
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="server-outline"></ion-icon>
                     <span class="text">Suggested projects</span>
                 </div>
                 <div>
-                    <a href="add_project.html" class="btn add" >
+                    <a href="add_project.html" class="btn add">
                         <i class="fa fa-plus"></i>Add New Project
                     </a>
                     <table border1="1">
                         <tr>
-                          <th>Supervisor</th>
-                          <th>Project name</th>
-                          <th>College</th>
-                          <th>Department</th>
-                          <th></th>
+                            <th>Supervisor</th>
+                            <th>Project name</th>
+                            <th>College</th>
+                            <th>Department</th>
+                            <th></th>
                         </tr>
                         <tr>
-                            <tr>
-                             <td>DR.mohammad khaili</td>
-                             <td>ai for project</td>
-                              <td>engineering</td>
-                              <td>computer system engineering</td>
-                              <td>
-                                 <button class="btn-icon show" onclick="navigateToPage()">
-                                     <i class="fa fa-search"></i> Show
-                                 </button>
-                                 
-                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                     <i class="fa fa-trash"></i> Delete
-                                 </button>
-                              </td>
-                            </tr>
-                          <tr>
-                         <tr>
-                            <tr>
-                                <tr>
-                                 <td>DR.mohammad khaili</td>
-                                 <td>ai for project</td>
-                                  <td>engineering</td>
-                                  <td>computer system engineering</td>
-                                  <td>
-                                     <button class="btn-icon show" onclick="navigateToPage()">
-                                         <i class="fa fa-search"></i> Show
-                                     </button>
-                                     
-                                     <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                         <i class="fa fa-trash"></i> Delete
-                                     </button>
-                                  </td>
-                                </tr>
-                              <tr>
-                           <tr>
-                            <tr>
-                             <td>DR.mohammad khaili</td>
-                             <td>ai for project</td>
-                              <td>engineering</td>
-                              <td>computer system engineering</td>
-                              <td>
-                                 <button class="btn-icon show" onclick="navigateToPage()">
-                                     <i class="fa fa-search"></i> Show
-                                 </button>
-                                 
-                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                     <i class="fa fa-trash"></i> Delete
-                                 </button>
-                              </td>
-                            </tr>
-                          <tr>
-                           <tr>
-                            <tr>
-                             <td>DR.mohammad khaili</td>
-                             <td>ai for project</td>
-                              <td>engineering</td>
-                              <td>computer system engineering</td>
-                              <td>
-                                 <button class="btn-icon show" onclick="navigateToPage()">
-                                     <i class="fa fa-search"></i> Show
-                                 </button>
-                                 
-                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                     <i class="fa fa-trash"></i> Delete
-                                 </button>
-                              </td>
-                            </tr>
-                          <tr>
-                         <tr>
-                            <tr>
-                                <tr>
-                                 <td>DR.mohammad khaili</td>
-                                 <td>ai for project</td>
-                                  <td>engineering</td>
-                                  <td>computer system engineering</td>
-                                  <td>
-                                     <button class="btn-icon show" onclick="navigateToPage()">
-                                         <i class="fa fa-search"></i> Show
-                                     </button>
-                                     
-                                     <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                         <i class="fa fa-trash"></i> Delete
-                                     </button>
-                                  </td>
-                                </tr>
-                              <tr>
-                         <tr>
-                           <tr>
+                        <tr>
                             <td>DR.mohammad khaili</td>
                             <td>ai for project</td>
-                             <td>engineering</td>
-                             <td>computer system engineering</td>
-                             <td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
                                 <button class="btn-icon show" onclick="navigateToPage()">
                                     <i class="fa fa-search"></i> Show
                                 </button>
-                                
+
                                 <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
                                     <i class="fa fa-trash"></i> Delete
                                 </button>
-                             </td>
-                           </tr>
-                         <tr>
-                            <!-- Delete Confirmation Modal -->
-                      <div id="deleteModal" class="modal">
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
+                                <button class="btn-icon show" onclick="navigateToPage()">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
+                                <button class="btn-icon show" onclick="navigateToPage()">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
+                                <button class="btn-icon show" onclick="navigateToPage()">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
+                                <button class="btn-icon show" onclick="navigateToPage()">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                        <tr>
+                            <td>DR.mohammad khaili</td>
+                            <td>ai for project</td>
+                            <td>engineering</td>
+                            <td>computer system engineering</td>
+                            <td>
+                                <button class="btn-icon show" onclick="navigateToPage()">
+                                    <i class="fa fa-search"></i> Show
+                                </button>
+
+                                <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                    </table>
+                    <!-- Delete Confirmation Modal -->
+                    <div id="deleteModal" class="modal">
                         <div class="modal-content">
-                           <p>Do you need to delete this project?</p>
-                           <button class="btn-confirm" onclick="confirmDelete()">Yes</button>
-                           <button class="btn-cancel" onclick="closeModal('deleteModal')">No</button>
+                            <p>Do you need to delete this project?</p>
+                            <button class="btn-confirm" onclick="confirmDelete()">Yes</button>
+                            <button class="btn-cancel" onclick="closeModal('deleteModal')">No</button>
                         </div>
-                      </div>
-                      </table>
-                      <div class="loader" id="loader">
+                    </div>
+
+                    <div class="loader" id="loader">
                         <div class="spinner"></div>
                     </div>
-                
+
                 </div>
                 <div style="display:none" class="data-table userDetailsTable">
                     <div class="title">
-                      <ion-icon name="folder-outline"></ion-icon>
-                      <span class="text">Content</span>
+                        <ion-icon name="folder-outline"></ion-icon>
+                        <span class="text">Content</span>
                     </div>
-                  <div> 
-            </div>
-            
-                          </section>
-                          <script src="index.js"></script>
-                          <script>
-                    
-                            </script>
-                          <!-- Sources for icons -->
-                          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-                          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-                          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                      
-                          </section>
-                          
-                </div>
-            </div>
+                    <div>
+                    </div>
+
+    </section>
+    <script src="index.js"></script>
+    <script>
+
+    </script>
+    <!-- Sources for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    </section>
+
+    </div>
+    </div>
     <script src="index.js"></script>
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
-    function showDescription(projectDetails) {
+        function showDescription(projectDetails) {
             // Redirect to a new page with project details passed as URL parameters
             const projectName = "Team Alpha";
             const supervisor = "Dr.Nagham Hamad";
             const college = "Engineering College";
             const department = "Computer Science";
-            
+
 
             // Construct URL with query parameters
             const url = `details.html?groupName=${encodeURIComponent(projectName)}&supervisor=${encodeURIComponent(supervisor)}&projectDetails=${encodeURIComponent(projectDetails)}&college=${encodeURIComponent(department)}&college=${encodeURIComponent(department)}`;
-            
+
             // Redirect to the new page
             window.location.href = url;
         }
         // Reset loader when the page is loaded
-    window.onload = () => {
-        const loader = document.getElementById('loader');
-        loader.classList.remove('active');
-    };
+        window.onload = () => {
+            const loader = document.getElementById('loader');
+            loader.classList.remove('active');
+        };
 
-    // Show loader and navigate to the next page
-    function navigateToPage() {
-        const loader = document.getElementById('loader');
-        loader.classList.add('active');
+        // Show loader and navigate to the next page
+        function navigateToPage() {
+            const loader = document.getElementById('loader');
+            loader.classList.add('active');
 
-        // Navigate to the next page after a delay
-        setTimeout(() => {
-            window.location.href = "details.html";
-        },500); // Adjust delay as needed
-    }
+            // Navigate to the next page after a delay
+            setTimeout(() => {
+                window.location.href = "details.html";
+            }, 500); // Adjust delay as needed
+        }
     </script>
+    <script src="indexGR.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,5 @@
-const from = document.getElementById("form");
+const form = document.getElementById("form");
+
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -30,15 +31,18 @@ async function handleFormSubmit(event) {
         responseData.message || "Failed to add the college. Please try again."
       );
     }
+
     Swal.fire({
-        text: "collage added successfully",
-        customClass: {
-          confirmButton: "custom-confirm-button",
-        },
-      });
+      text: "College added successfully!",
+      icon: "success",
+      customClass: {
+        confirmButton: "custom-confirm-button",
+      },
+    });
   } catch (error) {
     Swal.fire({
       text: error.message,
+      icon: "error",
       customClass: {
         confirmButton: "custom-confirm-button",
       },

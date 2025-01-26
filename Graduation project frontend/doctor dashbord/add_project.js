@@ -4,27 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const addSugProjForm = document.getElementById("addSugProjForm");
     const successMessage = document.getElementById("successMessage");
     
-    // Get token from localStorage and check it
     const token = localStorage.getItem("token");
-    console.log("Current token:", token); // للتحقق من وجود التوكن
+    console.log("Current token:", token);
 
-    // التحقق من وجود التوكن
+    // التحقق من التوكن
     if (!token) {
-        alert("You need to login first!");
-        window.location.href = "./login.html";
+        Swal.fire({
+            icon: "error",
+            title: "Unauthorized",
+            text: "You need to log in first!",
+        }).then(() => {
+            window.location.href = "./login.html";
+        });
         return;
     }
 
-    // Fetch colleges with token check
+    // جلب الكليات
     fetch("http://localhost:4000/College/getColleges", {
-        headers: {
-            "Authorization": `Seraj__ ${token}`
-        }
+        headers: { "Authorization": `Seraj__ ${token}` }
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error("Authorization failed");
-        }
+        if (!response.ok) throw new Error("Authorization failed");
         return response.json();
     })
     .then(data => {
@@ -37,23 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })
     .catch(error => {
-        console.error("Error fetching colleges:", error);
-        if (error.message === "Authorization failed") {
-            alert("Session expired. Please login again.");
-            window.location.href = "./login.html";
-        }
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: error.message,
+        }).then(() => {
+            if (error.message === "Authorization failed") {
+                window.location.href = "./login.html";
+            }
+        });
     });
 
-    // Update departments when college is selected
-    collegeSelect.addEventListener("change", (event) => {
+    // تحديث الأقسام بناءً على الكلية
+    collegeSelect.addEventListener("change", event => {
         const collegeId = event.target.value;
         departmentSelect.innerHTML = '<option value="">Select a Department</option>';
 
         if (collegeId) {
             fetch(`http://localhost:4000/College/getDepartmentsByCollege/${collegeId}`, {
-                headers: {
-                    "Authorization": `Seraj__ ${token}`
-                }
+                headers: { "Authorization": `Seraj__ ${token}` }
             })
             .then(response => response.json())
             .then(data => {
@@ -64,12 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     departmentSelect.appendChild(option);
                 });
             })
-            .catch(error => console.error("Error fetching departments:", error));
+            .catch(error => {
+                console.error("Error fetching departments:", error);
+            });
         }
     });
 
-    // Handle form submission
-    addSugProjForm.addEventListener("submit", async (event) => {
+    // إرسال البيانات
+    addSugProjForm.addEventListener("submit", async event => {
         event.preventDefault();
 
         const projectData = {
@@ -80,16 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
             projectIdea: document.getElementById("projectIdea").value
         };
 
-        // Validate form data
-        if (!projectData.projectName || !projectData.supervisor || !projectData.collegeId || 
-            !projectData.departmentId || !projectData.projectIdea) {
-            alert("Please fill in all fields");
+        // التحقق من صحة البيانات
+        if (!projectData.projectName || !projectData.supervisor || 
+            !projectData.collegeId || !projectData.departmentId || !projectData.projectIdea) {
+            Swal.fire({
+                icon: "warning",
+                title: "Missing Fields",
+                text: "Please fill in all fields.",
+            });
             return;
         }
 
         try {
-            console.log("Sending request with token:", `Seraj__ ${token}`); // للتحقق من التوكن المرسل
-            console.log("Project data:", projectData); // للتحقق من البيانات المرسلة
+            Swal.fire({
+                title: "Saving...",
+                text: "Please wait while the project is being added.",
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
 
             const response = await fetch("http://localhost:4000/SuggestedProjects/AddSuggestedProjects", {
                 method: "POST",
@@ -101,32 +116,38 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             const responseData = await response.json();
-            console.log("Full response data:", responseData); // للتحقق من كامل الاستجابة
 
             if (!response.ok) {
                 if (responseData.message === "Authorization failed") {
-                    alert("Session expired or insufficient permissions. Please login again.");
-                    window.location.href = "./login.html";
+                    Swal.fire({
+                        icon: "error",
+                        title: "Authorization Failed",
+                        text: "Session expired. Please log in again.",
+                    }).then(() => {
+                        window.location.href = "./login.html";
+                    });
                     return;
                 }
-                throw new Error(responseData.message || "Failed to add the project. Please try again.");
+                throw new Error(responseData.message || "Failed to add the project.");
             }
 
-            // Show success message
-            successMessage.style.display = "block";
-            
-            // Reset form and selects
-            addSugProjForm.reset();
-            collegeSelect.value = "";
-            departmentSelect.innerHTML = '<option value="">Select a Department</option>';
-            
-            setTimeout(() => {
+            Swal.fire({
+                icon: "success",
+                title: "Project Added",
+                text: "The project has been successfully added!",
+            }).then(() => {
+                addSugProjForm.reset();
+                collegeSelect.value = "";
+                departmentSelect.innerHTML = '<option value="">Select a Department</option>';
                 window.location.href = "./index.html";
-            }, 2000);
+            });
 
         } catch (error) {
-            console.error("Error:", error.message);
-            alert(error.message);
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: error.message,
+            });
         }
     });
 });
