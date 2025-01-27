@@ -1,133 +1,197 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const authToken = localStorage.getItem("token");
 
-    // Fetch and display project reservation requests
-    fetch("http://localhost:4000/Supervisor/GetSupervisorGroups/67719b49c04ba5850d805cb8", {
-        headers: {
-            "Authorization": `Seraj__${authToken}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const requestsTable = document.querySelector(".data-table.activityTable table tbody");
-        requestsTable.innerHTML = ""; // Clear existing rows
+document.addEventListener("DOMContentLoaded", async () => {
+    const authToken = localStorage.getItem("authToken");
 
-        data.requests.forEach(request => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${request.department}</td>
-                <td>${request.college}</td>
-                <td>${request.projectName}</td>
-                <td>${request.students.map(student => student.name).join(", ")}</td>
-                <td>${request.students.map(student => student.registrationNumber).join("<br>")}</td>
-                <td>
-                    <button class="btn-icon show" onclick="approveRequest('${request._id}', true)">
-                        <i class="fa fa-check"></i> accept
-                    </button>
-                    <button class="btn-icon delete" onclick="approveRequest('${request._id}', false)">
-                        <i class="fa fa-trash"></i> reject
-                    </button>
-                </td>
-            `;
-            requestsTable.appendChild(row);
+    // جلب المشاريع غير المحجوزة
+    try {
+        const response = await fetch("http://localhost:4000/SuggestedProjects/getUnreservedProjects", {
+            headers: {
+                "Authorization": `Bearer ${authToken}`
+            }
         });
-    })
-    .catch(error => {
-        console.error("Error fetching reservation requests:", error);
-        Swal.fire({
-            text: error.message,
-            icon: "error",
-            customClass: {
-                confirmButton: 'custom-confirm-button',
-            },
-        });
-    });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        console.log(data); // تحقق من هيكل البيانات هنا
 
-    // Fetch and display supervisor's groups
-    fetch("http://localhost:4000/Supervisor/GetSupervisorGroups/67719b49c04ba5850d805cb8", {
-        headers: {
-            "Authorization": `Seraj__${authToken}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const groupsContainer = document.querySelector(".card-container");
-        groupsContainer.innerHTML = ""; // Clear existing cards
+        const projectTableBody = document.getElementById("projectTableBody");
+        if (!projectTableBody) throw new Error("Element 'projectTableBody' not found");
 
-        data.groups.forEach(group => {
-            const card = document.createElement("div");
-            card.className = "card";
-            card.innerHTML = `
-                <div class="card-img-holder">
-                    <img src="img/img1.png" alt="Blog image">
-                </div>
-                <h3 class="blog-title">Project Name: ${group.projectName}</h3>
-                <span class="blog-time">GROUP WORK<br>${group.students.map(student => student.name).join("<br>")}</span>
-                <div class="options">
-                    <span>Follow the team's progress</span>
-                    <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-                </div>
-            `;
-            groupsContainer.appendChild(card);
+        projectTableBody.innerHTML = ""; // Clear existing rows
+
+        if (Array.isArray(data.projects)) {
+            data.projects.forEach(project => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${project.supervisor?.supervisorName || 'N/A'}</td>
+                    <td>${project.college?.collegeName || 'N/A'}</td>
+                    <td>${project.department?.departmentName || 'N/A'}</td>
+                    <td>${project.projectName || 'N/A'}</td>
+                    <td>${project.students?.map(student => student.name).join(', ') || 'N/A'}</td>
+                    <td>${project.students?.map(student => student.registrationNumber).join('<br>') || 'N/A'}</td>
+                    <td>
+                        <button class="btn-icon show" onclick="acceptProject('${project._id}')">
+                            <i class="fa fa-check"></i> accept
+                        </button>
+                        <button class="btn-icon delete" onclick="rejectProject('${project._id}')">
+                            <i class="fa fa-trash"></i> reject
+                        </button>
+                    </td>
+                `;
+                projectTableBody.appendChild(row);
+            });
+        } else {
+            console.error("Expected an array of projects");
+        }
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        showCustomAlert('Error fetching projects: ' + error.message);
+    }
+
+    // جلب المجموعات التي تم حجزها والموافقة عليها
+    try {
+        const response = await fetch("http://localhost:4000/Supervisor/GetSupervisorGroups/67719b49c04ba5850d805cb8", {
+            headers: {
+                "Authorization": `Bearer ${authToken}`
+            }
         });
-    })
-    .catch(error => {
-        console.error("Error fetching supervisor's groups:", error);
-        Swal.fire({
-            text: error.message,
-            icon: "error",
-            customClass: {
-                confirmButton: 'custom-confirm-button',
-            },
-        });
-    });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        console.log(data); // تحقق من هيكل البيانات هنا
+
+        const cardContainer = document.querySelector(".card-container");
+        if (!cardContainer) throw new Error("Element 'card-container' not found");
+
+        cardContainer.innerHTML = ""; // Clear existing cards
+
+        if (Array.isArray(data.groups)) {
+            data.groups.forEach(group => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <div class="card-img-holder">
+                        <img src="img/img1.png" alt="Blog image">
+                    </div>
+                    <h3 class="blog-title">Project Name: ${group.projectName || 'N/A'}</h3>
+                    <span class="blog-time">GROUP WORK<br>${group.members?.map(member => member.name).join('<br>') || 'N/A'}</span>
+                    <div class="options">
+                        <span>Follow the team's progress</span>
+                        <button class="btn" onclick="location.href='indextodo.html'">Show</button>
+                    </div>
+                `;
+                cardContainer.appendChild(card);
+            });
+        } else {
+            console.error("Expected an array of groups");
+        }
+    } catch (error) {
+        console.error("Error fetching approved groups:", error);
+        showCustomAlert('Error fetching approved groups: ' + error.message);
+    }
+
+    // تحديث الأرقام مباشرة في الفرونت
+    document.querySelector(".box1 .number").innerText = 25;
+    document.querySelector(".box2 .number").innerText = 60;
+    document.querySelector(".box3 .number").innerText = 20;
+    document.querySelector(".box4 .number").innerText = 20;
 });
 
-function approveRequest(requestId, approved) {
-    const authToken = localStorage.getItem("token");
+function acceptProject(projectId) {
+    const authToken = localStorage.getItem("authToken");
 
-    fetch(`http://localhost:4000/Supervisor/approveOrRejectReservation/${requestId}`, {
-        method: "POST",
+    fetch(`http://localhost:4000/Supervisor/approveOrRejectReservation/${projectId}`, {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Seraj__${authToken}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
         },
-        body: JSON.stringify({ approved })
+        body: JSON.stringify({ approved: true })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        Swal.fire({
-            text: data.message,
-            icon: approved ? "success" : "error",
-            customClass: {
-                confirmButton: 'custom-confirm-button',
-            },
-        });
-        // Refresh the page or update the UI as needed
+        if (data.success) {
+            showCustomAlert('Project accepted successfully!');
+        } else {
+            showCustomAlert('There was an error accepting the project.');
+        }
     })
     .catch(error => {
-        console.error("Error approving/rejecting request:", error);
-        Swal.fire({
-            text: error.message,
-            icon: "error",
-            customClass: {
-                confirmButton: 'custom-confirm-button',
-            },
-        });
+        showCustomAlert('Error: ' + error.message);
     });
+}
+
+function rejectProject(projectId) {
+    const authToken = localStorage.getItem("authToken");
+
+    fetch(`http://localhost:4000/Supervisor/approveOrRejectReservation/${projectId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+        },
+        body: JSON.stringify({ approved: false })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showCustomAlert('Project rejected successfully!');
+        } else {
+            showCustomAlert('There was an error rejecting the project.');
+        }
+    })
+    .catch(error => {
+        showCustomAlert('Error: ' + error.message);
+    });
+}
+
+function showDeleteConfirmation(button) {
+    const projectId = button.closest('tr').dataset.projectId;
+    document.getElementById('deleteModal').style.display = 'block';
+    document.getElementById('confirmDeleteButton').onclick = () => confirmDelete(projectId);
+}
+
+function confirmDelete(projectId) {
+    const authToken = localStorage.getItem("authToken");
+
+    fetch(`http://localhost:4000/SuggestedProjects/deleteProject/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showCustomAlert('Project deleted successfully!');
+            document.querySelector(`tr[data-project-id="${projectId}"]`).remove();
+        } else {
+            showCustomAlert('There was an error deleting the project.');
+        }
+    })
+    .catch(error => {
+        showCustomAlert('Error: ' + error.message);
+    });
+
+    closeModal('deleteModal');
+}
+
+function showCustomAlert(message) {
+    const customAlertContent = document.getElementById('customAlertContent');
+    if (!customAlertContent) throw new Error("Element 'customAlertContent' not found");
+
+    customAlertContent.innerText = message;
+    document.getElementById('customAlertOverlay').style.display = 'block';
+}
+
+function closeCustomAlert() {
+    const customAlertOverlay = document.getElementById('customAlertOverlay');
+    if (!customAlertOverlay) throw new Error("Element 'customAlertOverlay' not found");
+
+    customAlertOverlay.style.display = 'none';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
 }

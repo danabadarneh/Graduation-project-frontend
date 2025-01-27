@@ -1,175 +1,103 @@
+// عناصر القوائم المنسدلة
+let collegeDropdownBtnText = document.getElementById("college-drop-text");
+let collegeSpan = document.getElementById("college-span");
+let collegeIcon = document.getElementById("college-icon");
+let collegeList = document.getElementById("college-list");
 
-let dropdownBtnText = document.getElementById("drop-text");
-let span = document.getElementById("span");
-let icon = document.getElementById("icon");
-let list = document.getElementById("list");
-let input = document.getElementById("search-input");
-let listItems = document.querySelectorAll(".dropdown-list-item");
+let departmentDropdownBtnText = document.getElementById("department-drop-text");
+let departmentSpan = document.getElementById("department-span");
+let departmentIcon = document.getElementById("department-icon");
+let departmentList = document.getElementById("department-list");
+
+// عنصر البحث وزر البحث
+let searchInput = document.getElementById("search-input");
 let searchButton = document.querySelector(".search-button");
 
-// Toggle dropdown when clicking the dropdown button
-dropdownBtnText.onclick = function () {
-  list.classList.toggle("show");
-  icon.style.rotate = list.classList.contains("show") ? "-180deg" : "0deg";
+// العناصر داخل جدول المشاريع
+let projectsTableBody = document.getElementById("projects-table-body");
+
+// العناصر الخاصة بالمودال (عرض التفاصيل)
+let detailsModal = document.getElementById("detailsModal");
+let projectName = document.getElementById("projectName");
+let projectAbstract = document.getElementById("projectAbstract");
+
+// دوال التحكم في القوائم المنسدلة
+function toggleDropdown(list, icon) {
+    list.classList.toggle("show");
+    icon.style.transform = list.classList.contains("show") ? "rotate(-180deg)" : "rotate(0deg)";
+}
+
+// فتح/إغلاق قائمة الكليات
+collegeDropdownBtnText.onclick = function () {
+    toggleDropdown(collegeList, collegeIcon);
 };
 
-// Toggle dropdown when clicking the search button
-searchButton.onclick = function () {
-  list.classList.toggle("show");
-  icon.style.rotate = list.classList.contains("show") ? "-180deg" : "0deg";
+// فتح/إغلاق قائمة الأقسام
+departmentDropdownBtnText.onclick = function () {
+    toggleDropdown(departmentList, departmentIcon);
 };
 
-// Close dropdown when clicking outside
+// إغلاق القوائم عند الضغط خارجها
 window.onclick = function (e) {
-  if (
-    e.target.id !== "drop-text" &&
-    e.target.id !== "icon" &&
-    e.target.id !== "span" &&
-    e.target.className !== "search-button" &&
-    !e.target.closest(".dropdown")
-  ) {
-    list.classList.remove("show");
-    icon.style.rotate = "0deg";
-  }
+    if (!e.target.closest(".dropdown")) {
+        collegeList.classList.remove("show");
+        collegeIcon.style.transform = "rotate(0deg)";
+        departmentList.classList.remove("show");
+        departmentIcon.style.transform = "rotate(0deg)";
+    }
 };
 
-// Update placeholder and dropdown text based on the selected item
-for (item of listItems) {
-  item.onclick = function (e) {
-    span.innerText = e.target.innerText;
-    if (e.target.innerText == "Everything") {
-      input.placeholder = "Search Anything...";
+// زر البحث
+searchButton.onclick = function () {
+    const searchText = searchInput.value.trim();
+    if (searchText) {
+        // تنفيذ البحث بناءً على النص المدخل
+        console.log(`بحث عن: ${searchText}`);
     } else {
-      input.placeholder = "Search in " + e.target.innerText + "...";
+        Swal.fire("Please enter a search term.");
     }
-    list.classList.remove("show"); // Close the dropdown after selection
-    icon.style.rotate = "0deg";
-  };
-}
+};
 
-
-document.querySelectorAll(".navList").forEach(function(element) {
-    element.addEventListener('click', function() {
-      
-      document.querySelectorAll(".navList").forEach(function(e) {
-        e.classList.remove('active');
-    });
-
-      // Add active class to the clicked navList element
-      this.classList.add('active');
-  
-      // Get the index of the clicked navList element
-      var index = Array.from(this.parentNode.children).indexOf(this);
-  
-      // Hide all data-table elements
-      document.querySelectorAll(".data-table").forEach(function(table) {
-        table.style.display = 'none';
-      });
-  
-      // Show the corresponding table based on the clicked index
-      var tables = document.querySelectorAll(".data-table");
-      if (tables.length > index) {
-        tables[index].style.display = 'block';
-      }
-    });
-  });
-
-
-// دالة لإغلاق النافذة
-function closePopup() {
-    document.getElementById('customPopup').style.display = 'none';
-}
-const tabsBox = document.querySelector(".tabs-box"),
-allTabs = tabsBox.querySelectorAll(".tab"),
-arrowIcons = document.querySelectorAll(".icon i");
-let isDragging = false;
-const handleIcons = (scrollVal) => {
-    let maxScrollableWidth = tabsBox.scrollWidth - tabsBox.clientWidth;
-    arrowIcons[0].parentElement.style.display = scrollVal <= 0 ? "none" : "flex";
-    arrowIcons[1].parentElement.style.display = maxScrollableWidth - scrollVal <= 1 ? "none" : "flex";
-}
-arrowIcons.forEach(icon => {
-    icon.addEventListener("click", () => {
-        // if clicked icon is left, reduce 350 from tabsBox scrollLeft else add
-        let scrollWidth = tabsBox.scrollLeft += icon.id === "left" ? -340 : 340;
-        handleIcons(scrollWidth);
-    });
-});
-allTabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        tabsBox.querySelector(".active").classList.remove("active");
-        tab.classList.add("active");
-    });
-});
-const dragging = (e) => {
-    if(!isDragging) return;
-    tabsBox.classList.add("dragging");
-    tabsBox.scrollLeft -= e.movementX;
-    handleIcons(tabsBox.scrollLeft)
-}
-const dragStop = () => {
-    isDragging = false;
-    tabsBox.classList.remove("dragging");
-}
-tabsBox.addEventListener("mousedown", () => isDragging = true);
-tabsBox.addEventListener("mousemove", dragging);
-document.addEventListener("mouseup", dragStop);
-function navigateToPage() {
-    // Redirect to details.html
-    window.location.href = "detailss.html";
-}
-  // Function to show the modal and fetch project details
-  async function showProjectDetails(projectId) {
-    // Display the modal
-    const modal = document.getElementById('detailsModal');
-    modal.style.display = 'flex';
-
-    // Fetch project details (simulate with static data or replace with an API call)
+// عرض تفاصيل المشروع
+async function showProjectDetails(projectId) {
+    detailsModal.style.display = "flex";
     try {
-      // Simulating a backend call to fetch project details
-      const projectDetails = await fetchProjectFromDatabase(projectId);
-
-      // Update the modal content
-      document.getElementById('projectName').textContent = projectDetails.name;
-      document.getElementById('projectAbstract').textContent = projectDetails.abstract;
+        const response = await fetch(`http://localhost:4000/Projects/getProjects`);
+        const data = await response.json();
+        const project = data.projects.find(p => p._id === projectId);
+        if (project) {
+            projectName.textContent = project.projectName;
+            projectAbstract.textContent = project.projectIdea;
+        } else {
+            projectName.textContent = "Project not found.";
+            projectAbstract.textContent = "";
+        }
     } catch (error) {
-      console.error("Error fetching project details:", error);
-      document.getElementById('projectName').textContent = "Error loading project details.";
-      document.getElementById('projectAbstract').textContent = "Error loading project details.";
+        console.error("Error fetching project details:", error);
+        projectName.textContent = "Error loading project details.";
+        projectAbstract.textContent = "";
     }
-  }
+}
 
-  // Function to fetch project details (replace with an actual database call or backend API)
-  async function fetchProjectFromDatabase(projectId) {
-    // Example data, replace with a backend call
-    const projects = {
-      '1': { name: 'AI-Powered Chatbot', abstract: 'This project focuses on building a chatbot using AI and NLP techniques.' }
-    };
+// إغلاق المودال
+function closeModal() {
+    detailsModal.style.display = "none";
+}
 
-    // Simulate a delay
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(projects[projectId]);
-      }, 500);
-    });
-  }
+// دالة إغلاق المودال
+function closeModal() {
+    const modal = document.getElementById("detailsModal");
+    modal.style.display = "none";
+}
 
-  // Function to close the modal
-  function closeModal() {
-    const modal = document.getElementById('detailsModal');
-    modal.style.display = 'none';
-  }
-
-// Get all navigation items
+// إضافة تأثير النشط على قائمة التنقل
 const navItems = document.querySelectorAll(".navList");
-
-// Add click event listener to each item
 navItems.forEach(item => {
     item.addEventListener("click", function () {
-        // Remove 'active' class from all items
+        // إزالة الحالة النشطة من جميع العناصر
         navItems.forEach(nav => nav.classList.remove("active"));
 
-        // Add 'active' class to the clicked item
+        // إضافة الحالة النشطة للعنصر الذي تم النقر عليه
         this.classList.add("active");
     });
 });
