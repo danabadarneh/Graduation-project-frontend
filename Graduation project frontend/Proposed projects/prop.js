@@ -1,41 +1,51 @@
-// دالة لتحميل الأقسام بناءً على الكلية المحددة
-function loadDepartmentsByCollege(collegeName) {
-    // تأكد من أن الكلية ليست فارغة
-    if (!collegeName) return;
+document.addEventListener("DOMContentLoaded", async () => {
+    const authToken = localStorage.getItem("authToken");
 
-    fetch(`http://localhost:4000/SuggestedProjects/getDepartmentsByCollege/${collegeName}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            const departmentSelect = document.getElementById('departmentSelect');
-            departmentSelect.innerHTML = ''; 
-            data.departments.forEach(department => {
-                const option = document.createElement('option');
-                option.value = department.name;
-                option.textContent = department.name;
-                departmentSelect.appendChild(option);
-            });
-        } else {
-            showCustomAlert('Error loading departments');
-        }
-    })
-    .catch(error => {
-        showCustomAlert('Error: ' + error.message);
-    });
-}
 
-// دالة للحجز
+    try {
+        const response = await fetch("http://localhost:4000/SuggestedProjects/getUnreservedProjects", {
+            headers: {
+                "Authorization": `Bearer ${authToken}`
+            }
+        });
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        console.log(data); // تحقق من هيكل البيانات هنا
+
+        // إذا كانت البيانات تحتوي على مصفوفة داخل كائن، تأكد من الوصول إلى المصفوفة بشكل صحيح
+        const projects = data.projects || [];
+        if (!Array.isArray(projects)) {
+            throw new Error("Expected an array of projects");
+        }
+
+        const projectTableBody = document.getElementById("projectTableBody");
+        projectTableBody.innerHTML = ""; // Clear existing rows
+
+        projects.forEach(project => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${project.supervisor.supervisorName}</td>
+                <td>${project.college.collegeName}</td>
+                <td>${project.department.departmentName}</td>
+                <td>
+                    <button onclick="showDescription('${project.projectName}', '${project.projectDescription}', '${project._id}')">Show</button>
+                    <button onclick="openModal()">Book</button>
+                </td>
+            `;
+            projectTableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        showCustomAlert('Error fetching projects: ' + error.message);
+    }
+});
 function reserve() {
     const projectID = document.getElementById('projectID').innerText;
     const studentNames = [];
     const studentIDs = [];
 
-    // جمع أسماء الطلاب وأرقام التسجيل من الحقول
+    // Collect student names and IDs from input fields
     document.querySelectorAll('#studentNamesContainer input').forEach(input => {
         studentNames.push(input.value);
     });
@@ -44,14 +54,14 @@ function reserve() {
         studentIDs.push(input.value);
     });
 
-    // إعداد البيانات لإرسالها إلى السيرفر
+    // Prepare data to send to the server
     const teamMembers = studentNames.map((name, index) => ({
         email: `${name.toLowerCase().replace(' ', '.')}.${studentIDs[index]}@students.ptuk.edu`,
         name: name,
         registrationNumber: studentIDs[index]
     }));
 
-    // إرسال الطلب إلى الباك إند
+    // Send request to backend
     fetch(`http://localhost:4000/SuggestedProjects/ReserveProject/${projectID}`, {
         method: 'POST',
         headers: {
@@ -73,22 +83,20 @@ function reserve() {
     });
 }
 
-// دالة لعرض تفاصيل المشروع
 function showDescription(projectName, projectDescription, projectID) {
     document.getElementById('projectName').innerText = projectName;
     document.getElementById('projectDescription').innerText = projectDescription;
     document.getElementById('projectID').innerText = projectID;
 
-    // فتح نافذة الوصف
+    // Open description modal
     document.getElementById('projectDescriptionModal').style.display = 'block';
 }
 
 function closeProjectDescriptionModal() {
-    // إغلاق نافذة الوصف
+    // Close description modal
     document.getElementById('projectDescriptionModal').style.display = 'none';
 }
 
-// دالة لعرض رسالة التنبيه المخصصة
 function showCustomAlert(message) {
     document.getElementById('customAlertContent').innerText = message;
     document.getElementById('customAlertOverlay').style.display = 'block';
@@ -96,4 +104,28 @@ function showCustomAlert(message) {
 
 function closeCustomAlert() {
     document.getElementById('customAlertOverlay').style.display = 'none';
+}
+
+function openModal() {
+    document.getElementById('bookingModal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('bookingModal').style.display = 'none';
+}
+
+function addStudentNameField() {
+    const container = document.getElementById("studentNamesContainer");
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Enter your colleague's name";
+    container.appendChild(input);
+}
+
+function addStudentIDField() {
+    const container = document.getElementById("studentIDsContainer");
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Enter your colleague's ID";
+    container.appendChild(input);
 }
