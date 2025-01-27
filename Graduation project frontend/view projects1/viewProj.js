@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const collegeDropdown = document.getElementById("college-list");
     const departmentDropdown = document.getElementById("department-list");
     const searchButton = document.querySelector(".search-button");
+    const searchInput = document.getElementById("search-input");
     const projectsTableBody = document.getElementById("projects-table-body");
+
+    let selectedCollegeId = null;
+    let selectedDepartmentId = null;
 
     // جلب الكليات وإضافتها إلى القائمة
     fetch("http://localhost:4000/College/getColleges")
@@ -12,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const listItem = document.createElement("li");
                 listItem.textContent = college.collegeName;
                 listItem.dataset.id = college._id;
+
                 listItem.addEventListener("click", () => {
+                    selectedCollegeId = college._id;
                     document.getElementById("college-span").textContent = college.collegeName;
                     document.getElementById("college-span").dataset.id = college._id;
 
@@ -29,9 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                     const listItem = document.createElement("li");
                                     listItem.textContent = department.departmentName;
                                     listItem.dataset.id = department._id;
+
                                     listItem.addEventListener("click", () => {
+                                        selectedDepartmentId = department._id;
                                         document.getElementById("department-span").textContent = department.departmentName;
                                         document.getElementById("department-span").dataset.id = department._id;
+
+                                        // عرض المشاريع الافتراضية للقسم (100% similarity)
+                                        fetchProjects(selectedDepartmentId, null);
                                     });
                                     departmentDropdown.appendChild(listItem);
                                 });
@@ -48,13 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // البحث عن المشاريع وعرضها في الجدول
     searchButton.addEventListener("click", () => {
-        const departmentId = document.getElementById("department-span").dataset.id;
-        if (!departmentId) {
+        if (!selectedDepartmentId) {
             alert("Please select a department first!");
             return;
         }
 
-        fetch(`http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}`)
+        const description = searchInput.value.trim();
+        fetchProjects(selectedDepartmentId, description);
+    });
+
+    // وظيفة لجلب المشاريع وعرضها في الجدول
+    function fetchProjects(departmentId, description) {
+        const url = description
+            ? `http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}?description=${encodeURIComponent(description)}`
+            : `http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}`;
+
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 projectsTableBody.innerHTML = ""; // تفريغ الجدول قبل إعادة التعبئة
@@ -63,9 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     const row = document.createElement("tr");
                     row.innerHTML = `
                         <td>${project.supervisor || "N/A"}</td>
-                        <td>${project.college.collegeName}</td>
-                        <td>${project.department.departmentName}</td>
-                        <td>${project.similarity || "N/A"}</td>
+                        <td>${project.college?.collegeName || "N/A"}</td>
+                        <td>${project.department?.departmentName || "N/A"}</td>
+                        <td>${description ? project.similarity + "%" : "100%"}</td>
                         <td>
                             <button class="btn-icon show" onclick="showProjectDetails('${project._id}')">
                                 <i class="fa fa-search"></i> Show
@@ -76,16 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             })
             .catch(error => console.error("Error fetching projects:", error));
-    });
+    }
 });
 
 // عرض تفاصيل المشروع في النافذة المنبثقة
 function showProjectDetails(projectId) {
+    console.log("project id: ",projectId);
     fetch(`http://localhost:4000/Projects/getProject/${projectId}`)
         .then(response => response.json())
         .then(data => {
-            document.getElementById("projectName").textContent = data.projectName;
-            document.getElementById("projectAbstract").textContent = data.projectIdea || "No abstract provided.";
+            document.getElementById("projectName").textContent = data.projectName || "No Name Provided";
+            document.getElementById("projectAbstract").textContent = data.projectIdea || "No Abstract Provided.";
             document.getElementById("detailsModal").style.display = "block";
         })
         .catch(error => console.error("Error fetching project details:", error));
