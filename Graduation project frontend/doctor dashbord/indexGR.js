@@ -2,7 +2,12 @@
   // Fetch data from the API and populate the table
   async function fetchData() {
     try {
-        const response = await fetch('http://localhost:4000/SuggestedProjects/getUnreservedProjects');
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:4000/SuggestedProjects/getUnreservedProjects',{ method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Seraj__${token}`,
+            }});
         if (!response.ok) throw new Error('Failed to fetch data');
         
         const projects = await response.json();
