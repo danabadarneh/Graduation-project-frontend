@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <title>Doctor Dashboard</title>
 </head>
 
 <body>
-    <a href="" class="btn add"><ion-icon name="home-outline">Home page</i></a>
+    <a href="" class="btn add">
+        <ion-icon name="home-outline">Home page </i>
+    </a>
+
     <nav>
         <div class="logo">
             <div class="logo-image">
-                <!-- <img src="/Graduation project frontend/doctor dashbord/img/logo.png" alt=""> -->
+                <img src="logo.png" alt="">
             </div>
         </div>
         <div class="menu-items">
@@ -50,6 +54,7 @@
             </ul>
         </div>
     </nav>
+
     <section class="dashboard">
         <div class="container">
             <div class="overview">
@@ -62,6 +67,7 @@
                         <ion-icon name="school-outline"></ion-icon>
                         <span class="text"> Number proposed projects</span>
                         <span class="number">25</span>
+
                     </div>
                     <div class="box box2">
                         <ion-icon name="people-outline"></ion-icon>
@@ -82,27 +88,24 @@
             </div>
             <!-- Request qroup -->
             <div class="data-table activityTable">
-                <div class="title">
-                    <ion-icon name="time-outline"></ion-icon>
-                    <span class="text">Requests Groups</span>
-                </div>
-                <div>
-                    <table border1="1">
-                        <thead>
-                            <tr>
-                                <th>Department</th>
-                                <th>College</th>
-                                <th>Project name</th>
-                                <th>students name </th>
-                                <th>STUDENT'S ID</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="projectTableBody">
-                        </tbody>
-                    </table>
-                </div>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Department</th>
+                            <th>College</th>
+                            <th>Project Name</th>
+                            <th>Students' Names</th>
+                            <th>Student IDs</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
             </div>
+        </div>
+
             <!-- My Groups -->
             <div class="data-table activityTable">
                 <div class="title">
@@ -143,74 +146,32 @@
                             <button class="btn" onclick="location.href='indextodo.html'">Show</button>
                         </div>
                     </div>
+                    <!-- Add more cards as needed -->
                 </div>
             </div>
+
             <!-- suggested projects -->
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="server-outline"></ion-icon>
-                    <span class="text">Suggested projects</span>
+                    <span class="text">Suggested Projects</span>
                 </div>
                 <div>
                     <a href="add_project.html" class="btn add">
                         <i class="fa fa-plus"></i>Add New Project
                     </a>
-                    <table border1="1">
+                    <table border="1" id="projectsTable">
                         <thead>
                             <tr>
                                 <th>Supervisor</th>
-                                <th>Project name</th>
+                                <th>Project Name</th>
                                 <th>College</th>
                                 <th>Department</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="projectTableBody">
-                            <tr>
-                                <td>DR.mohammad khaili</td>
-                                <td>ai for project</td>
-                                <td>engineering</td>
-                                <td>computer system engineering</td>
-                                <td>
-                                    <button class="btn-icon show" onclick="navigateToPage()">
-                                        <i class="fa fa-search"></i> Show
-                                    </button>
-
-                                    <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>DR.mohammad khaili</td>
-                                <td>ai for project</td>
-                                <td>engineering</td>
-                                <td>computer system engineering</td>
-                                <td>
-                                    <button class="btn-icon show" onclick="navigateToPage()">
-                                        <i class="fa fa-search"></i> Show
-                                    </button>
-
-                                    <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>DR.mohammad khaili</td>
-                                <td>ai for project</td>
-                                <td>engineering</td>
-                                <td>computer system engineering</td>
-                                <td>
-                                    <button class="btn-icon show" onclick="navigateToPage()">
-                                        <i class="fa fa-search"></i> Show
-                                    </button>
-
-                                    <button class="btn-icon delete" onclick="showDeleteConfirmation(this)">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </button>
-                                </td>
-                            </tr>
+                        <tbody>
+                            <!-- Rows will be dynamically added here -->
                         </tbody>
                     </table>
                     <!-- Delete Confirmation Modal -->
@@ -221,62 +182,28 @@
                             <button class="btn-cancel" onclick="closeModal('deleteModal')">No</button>
                         </div>
                     </div>
-
+            
                     <div class="loader" id="loader">
                         <div class="spinner"></div>
                     </div>
                 </div>
-                <div style="display:none" class="data-table userDetailsTable">
-                    <div class="title">
-                        <ion-icon name="folder-outline"></ion-icon>
-                        <span class="text">Content</span>
-                    </div>
-                </div>
             </div>
-        </div>
+            
+
     </section>
 
-    <div id="customAlertOverlay" class="overlay" style="display: none;">
-        <div class="alert-box">
-            <p id="customAlertContent"></p>
-            <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
-        </div>
-    </div>
+    </section>
 
+    </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="sugg.js"></script>
+    <script src="indexGR.js"></script>
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function showDescription(projectDetails) {
-            // Redirect to a new page with project details passed as URL parameters
-            const projectName = "Team Alpha";
-            const supervisor = "Dr.Nagham Hamad";
-            const college = "Engineering College";
-            const department = "Computer Science";
-            // Construct URL with query parameters
-            const url = `details.html?groupName=${encodeURIComponent(projectName)}&supervisor=${encodeURIComponent(supervisor)}&projectDetails=${encodeURIComponent(projectDetails)}&college=${encodeURIComponent(department)}&college=${encodeURIComponent(department)}`;
-            // Redirect to the new page
-            window.location.href = url;
-        }
-        // Reset loader when the page is loaded
-        window.onload = () => {
-            const loader = document.getElementById('loader');
-            loader.classList.remove('active');
-        };
-        // Show loader and navigate to the next page
-        function navigateToPage() {
-            const loader = document.getElementById('loader');
-            loader.classList.add('active');
-
-            // Navigate to the next page after a delay
-            setTimeout(() => {
-                window.location.href = "details.html";
-            }, 500); // Adjust delay as needed
-        }
-    </script>
-    <script src="index.js"></script>
-    <script src="indexGR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
