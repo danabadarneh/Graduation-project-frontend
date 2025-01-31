@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const authToken = localStorage.getItem("authToken");
 
-
     try {
         const response = await fetch("http://localhost:4000/SuggestedProjects/getUnreservedProjects", {
             headers: {
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
+
         const data = await response.json();
         console.log(data); // تحقق من هيكل البيانات هنا
 
@@ -40,19 +39,42 @@ document.addEventListener("DOMContentLoaded", async () => {
         showCustomAlert('Error fetching projects: ' + error.message);
     }
 });
-function reserve() {
+async function reserve() {
     const projectID = document.getElementById('projectID').innerText;
     const studentNames = [];
     const studentIDs = [];
 
-    // Collect student names and IDs from input fields
-    document.querySelectorAll('#studentNamesContainer input').forEach(input => {
-        studentNames.push(input.value);
+    // التحقق من الحقول الفارغة
+    const studentNamesInputs = document.querySelectorAll('#studentNamesContainer input');
+    const studentIDsInputs = document.querySelectorAll('#studentIDsContainer input');
+
+    let hasEmptyFields = false;
+    studentNamesInputs.forEach(input => {
+        if (!input.value.trim()) {
+            hasEmptyFields = true;
+        } else {
+            studentNames.push(input.value.trim());
+        }
     });
 
-    document.querySelectorAll('#studentIDsContainer input').forEach(input => {
-        studentIDs.push(input.value);
+    studentIDsInputs.forEach(input => {
+        if (!input.value.trim()) {
+            hasEmptyFields = true;
+        } else {
+            studentIDs.push(input.value.trim());
+        }
     });
+
+    if (hasEmptyFields) {
+        showCustomAlert('يرجى ملء جميع حقول أسماء الطلاب وأرقامهم الجامعية');
+        return; // الخروج من الدالة إذا كانت هناك حقول فارغة
+    }
+
+     // التحقق من تطابق عدد الأسماء مع الأرقام الجامعية
+     if (studentNames.length !== studentIDs.length) {
+        showCustomAlert('عدد الأسماء لا يتطابق مع عدد الأرقام الجامعية');
+        return;
+    }
 
     // Prepare data to send to the server
     const teamMembers = studentNames.map((name, index) => ({
@@ -61,27 +83,33 @@ function reserve() {
         registrationNumber: studentIDs[index]
     }));
 
+    document.getElementById('loadingSpinner').style.display = 'block'; // إظهار spinner
+
+    try {
     // Send request to backend
-    fetch(`http://localhost:4000/SuggestedProjects/ReserveProject/${projectID}`, {
+    const response= await fetch(`http://localhost:4000/SuggestedProjects/ReserveProject/${projectID}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
         },
         body: JSON.stringify({ teamMembers: teamMembers })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showCustomAlert('Project reserved successfully!');
-        } else {
-            showCustomAlert('There was an error reserving the project.');
-        }
-    })
-    .catch(error => {
-        showCustomAlert('Error: ' + error.message);
     });
+    const data = await response.json();
+
+        if (data.success) {
+            showCustomAlert('تم حجز المشروع بنجاح!');
+            closeModal(); // إغلاق النافذة المنبثقة بعد الحجز
+        } else {
+            showCustomAlert('حدث خطأ أثناء حجز المشروع: ' + (data.message || ''));
+        }
+    } catch (error) {
+        showCustomAlert('خطأ في الاتصال بالخادم: ' + error.message);
+    } finally {
+        document.getElementById('loadingSpinner').style.display = 'none'; // إخفاء spinner
+    }
 }
+        
 
 function showDescription(projectName, projectDescription, projectID) {
     document.getElementById('projectName').innerText = projectName;
@@ -98,15 +126,16 @@ function closeProjectDescriptionModal() {
 }
 
 function showCustomAlert(message) {
-    document.getElementById('customAlertContent').innerText = message;
-    document.getElementById('customAlertOverlay').style.display = 'block';
+    Swal.fire({
+        icon: 'info',
+        title: 'ALERT',
+        text: message,
+        confirmButtonText: 'OK'
+    });
 }
 
-function closeCustomAlert() {
-    document.getElementById('customAlertOverlay').style.display = 'none';
-}
-
-function openModal() {
+function openModal(projectID) {
+    document.getElementById('projectID').innerHTML = projectID;
     document.getElementById('bookingModal').style.display = 'block';
 }
 

@@ -77,26 +77,7 @@
         </tr>
       </thead>
       <tbody id="projectTableBody">
-        <tr>
-          <td>DR.mohammad khaili</td>
-          <td>engineering</td>
-          <td>computer system engineering</td>
-          <td>
-            <button
-              onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-            <button onclick="openModal()">Book</button>
-          </td>
-        </tr>
-        <tr>
-          <td>DR.mohammad khaili</td>
-          <td>engineering</td>
-          <td>computer system engineering</td>
-          <td>
-            <button
-              onclick="showDescription('University Timetable Scheduling System', 'This project addresses the design and development of a University Timetable Scheduling System aimed at facilitating the organization of courses, room allocation, and professor scheduling. The system provides user-friendly interfaces for information input and utilizes a database for storage. Algorithms retrieve information and execute processing operations to create an effective timetable that caters to the university\'s needs.', '12345')">Show</button>
-            <button onclick="openModal()">Book</button>
-          </td>
-        </tr>
+<!-- from backend -->
       </tbody>
     </table>
 
@@ -104,6 +85,7 @@
     <div id="bookingModal" class="modal">
       <div class="modal-content">
         <h3>Book the Project</h3>
+
         <!-- Student Names -->
         <label>Student Qroup Names:</label>
         <div id="studentNamesContainer">
@@ -119,94 +101,36 @@
         <button type="button" class="btn btn-add" onclick="addStudentIDField()">+</button>
 
         <div class="form-actions">
-          <button class="btn btn-reserve" onclick="reserve()">Book</button>
+          <button class="btn btn-reserve" onclick="reserve()">Book Now</button>
           <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
         </div>
       </div>
     </div>
 
-    <!-- Custom Alert Modal -->
-    <div id="customAlertOverlay" class="overlay" style="display: none;">
-      <div class="alert-box">
-        <p id="customAlertContent"></p>
-        <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
-      </div>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" style="display: none;">
+      <div class="spinner"></div>
+      <p>جارٍ الحجز...</p>
     </div>
 
     <!-- Project Description Modal -->
-    <div id="projectDescriptionModal" class="modal" style="display:none;">
+    <div id="projectDescriptionModal" class="modal" >
       <div class="modal-content">
         <h2 id="projectName"></h2>
         <p id="projectDescription"></p>
         <p id="projectID"></p> <!-- Project ID -->
-        <button class="close-button" onclick="closeCustomAlert()">Cancel</button>
+        <button class="close-button" onclick="closeProjectDescriptionModal()">Cancel</button>
       </div>
     </div>
   </section>
 
-  <script src="index.js"></script>
-  <script>
-    // Function to close the custom alert modal
-    function closeCustomAlert() {
-      document.getElementById("customAlert").style.display = "none";
-      document.getElementById("customAlertOverlay").style.display = "none";
-    }
-
-    // Function to show the custom alert
-    function showCustomAlert(message) {
-      const alertContent = document.getElementById("customAlertContent");
-      alertContent.textContent = message;
-      document.getElementById("customAlert").style.display = "block";
-      document.getElementById("customAlertOverlay").style.display = "block";
-    }
-
-    // Open the modal
-    function openModal() {
-      document.getElementById("bookingModal").style.display = "block";
-    }
-
-    // Close the modal
-    function closeModal() {
-      document.getElementById("bookingModal").style.display = "none";
-    }
-    // Add a new input field for student names
-    function addStudentNameField() {
-      const container = document.getElementById("studentNamesContainer");
-      const input = document.createElement("input");
-      input.type = "text";
-      input.placeholder = "Enter your colleague's name";
-      container.appendChild(input);
-    }
-    // Add a new input field for student IDs
-    function addStudentIDField() {
-      const container = document.getElementById("studentIDsContainer");
-      const input = document.createElement("input");
-      input.type = "text";
-      input.placeholder = "Enter Enter your colleague's ID ";
-      container.appendChild(input);
-    }
-    // Show a success message when booking
-    function reserve() {
-      // Close the modal
-      closeModal();
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Booking Successful!',
-        text: 'The project has been successfully booked.',
-        confirmButtonText: 'OK',
-        customClass: {
-          confirmButton: 'custom-confirm-button'
-        }
-      });
-    }
-  </script>
   <!-- Sources for icons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="index.js"></script>
   <script src="prop.js"></script>
+
 </body>
 
 </html>
