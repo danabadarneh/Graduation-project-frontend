@@ -1,8 +1,6 @@
-document
-  .getElementById("loginButton")
+document.getElementById("loginButton")
   .addEventListener("click", async (event) => {
     event.preventDefault();
-
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     if (!email || !password) {
@@ -10,7 +8,7 @@ document
         text: error.message,
         customClass: {
           confirmButton: 'please fill both the email and password',
-      },
+        },
       });
       return;
     }
@@ -30,13 +28,13 @@ document
 
       const data = await response.json();
       const role = data.role;
-      if(role === "Admin"){
+      if (role === "Admin") {
         window.location.href = "../add projects admin/index.html"
       }
-      else if (role === "Student"){
+      else if (role === "Student") {
         window.location.href = "../Home Page/index.html"
       }
-      else{
+      else {
         window.location.href = "../doctor dashbord/index.html"
       }
       localStorage.setItem("token", data.token);
@@ -45,7 +43,7 @@ document
         text: error.message,
         customClass: {
           confirmButton: 'custom-confirm-button',
-      },
+        },
       });
     }
   });
