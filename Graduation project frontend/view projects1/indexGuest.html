@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <title>View Projects</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-image">
+                <!-- <img src="logo.png" alt=""> -->
+            </div>
+        </div>
+        <div class="menu-items">
+            <ul class="navLinks">
+                <li class="navList">
+                    <a href="/Graduation project frontend/Home Page/indexGeust.html">
+                        <ion-icon name="home-outline"></ion-icon>
+                        <span class="links">Home</span>
+                    </a>
+                </li>
+                <li class="navList active">
+                    <a href="/Graduation project frontend/view projects1/indexGuest.html">
+                        <ion-icon name="folder-outline"></ion-icon>
+                        <span class="links">view projects</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="bottom-link">
+                <li>
+                    <a href="/Graduation project frontend/login signup page/index.html">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <span class="links">Sign up</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="dashboard">
+        <div class="container">
+            <h1>View Projects</h1>
+            <div class="search-container">
+                <!-- College Dropdown -->
+                <div class="dropdown">
+                    <button id="college-drop-text" class="dropdown-button">
+                        <span id="college-span">College</span>
+                        <i id="college-icon" class="fa fa-chevron-down"></i>
+                    </button>
+                    <ul id="college-list" class="dropdown-list">
+                        <!-- سيتم هنا إضافة الكليات -->
+                    </ul>
+                </div>
+                <!-- Department Dropdown -->
+                <div class="dropdown">
+                    <button id="department-drop-text" class="dropdown-button">
+                        <span id="department-span">Department</span>
+                        <i id="department-icon" class="fa fa-chevron-down"></i>
+                    </button>
+                    <ul id="department-list" class="dropdown-list">
+                        <!-- سيتم هنا إضافة الأقسام -->
+                    </ul>
+                </div>
+                <!-- Search Input -->
+                <input id="search-input" type="text" class="search-input" placeholder="Search projects...">
+                <!-- Search Button -->
+                <button class="search-button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Supervisor</th>
+                        <th>College</th>
+                        <th>Department</th>
+                        <th>Similarity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="projects-table-body">
+                    <tr>
+                        <td>DR.mohammad khaili</td>
+                        <td>engineering</td>
+                        <td>computer system engineering</td>
+                        <td>100%</td>
+                        <td>
+                            <button class="btn-icon show" onclick="showProjectDetails('1')">
+                                <i class="fa fa-search"></i> Show
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal" id="detailsModal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Project Details</h2>
+                    <h3>Name of the Project:</h3>
+                    <p id="projectName">Loading...</p>
+                    <h3>Abstract:</h3>
+                    <p id="projectAbstract">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sources for icons -->
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="index.js"></script>
+
+    <script src="viewProj.js"></script>
+</body>
+
+</html>
