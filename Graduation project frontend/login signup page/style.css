@@ -43,8 +43,8 @@ body::after {
   content: "";
   position: absolute;
   right: 5pc;
-  top: 5pc;
-  width: 50%;
+  top: 0;
+  width: 70%;
   /* Adjust this to control the width of the image */
   height: 100vh;
   /* Full height of the viewport */

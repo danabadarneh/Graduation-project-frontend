@@ -26,10 +26,12 @@ document.getElementById("loginButton")
       });
 
       if (!response.ok) {
-        throw new Error("Failed to log in. Please check your credentials.");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to log in.");
       }
 
       const data = await response.json();
+
       const role = data.role;
       if (role === "Admin") {
         window.location.href = "../add projects admin/index.html"
@@ -44,6 +46,8 @@ document.getElementById("loginButton")
     } catch (error) {
       Swal.fire({
         text: error.message,
+        icon: "error",
+        confirmButtonText: "OK",
         customClass: {
           confirmButton: 'custom-confirm-button',
         },
