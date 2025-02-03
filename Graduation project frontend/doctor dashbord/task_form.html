@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,19 @@
 
     <style>
         /* General Reset */
-        body, h1, h2, h3, p, ul, ol, li, form, label, input, textarea, button {
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        ol,
+        li,
+        form,
+        label,
+        input,
+        textarea,
+        button {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -19,7 +32,8 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color:#E9EFEC; /* Light background for contrast */
+            background-color: #E9EFEC;
+            /* Light background for contrast */
             color: #333;
             display: flex;
             justify-content: center;
@@ -30,22 +44,29 @@
 
         /* Form Container */
         .form-container {
-            background: #ffffff; /* White background for the form */
-            padding: 30px; /* Increased padding for better spacing */
+            background: #ffffff;
+            /* White background for the form */
+            padding: 30px;
+            /* Increased padding for better spacing */
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Softer shadow for depth */
             width: 800px;
             max-width: 90%;
-            max-height: 80vh; /* Set a max height for the form */
-            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 80vh;
+            /* Set a max height for the form */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
         }
 
         /* Heading Styling */
         #taskName {
-            font-size: 1.8rem; /* Larger font size for the title */
+            font-size: 1.8rem;
+            /* Larger font size for the title */
             margin-bottom: 20px;
             text-align: center;
-            color:#16423C; /* Blue color for the title */
+            color: #16423C;
+            /* Blue color for the title */
         }
 
         /* Form Labels */
@@ -59,57 +80,72 @@
         /* Textarea Styling */
         textarea {
             width: 100%;
-            padding: 12px; /* Increased padding for comfort */
-            border: 1px solid #ccc; /* Light border */
+            padding: 12px;
+            /* Increased padding for comfort */
+            border: 1px solid #ccc;
+            /* Light border */
             border-radius: 5px;
             resize: none;
             font-size: 1rem;
-            transition: border-color 0.3s; /* Smooth transition for focus */
+            transition: border-color 0.3s;
+            /* Smooth transition for focus */
         }
 
         textarea:focus {
-            border-color: #16423C; /* Change border color on focus */
-            outline: none; /* Remove default outline */
+            border-color: #16423C;
+            /* Change border color on focus */
+            outline: none;
+            /* Remove default outline */
         }
 
         /* Buttons */
         button {
-            background:#16423C; /* Primary button color */
-            color: #ffffff; /* White text */
+            background: #16423C;
+            /* Primary button color */
+            color: #ffffff;
+            /* White text */
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
             margin-right: 10px;
-            transition: background 0.3s ease, transform 0.2s; /* Smooth transition */
+            transition: background 0.3s ease, transform 0.2s;
+            /* Smooth transition */
         }
 
         button:hover {
-            background: #16423cc9; /* Darker blue on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+            background: #16423cc9;
+            /* Darker blue on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect */
         }
 
         button[type="button"] {
-            background: #ddd; /* Secondary button color */
+            background: #ddd;
+            /* Secondary button color */
             color: #333;
         }
 
         button[type="button"]:hover {
-            background: #bbb; /* Darker gray on hover */
+            background: #bbb;
+            /* Darker gray on hover */
         }
 
         /* Task Container */
         .task-container {
-            background: #ffffff; /* White background for task container */
+            background: #ffffff;
+            /* White background for task container */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 95%;
             margin: 20px 0;
-            max-height: 200px; /* Set a max height for scrolling */
+            max-height: 200px;
+            /* Set a max height for scrolling */
             margin-top: 10px;
-            overflow-y: auto; /* Enable scrolling */
+            overflow-y: auto;
+            /* Enable scrolling */
         }
 
         /* Section Heading */
@@ -130,7 +166,8 @@
 
         .progress-bar {
             height: 100%;
-            background:#16423C; /* Green color for progress */
+            background: #16423C;
+            /* Green color for progress */
             width: 0;
         }
 
@@ -148,27 +185,38 @@
         /* Comment Section */
         .comment-section {
             margin-top: 20px;
-            padding: 15px; /* Padding inside the comment section */
-            background-color: #f9f9f9; /* Light background for the comment section */
-            border: 1px solid #ddd; /* Light border around the comment section */
-            border-radius: 5px; /* Rounded corners */
+            padding: 15px;
+            /* Padding inside the comment section */
+            background-color: #f9f9f9;
+            /* Light background for the comment section */
+            border: 1px solid #ddd;
+            /* Light border around the comment section */
+            border-radius: 5px;
+            /* Rounded corners */
         }
 
         .comment {
-            background: #ffffff; /* White background for individual comments */
-            border: 1px solid #ccc; /* Light border for comments */
-            border-radius: 5px; /* Rounded corners */
-            padding: 10px; /* Padding inside each comment */
-            margin-bottom: 10px; /* Space between comments */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            background: #ffffff;
+            /* White background for individual comments */
+            border: 1px solid #ccc;
+            /* Light border for comments */
+            border-radius: 5px;
+            /* Rounded corners */
+            padding: 10px;
+            /* Padding inside each comment */
+            margin-bottom: 10px;
+            /* Space between comments */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
         }
     </style>
 </head>
+
 <body>
     <div class="form-container">
         <h2 id="taskName">Task Form</h2>
         <form onsubmit="return false;"> <!-- Prevent form submission -->
-            <label for="datasetCollection">
+            <label for="taskDetails">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
                 Detailed description:
             </label>
@@ -177,7 +225,7 @@
             <br><br>
             <label for="datasetCollection">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
-                To Do List:
+                To Do List For subTask:
             </label>
             <div class="task-container">
                 <div class="progress-bar-container">
@@ -185,20 +233,20 @@
                 </div>
                 <ul id="taskList">
                     <li>
-                        <label>
+                        <!-- <label>
                             <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Dataset
-                        </label>
+                        </label> -->
                     </li>
                     <li>
-                        <label>
+                        <!-- <label>
                             <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Cleaning
-                        </label>
-                    </li>  
+                        </label> -->
+                    </li>
                 </ul>
-                <button type="button" onclick="deleteChecked()">Delete Checked Items</button>
+                <button type="button" onclick="deleteChecked()">Delete Items</button>
                 <button type="button" onclick="addTask()">Add an Item</button>
             </div>
-     
+
             <div class="comment-section" id="commentSection">
                 <h3>Supervisor Comments:</h3>
                 <textarea id="activityContent" rows="3" placeholder="Enter your comment here..."></textarea>
@@ -210,7 +258,7 @@
         </form>
     </div>
 
-    <script>
+    <!-- <script>
         // Populate the task name from the query parameter
         const urlParams = new URLSearchParams(window.location.search);
         const taskName = urlParams.get('taskName');
@@ -218,12 +266,7 @@
             document.getElementById('taskName').innerText = taskName;
         }
 
-        // Go back to the previous page
-        function goBack() {
-            window.history.back();
-        }
-
-        function updateProgress() {
+            function updateProgress() {
             const checkboxes = document.querySelectorAll('.task-checkbox');
             const checked = document.querySelectorAll('.task-checkbox:checked');
             const progressBar = document.getElementById('progressBar');
@@ -282,6 +325,9 @@
                 alert('Please enter task details before saving.'); // Alert if textarea is empty
             }
         }
-    </script>
+    </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="taskDoc.js"></script>
 </body>
+
 </html>

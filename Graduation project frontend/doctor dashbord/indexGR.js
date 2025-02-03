@@ -1,5 +1,4 @@
-
-  // Fetch data from the API and populate the table
+// Fetch data from the API and populate the table
   async function fetchData() {
     try {
         const token = localStorage.getItem('token');
@@ -101,9 +100,6 @@ async function handleReject(projectId) {
 
 // Fetch data when the page loads
 document.addEventListener('DOMContentLoaded', fetchData);
-
-
-
 
 // document.addEventListener("DOMContentLoaded", async () => {
 //     const authToken = localStorage.getItem("authToken");

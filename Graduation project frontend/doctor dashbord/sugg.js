@@ -48,7 +48,8 @@
 
     // Navigate to project details page
     function navigateToPage(projectId) {
-        window.location.href = `project_details.html?id=${projectId}`;
+        console.log("Navigating to details page with ID:", projectId);
+        window.location.href = `details.html?id=${projectId}`;
     }
 
     // Show delete confirmation modal

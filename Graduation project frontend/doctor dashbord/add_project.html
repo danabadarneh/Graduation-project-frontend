@@ -12,12 +12,12 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 20px;
-            background-color:  #E9EFEC;
+            background-color: #E9EFEC;
         }
 
         h1 {
             text-align: center;
-            color:  black;
+            color: black;
         }
 
         form {
@@ -37,7 +37,9 @@
             color: #333;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 6px 5px;
             margin-bottom: 15px;
@@ -56,7 +58,8 @@
             background-size: 12px 10px;
         }
 
-        input[type="text"], textarea {
+        input[type="text"],
+        textarea {
             height: 40px;
         }
 
@@ -66,13 +69,15 @@
         }
 
         select:hover {
-            border-color:  #35665a;
+            border-color: #35665a;
         }
 
-        select:focus, input:focus, textarea:focus {
+        select:focus,
+        input:focus,
+        textarea:focus {
             outline: none;
             border-color: #35665a;
-            box-shadow: 0 0 3px  #35665a(0, 123, 255, 0.5);
+            box-shadow: 0 0 3px #35665a(0, 123, 255, 0.5);
         }
 
         .form-actions {
@@ -90,12 +95,12 @@
         }
 
         .btn.save {
-            background-color:  #35665a;
+            background-color: #35665a;
             color: white;
         }
 
         .btn.save:hover {
-            background-color:  #1f4138;
+            background-color: #1f4138;
         }
 
         .btn.cancel {
@@ -108,7 +113,7 @@
         }
 
         .btn.back {
-            background-color:  #35665abe;
+            background-color: #35665abe;
             color: white;
         }
 
@@ -131,7 +136,6 @@
             margin-right: 10px;
             font-size: 24px;
         }
-
     </style>
 </head>
 
@@ -143,16 +147,16 @@
         <label for="supervisor">Supervisor name:</label>
         <select id="supervisor">
             <option value="" disabled selected>Select Supervisor</option>
-          </select>
+        </select>
 
         <select id="college">
             <option value="" disabled selected>Select College</option>
-          </select>
-          
+        </select>
+
         <label for="department">Department:</label>
         <select id="department">
             <option value="" disabled selected>Select Department</option>
-          </select>
+        </select>
 
         <label for="projectIdea">Project Idea:</label>
         <textarea id="projectIdea" placeholder="Describe your project idea" required></textarea>
@@ -161,7 +165,8 @@
             <button type="button" class="btn cancel" onclick="window.history.back()">Cancel</button>
             <button type="submit" class="btn save">Save</button>
             <!-- New Back button -->
-            <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to Dashboard</button>
+            <button type="button" class="btn back" onclick="window.location.href='index.html'">Back to
+                Dashboard</button>
         </div>
     </form>
 
@@ -173,4 +178,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
 </body>
+
 </html>

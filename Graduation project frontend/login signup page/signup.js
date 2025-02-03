@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Handle form submission
-  document.getElementById("registrationForm").addEventListener("submit", (event) => {
+  document.getElementById("registrationForm").addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const name = formData.get("Name").trim();
@@ -73,23 +73,39 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     // Send the form data to the server
-    fetch("http://localhost:4000/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(Object.fromEntries(formData)),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        Swal.fire(data.message);
+    try {
+      const response = await fetch("http://localhost:4000/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(Object.fromEntries(formData)),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) =>
-        Swal.fire({
-          text: error.message,
-          customClass: {
-            confirmButton: 'custom-confirm-button',
-          },
-        }));
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to log in.");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+
+      const role = data.role;
+      if (role === "Student") {
+        window.location.href = "../Home Page/index.html"
+      }
+      else {
+        window.location.href = "../doctor dashbord/index.html"
+      }
+    } catch (error) {
+      Swal.fire({
+        text: error.message,
+        icon: "error",
+        confirmButtonText: "OK",
+        customClass: {
+          confirmButton: 'custom-confirm-button'
+        },
+      });
+    }
   });
 });
