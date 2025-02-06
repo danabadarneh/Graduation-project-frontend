@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const departmentDropdown = document.getElementById("department-list");
     const searchButton = document.querySelector(".search-button");
     const searchInput = document.getElementById("search-input");
-    const projectsTableBody = document.getElementById("projects-table-body");
+    const projectsTableBody = document.getElementById("projectsTableBody");
 
     let selectedCollegeId = null;
     let selectedDepartmentId = null;
@@ -63,13 +63,21 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Please select a department first!");
             return;
         }
-
         const description = searchInput.value.trim();
-        fetchProjects(selectedDepartmentId, description);
+        if (description) {
+            fetchSimilarityScore(description)
+                .then(similarityScore => {
+                    fetchProjects(selectedDepartmentId, description, similarityScore);
+                })
+                .catch(error => {
+                    console.error("Error fetching similarity score:", error);
+                });
+        } else {
+            fetchProjects(selectedDepartmentId, null);
+        }
     });
-
     // وظيفة لجلب المشاريع وعرضها في الجدول
-    function fetchProjects(departmentId, description) {
+    function fetchProjects(departmentId, description, similarityScore = null) {
         const url = description
             ? `http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}?description=${encodeURIComponent(description)}`
             : `http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}`;
@@ -80,12 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 projectsTableBody.innerHTML = ""; // تفريغ الجدول قبل إعادة التعبئة
 
                 data.projects.forEach(project => {
+                    const similarity = similarityScore ? project.similarity : "100%";
                     const row = document.createElement("tr");
                     row.innerHTML = `
-                        <td>${project.supervisor || "N/A"}</td>
+                        <td>${project.supervisor?.supervisorName || "N/A"}</td>
                         <td>${project.college?.collegeName || "N/A"}</td>
                         <td>${project.department?.departmentName || "N/A"}</td>
-                        <td>${description ? project.similarity + "%" : "100%"}</td>
+                        <td>${similarity}</td>
                         <td>
                             <button class="btn-icon show" onclick="showProjectDetails('${project._id}')">
                                 <i class="fa fa-search"></i> Show
@@ -97,11 +106,31 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error("Error fetching projects:", error));
     }
+
+    // وظيفة لتحليل التشابه باستخدام API
+    function fetchSimilarityScore(description) {
+        return new Promise((resolve, reject) => {
+            fetch("http://127.0.0.1:4000/analyze", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    text2: description
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data.similarityScore || 100); // إذا لم نجد نتيجة، نفترض 100% تشابه
+                })
+                .catch(error => reject(error));
+        });
+    }
 });
 
 // عرض تفاصيل المشروع في النافذة المنبثقة
 function showProjectDetails(projectId) {
-    console.log("project id: ",projectId);
+    console.log("project id: ", projectId);
     fetch(`http://localhost:4000/Projects/getProject/${projectId}`)
         .then(response => response.json())
         .then(data => {
@@ -116,3 +145,4 @@ function showProjectDetails(projectId) {
 function closeModal() {
     document.getElementById("detailsModal").style.display = "none";
 }
+

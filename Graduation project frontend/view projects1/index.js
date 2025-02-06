@@ -58,26 +58,26 @@ searchButton.onclick = function () {
     }
 };
 
-// عرض تفاصيل المشروع
-async function showProjectDetails(projectId) {
-    detailsModal.style.display = "flex";
-    try {
-        const response = await fetch(`http://localhost:4000/Projects/getProjects`);
-        const data = await response.json();
-        const project = data.projects.find(p => p._id === projectId);
-        if (project) {
-            projectName.textContent = project.projectName;
-            projectAbstract.textContent = project.projectIdea;
-        } else {
-            projectName.textContent = "Project not found.";
-            projectAbstract.textContent = "";
-        }
-    } catch (error) {
-        console.error("Error fetching project details:", error);
-        projectName.textContent = "Error loading project details.";
-        projectAbstract.textContent = "";
-    }
-}
+// // عرض تفاصيل المشروع
+// async function showProjectDetails(projectId) {
+//     detailsModal.style.display = "flex";
+//     try {
+//         const response = await fetch(`http://localhost:4000/Projects/getProjects`);
+//         const data = await response.json();
+//         const project = data.projects.find(p => p._id === projectId);
+//         if (project) {
+//             projectName.textContent = project.projectName;
+//             projectAbstract.textContent = project.projectIdea;
+//         } else {
+//             projectName.textContent = "Project not found.";
+//             projectAbstract.textContent = "";
+//         }
+//     } catch (error) {
+//         console.error("Error fetching project details:", error);
+//         projectName.textContent = "Error loading project details.";
+//         projectAbstract.textContent = "";
+//     }
+// }
 
 // إغلاق المودال
 function closeModal() {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,19 @@
 
     <style>
         /* General Reset */
-        body, h1, h2, h3, p, ul, ol, li, form, label, input, textarea, button {
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        ol,
+        li,
+        form,
+        label,
+        input,
+        textarea,
+        button {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -19,7 +32,8 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color:#E9EFEC; /* Light background for contrast */
+            background-color: #E9EFEC;
+            /* Light background for contrast */
             color: #333;
             display: flex;
             justify-content: center;
@@ -30,22 +44,29 @@
 
         /* Form Container */
         .form-container {
-            background: #ffffff; /* White background for the form */
-            padding: 30px; /* Increased padding for better spacing */
+            background: #ffffff;
+            /* White background for the form */
+            padding: 30px;
+            /* Increased padding for better spacing */
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Softer shadow for depth */
             width: 800px;
             max-width: 90%;
-            max-height: 80vh; /* Set a max height for the form */
-            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 80vh;
+            /* Set a max height for the form */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
         }
 
         /* Heading Styling */
         #taskName {
-            font-size: 1.8rem; /* Larger font size for the title */
+            font-size: 1.8rem;
+            /* Larger font size for the title */
             margin-bottom: 20px;
             text-align: center;
-            color:#16423C; /* Blue color for the title */
+            color: #16423C;
+            /* Blue color for the title */
         }
 
         /* Form Labels */
@@ -59,57 +80,72 @@
         /* Textarea Styling */
         textarea {
             width: 100%;
-            padding: 12px; /* Increased padding for comfort */
-            border: 1px solid #ccc; /* Light border */
+            padding: 12px;
+            /* Increased padding for comfort */
+            border: 1px solid #ccc;
+            /* Light border */
             border-radius: 5px;
             resize: none;
             font-size: 1rem;
-            transition: border-color 0.3s; /* Smooth transition for focus */
+            transition: border-color 0.3s;
+            /* Smooth transition for focus */
         }
 
         textarea:focus {
-            border-color: #16423C; /* Change border color on focus */
-            outline: none; /* Remove default outline */
+            border-color: #16423C;
+            /* Change border color on focus */
+            outline: none;
+            /* Remove default outline */
         }
 
         /* Buttons */
         button {
-            background:#16423C; /* Primary button color */
-            color: #ffffff; /* White text */
+            background: #16423C;
+            /* Primary button color */
+            color: #ffffff;
+            /* White text */
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
             margin-right: 10px;
-            transition: background 0.3s ease, transform 0.2s; /* Smooth transition */
+            transition: background 0.3s ease, transform 0.2s;
+            /* Smooth transition */
         }
 
         button:hover {
-            background: #16423cc9; /* Darker blue on hover */
-            transform: translateY(-2px); /* Slight lift effect */
+            background: #16423cc9;
+            /* Darker blue on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect */
         }
 
         button[type="button"] {
-            background: #ddd; /* Secondary button color */
+            background: #ddd;
+            /* Secondary button color */
             color: #333;
         }
 
         button[type="button"]:hover {
-            background: #bbb; /* Darker gray on hover */
+            background: #bbb;
+            /* Darker gray on hover */
         }
 
         /* Task Container */
         .task-container {
-            background: #ffffff; /* White background for task container */
+            background: #ffffff;
+            /* White background for task container */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 95%;
             margin: 20px 0;
-            max-height: 200px; /* Set a max height for scrolling */
+            max-height: 200px;
+            /* Set a max height for scrolling */
             margin-top: 10px;
-            overflow-y: auto; /* Enable scrolling */
+            overflow-y: auto;
+            /* Enable scrolling */
         }
 
         /* Section Heading */
@@ -130,7 +166,8 @@
 
         .progress-bar {
             height: 100%;
-            background:#16423C; /* Green color for progress */
+            background: #16423C;
+            /* Green color for progress */
             width: 0;
         }
 
@@ -157,52 +194,66 @@
             padding: 10px;
             margin-bottom: 10px;
         }
+
         /* Comment Section Styles */
-.comment-section {
-    margin-top: 20px; /* Space above the comment section */
-    padding: 15px; /* Padding inside the comment section */
-    background-color: #f9f9f9; /* Light background for the comment section */
-    border: 1px solid #ddd; /* Light border around the comment section */
-    border-radius: 5px; /* Rounded corners */
-}
+        .comment-section {
+            margin-top: 20px;
+            /* Space above the comment section */
+            padding: 15px;
+            /* Padding inside the comment section */
+            background-color: #f9f9f9;
+            /* Light background for the comment section */
+            border: 1px solid #ddd;
+            /* Light border around the comment section */
+            border-radius: 5px;
+            /* Rounded corners */
+        }
 
-.comment-section h3 {
-    margin-bottom: 10px; /* Space below the heading */
-    color: #333; /* Dark color for the heading */
-}
+        .comment-section h3 {
+            margin-bottom: 10px;
+            /* Space below the heading */
+            color: #333;
+            /* Dark color for the heading */
+        }
 
-/* Individual Comment Styles */
-.comment {
-    background: #ffffff; /* White background for individual comments */
-    border: 1px solid #ccc; /* Light border for comments */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px; /* Padding inside each comment */
-    margin-bottom: 10px; /* Space between comments */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+        /* Individual Comment Styles */
+        .comment {
+            background: #ffffff;
+            /* White background for individual comments */
+            border: 1px solid #ccc;
+            /* Light border for comments */
+            border-radius: 5px;
+            /* Rounded corners */
+            padding: 10px;
+            /* Padding inside each comment */
+            margin-bottom: 10px;
+            /* Space between comments */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
     </style>
 </head>
+
 <body>
     <div class="form-container">
         <h2 id="taskName">Task Form</h2>
         <form onsubmit="return false;"> <!-- Prevent form submission -->
-            <label for="datasetCollection">
+            <label for="taskDetails">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
-                Dataset Collection:
+                Detailed Description:
             </label>
             <textarea id="taskDetails" rows="4" cols="50" placeholder="Enter task details here"></textarea>
-            <button type="button">Save</button>
             <br><br>
             <label for="datasetCollection">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
-                Dataset Collection:
+                SubTasks To Do :
             </label>
             <div class="task-container">
                 <div class="progress-bar-container">
                     <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
                 </div>
                 <ul id="taskList">
-                    <li>
+                    <!-- <li>
                         <label>
                             <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Dataset
                         </label>
@@ -211,29 +262,46 @@
                         <label>
                             <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> Cleaning
                         </label>
-                    </li>  
+                    </li> -->
                 </ul>
                 <button type="button" onclick="deleteChecked()">Delete Checked Items</button>
                 <button type="button" onclick="addTask()">Add an Item</button>
             </div>
-     
-        <div class="comment-section" id="commentSection">
-            <h3>Supervisor Comments:</h3>
-        </div>
-        <br><br>
-        <button type="submit">Submit</button>
-        <button type="button" onclick="goBack()">Cancel</button>
+
+            <div class="comment-section" id="commentSection">
+                <h3>Supervisor Comments:</h3>
+            </div>
+            <br><br>
+            <button type="submit" onclick="submitTask()">Submit</button>
+            <button type="button" onclick="goBack()">Cancel</button>
+            <button type="button" onclick="deleteTask()" style="background-color: rgb(227, 74, 74);">Delete</button>
 
         </form>
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const taskName = urlParams.get('task');
+            if (taskName) {
+                document.getElementById('taskName').innerText = taskName;
+            }
+            //     const taskContainer = document.getElementById('taskListContainer'); // استبدل بالـ `id` الصحيح
+
+            //     taskContainer.innerHTML = ''; // تفريغ القائمة وإعادة تحميلها
+            //     tasks.forEach(task => {
+            //         const taskElement = document.createElement('div');
+            //         taskElement.innerHTML = `
+            //     <h3>${task.name}</h3>
+            //     <p>${task.description}</p>
+            //     <a href="taskDetails.html?task=${encodeURIComponent(task.name)}">View Details</a>
+            // `;
+            //         taskContainer.appendChild(taskElement);
+            //     });
+        });
+
         // Populate the task name from the query parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const taskName = urlParams.get('taskName');
-        if (taskName) {
-            document.getElementById('taskName').innerText = taskName;
-        }
+
 
         // Go back to the previous page
         function goBack() {
@@ -244,7 +312,6 @@
             const checkboxes = document.querySelectorAll('.task-checkbox');
             const checked = document.querySelectorAll('.task-checkbox:checked');
             const progressBar = document.getElementById('progressBar');
-
             const progress = (checked.length / checkboxes.length) * 100;
             progressBar.style.width = progress + '%';
         }
@@ -258,47 +325,150 @@
         }
 
         function addTask() {
-            const taskList = document.getElementById('taskList');
-            const newTaskText = prompt("Enter the new task:");
-            if (newTaskText) {
-                const newTask = document.createElement('li');
-                newTask.innerHTML = `
+            Swal.fire({
+                title: 'Add New Sub Task',
+                input: 'text',
+                inputPlaceholder: 'Enter sub task',
+                showCancelButton: true,
+                preConfirm: (value) => {
+                    if (!value) {
+                        Swal.showValidationMessage('Please enter a description!');
+                        return false;
+                    }
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
                     <label>
-                        <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> ${newTaskText}
+                        <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> ${value}
                     </label>
                 `;
-                taskList.appendChild(newTask);
+                    taskList.appendChild(listItem);
+                    updateProgress();
+                }
+            });
+        }
+
+        // function submitTask() {
+        //     const taskName = document.getElementById('taskName').textContent;
+        //     const taskDetails = document.getElementById('taskDetails').value;
+        //     const checklist = [];
+
+        //     document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+        //         checklist.push({
+        //             description: checkbox.parentElement.textContent.trim(),
+        //             completed: checkbox.checked
+        //         });
+        //     });
+
+        //     const data = {
+        //         name: taskName,
+        //         description: taskDetails,
+        //         Checklist: checklist
+        //     };
+
+        //     localStorage.setItem('lastTask', JSON.stringify(data));
+
+        //     fetch('http://localhost:4000/Trello/addTaskToToDo/67703bc89373083db43ba0f2', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(data)
+        //     })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             Swal.fire('Success!', 'Task submitted successfully.', 'success');
+        //             let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        //             tasks.push(savedTask);
+        //             localStorage.setItem('tasks', JSON.stringify(tasks));
+
+        //             setTimeout(() => {
+        //                 window.history.back();
+        //             }, 2000); // ينتظر ثانيتين قبل العودة
+
+        //         })
+        //         .catch(error => {
+        //             Swal.fire('Error!', 'Failed to submit task.', 'error');
+        //         });
+
+        //     return false;
+        // }
+
+        // ✅ إرسال المهمة عند الضغط على Submit
+    function submitTask() {
+        const taskNameElement = document.getElementById('taskName');
+        const taskDetailsElement = document.getElementById('taskDetails');
+
+        if (!taskNameElement || !taskDetailsElement) {
+            Swal.fire('Error!', 'Task name or details not found!', 'error');
+            return;
+        }
+
+        const taskName = taskNameElement.textContent.trim();
+        const taskDetails = taskDetailsElement.value.trim();
+        const checklist = [];
+
+        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+            checklist.push({
+                description: checkbox.parentElement.textContent.trim(),
+                completed: checkbox.checked
+            });
+        });
+
+        // ✅ التحقق من أن البيانات غير فارغة قبل الإرسال
+        if (!taskName) {
+            Swal.fire('Error!', 'Task name cannot be empty.', 'error');
+            return;
+        }
+
+        if (!taskDetails) {
+            Swal.fire('Error!', 'Task details cannot be empty.', 'error');
+            return;
+        }
+
+        const data = {
+            name: taskName,
+            description: taskDetails,
+            Checklist: checklist
+        };
+
+        // ✅ حفظ المهمة محليًا قبل الإرسال
+        localStorage.setItem('lastTask', JSON.stringify(data));
+
+        // ✅ إرسال الطلب إلى الخادم
+        fetch('http://localhost:4000/Trello/addTaskToToDo/67703bc89373083db43ba0f2', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Bad Request');
             }
-        }
+            return response.json();
+        })
+        .then(data => {
+            Swal.fire('Success!', 'Task submitted successfully.', 'success');
 
-        function submitComment() {
-            const comment = document.getElementById('activityContent').value;
-            if (comment) {
-                const commentSection = document.getElementById('commentSection');
-                const newComment = document.createElement('div');
-                newComment.classList.add('comment');
- newComment.innerText = comment;
-                commentSection.appendChild(newComment);
-                document.getElementById('activityContent').value = ''; // Clear the textarea
-            } else {
-                alert("Please enter a comment before submitting.");
-            }
-        }
-        function saveTask() {
-  const taskDetails = document.getElementById('taskDetails').value;
-  const taskContainer = document.getElementById('taskContainer');
+            // ✅ تحديث قائمة المهام في `localStorage`
+            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(data);  // إضافة المهمة الجديدة
+            localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  if (taskDetails) {
- const taskDiv = document.createElement('div');
- taskDiv.className = 'comment'; // Use the comment class for styling
-taskDiv.textContent = taskDetails; // Set the text content to the task details
- taskContainer.appendChild(taskDiv); // Append the new task to the task container
-    document.getElementById('taskDetails').value = ''; // Clear the textarea
-   } else {
-  alert('Please enter task details before saving.'); // Alert if textarea is empty
-        }
-   }
+            // ✅ العودة للصفحة الرئيسية بعد نجاح الإرسال
+            setTimeout(() => {
+                window.history.back();
+            }, 2000);
+        })
+        .catch(error => {
+            Swal.fire('Error!', 'Failed to submit task. ' + error.message, 'error');
+        });
 
+        return false;
+    }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>
