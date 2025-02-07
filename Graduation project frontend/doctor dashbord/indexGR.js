@@ -2,7 +2,7 @@
   async function fetchData() {
     try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:4000/SuggestedProjects/getUnreservedProjects',{ method: "GET",
+        const response = await fetch('http://localhost:4000/SuggestedProjects/getPendingProjects',{ method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Seraj__${token}`,
@@ -10,6 +10,7 @@
         if (!response.ok) throw new Error('Failed to fetch data');
         
         const projects = await response.json();
+        console.log(projects)
         populateTable(projects.projects);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -29,7 +30,7 @@ function populateTable(projects) {
             <td>${project.college.collegeName}</td>
             <td>${project.projectName}</td>
             <td>${project.reservation.teamMembers?.map((s) => s.name).join(', ')}</td>
-            <td>${project.reservation.teamMembers?.map((s) => s._id).join('<br>')}</td>
+            <td>${project.reservation.teamMembers?.map((s) => s.registrationNumber).join('<br>')}</td>
             <td>
                 <button class="btn-icon show" onclick="handleAccept('${project._id}')">
                     <i class="fa fa-check"></i> Accept

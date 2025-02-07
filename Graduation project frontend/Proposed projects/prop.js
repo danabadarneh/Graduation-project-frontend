@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       console.log('test');
      const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:4000/SuggestedProjects/getSuggestedProjects",{
+      const response = await fetch("http://localhost:4000/SuggestedProjects/getUnreservedProjects",{
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function closeModal() {
   // Function to show project description modal
   const showProjectDescription = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/SuggestedProjects/getSuggestedProjectById/${id}`);
+      const response = await fetch(`http://localhost:4000/SuggestedProjects/getSuggestedProject/${id}`);
       // if (!response.message) {
       //   throw new Error(`HTTP error! Status: ${response.status}`);
       // }
@@ -92,13 +92,13 @@ function closeModal() {
       console.log(data);
       
       // Set project details in modal
-      htmlData=`<input type="text" readonly value="${data.project.projectName}" >
-      <input type="text" readonly value="${data.project.projectIdea}">`
+      htmlData=`<h4>Project Name</h4><input type="text" readonly value="${data.project.projectName}" >
+      <h4>Project Idea </h4><input type="text" readonly value="${data.project.projectIdea}">`
 
       Swal.fire({
         title: 'Project Details',
         html:htmlData,
-        confirmButtonText: 'Submit',
+
         focusConfirm: false
       });
     } catch (error) {
