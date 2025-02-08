@@ -9,9 +9,13 @@
             }});
         if (!response.ok) throw new Error('Failed to fetch data');
         
-        const projects = await response.json();
-        console.log(projects)
-        populateTable(projects.projects);
+        const res = await response.json();
+        console.log("api responce:", res);
+        if (!res.projects || res.projects.length === 0){
+            console.log("No projects found");
+            return;
+        }
+        populateTable(res.projects);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
