@@ -231,6 +231,19 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             /* Subtle shadow for depth */
         }
+        #newTaskInput{
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 12px;
+            /* Increased padding for comfort */
+            border: 1px solid #ccc;
+            /* Light border */
+            border-radius: 5px;
+            resize: none;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            /* Smooth transition for focus */
+        }
     </style>
 </head>
 
@@ -238,6 +251,12 @@
     <div class="form-container">
         <h2 id="taskName">Task Form</h2>
         <form onsubmit="return false;"> <!-- Prevent form submission -->
+            <label for="taskName">
+                <ion-icon name="create-outline" style="margin-right: 5px;"></ion-icon>
+                Task Name:
+            </label>
+            <input type="text" id="newTaskInput" required placeholder="Add a new task...">
+            <br><br>
             <label for="taskDetails">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
                 Detailed Description:
@@ -347,6 +366,30 @@
             });
         }
 
+
+        function addTask() {
+            const taskInput = document.getElementById('newTaskInput');
+            const taskName = taskInput.value.trim();
+            if (taskName) {
+                const newTask = document.createElement('div');
+                newTask.className = 'task';
+                newTask.draggable = true;
+                newTask.id = 'task' + (document.querySelectorAll('.task').length + 1);
+                newTask.setAttribute('ondragstart', 'drag(event)');
+                newTask.setAttribute('onclick', `openTaskForm('${taskName}')`);
+                newTask.textContent = taskName;
+
+                const todoTasks = document.getElementById('todoTasks');
+                todoTasks.appendChild(newTask);
+                taskInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter a task name.');
+            }
+
+        }
+
+
+
         // function submitTask() {
         //     const taskName = document.getElementById('taskName').textContent;
         //     const taskDetails = document.getElementById('taskDetails').value;
@@ -394,79 +437,79 @@
         // }
 
         // ✅ إرسال المهمة عند الضغط على Submit
-    function submitTask() {
-        const taskNameElement = document.getElementById('taskName');
-        const taskDetailsElement = document.getElementById('taskDetails');
+        function submitTask() {
+            const taskNameElement = document.getElementById('taskName');
+            const taskDetailsElement = document.getElementById('taskDetails');
 
-        if (!taskNameElement || !taskDetailsElement) {
-            Swal.fire('Error!', 'Task name or details not found!', 'error');
-            return;
-        }
-
-        const taskName = taskNameElement.textContent.trim();
-        const taskDetails = taskDetailsElement.value.trim();
-        const checklist = [];
-
-        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-            checklist.push({
-                description: checkbox.parentElement.textContent.trim(),
-                completed: checkbox.checked
-            });
-        });
-
-        // ✅ التحقق من أن البيانات غير فارغة قبل الإرسال
-        if (!taskName) {
-            Swal.fire('Error!', 'Task name cannot be empty.', 'error');
-            return;
-        }
-
-        if (!taskDetails) {
-            Swal.fire('Error!', 'Task details cannot be empty.', 'error');
-            return;
-        }
-
-        const data = {
-            name: taskName,
-            description: taskDetails,
-            Checklist: checklist
-        };
-
-        // ✅ حفظ المهمة محليًا قبل الإرسال
-        localStorage.setItem('lastTask', JSON.stringify(data));
-
-        // ✅ إرسال الطلب إلى الخادم
-        fetch('http://localhost:4000/Trello/addTaskToToDo/67703bc89373083db43ba0f2', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Bad Request');
+            if (!taskNameElement || !taskDetailsElement) {
+                Swal.fire('Error!', 'Task name or details not found!', 'error');
+                return;
             }
-            return response.json();
-        })
-        .then(data => {
-            Swal.fire('Success!', 'Task submitted successfully.', 'success');
 
-            // ✅ تحديث قائمة المهام في `localStorage`
-            let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-            tasks.push(data);  // إضافة المهمة الجديدة
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            const taskName = taskNameElement.textContent.trim();
+            const taskDetails = taskDetailsElement.value.trim();
+            const checklist = [];
 
-            // ✅ العودة للصفحة الرئيسية بعد نجاح الإرسال
-            setTimeout(() => {
-                window.history.back();
-            }, 2000);
-        })
-        .catch(error => {
-            Swal.fire('Error!', 'Failed to submit task. ' + error.message, 'error');
-        });
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checklist.push({
+                    description: checkbox.parentElement.textContent.trim(),
+                    completed: checkbox.checked
+                });
+            });
 
-        return false;
-    }
+            // ✅ التحقق من أن البيانات غير فارغة قبل الإرسال
+            if (!taskName) {
+                Swal.fire('Error!', 'Task name cannot be empty.', 'error');
+                return;
+            }
+
+            if (!taskDetails) {
+                Swal.fire('Error!', 'Task details cannot be empty.', 'error');
+                return;
+            }
+
+            const data = {
+                name: taskName,
+                description: taskDetails,
+                Checklist: checklist
+            };
+
+            // ✅ حفظ المهمة محليًا قبل الإرسال
+            localStorage.setItem('lastTask', JSON.stringify(data));
+
+            // ✅ إرسال الطلب إلى الخادم
+            fetch('http://localhost:4000/Trello/addTaskToToDo/67703bc89373083db43ba0f2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Bad Request');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    Swal.fire('Success!', 'Task submitted successfully.', 'success');
+
+                    // ✅ تحديث قائمة المهام في `localStorage`
+                    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                    tasks.push(data);  // إضافة المهمة الجديدة
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+                    // ✅ العودة للصفحة الرئيسية بعد نجاح الإرسال
+                    setTimeout(() => {
+                        window.history.back();
+                    }, 2000);
+                })
+                .catch(error => {
+                    Swal.fire('Error!', 'Failed to submit task. ' + error.message, 'error');
+                });
+
+            return false;
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

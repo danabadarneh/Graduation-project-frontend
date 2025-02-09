@@ -10,6 +10,7 @@ body {
     width: 100%;
     background-color: #E9EFEC;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 h1 {
     font-size: 30px;

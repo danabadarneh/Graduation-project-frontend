@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // وظيفة لتحليل التشابه باستخدام API
     function fetchSimilarityScore(description) {
         return new Promise((resolve, reject) => {
-            fetch("http://127.0.0.1:4000/analyze", {
+            fetch("http://127.0.0.1:5000/analyze", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -119,12 +119,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     text2: description
                 })
             })
-                .then(response => response.json())
-                .then(data => {
-                    resolve(data.similarityScore || 100); // إذا لم نجد نتيجة، نفترض 100% تشابه
-                })
-                .catch(error => reject(error));
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.similarityScore!==undefined) {
+                resolve(data.similarityScore || 100); // إذا لم نجد نتيجة، نفترض 100% تشابه
+                }else reject ("invalid response fromat or missing similarity")
+            })
+            .catch(error =>{
+                 reject(error);
+                 console.log("Error in similarity score: " + error);
+                });
+
+    });
     }
 });
 
