@@ -18,6 +18,14 @@ h1 {
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
 }
+.pdf-file {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 .wrapper {
     padding: 20px;
     position: relative;

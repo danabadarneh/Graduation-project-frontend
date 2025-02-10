@@ -102,7 +102,7 @@
                         <td>computer system engineering</td>
                         <td>100%</td>
                         <td>
-                            <button class="btn-icon show" onclick="showProjectDetails('1')">
+                            <button class="btn-icon show" onclick="showProjectDetails('${project._id}')">
                                 <i class="fa fa-search"></i> Show
                             </button>
                         </td>
@@ -117,7 +117,8 @@
                     <p id="projectName">Loading...</p>
                     <h3>Abstract:</h3>
                     <p id="projectAbstract">Loading...</p>
-                </div>
+                    <div id="pdf-file">
+                    </div>
             </div>
         </div>
     </section>

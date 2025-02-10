@@ -59,15 +59,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // البحث عن المشاريع وعرضها في الجدول
     searchButton.addEventListener("click", () => {
-        if (!selectedDepartmentId) {
-            alert("Please select a department first!");
-            return;
-        }
+        // if (!selectedDepartmentId) {
+        //     alert("Please select a department first!");
+        //     return;
+        // }
         const description = searchInput.value.trim();
         if (description) {
+
             fetchSimilarityScore(description)
                 .then(similarityScore => {
-                    fetchProjects(selectedDepartmentId, description, similarityScore);
+                    console.log(`Similarity score: ${similarityScore}`);
                 })
                 .catch(error => {
                     console.error("Error fetching similarity score:", error);
@@ -83,7 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
             : `http://localhost:4000/Projects/getProjectsByDepartment/${departmentId}`;
 
         fetch(url)
-            .then(response => response.json())
+            .then(response => {
+                return response.json()
+            })
             .then(data => {
                 projectsTableBody.innerHTML = ""; // تفريغ الجدول قبل إعادة التعبئة
 
@@ -119,29 +122,75 @@ document.addEventListener("DOMContentLoaded", () => {
                     text2: description
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.similarityScore!==undefined) {
-                resolve(data.similarityScore || 100); // إذا لم نجد نتيجة، نفترض 100% تشابه
-                }else reject ("invalid response fromat or missing similarity")
-            })
-            .catch(error =>{
-                 reject(error);
-                 console.log("Error in similarity score: " + error);
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    console.log("data1", data);
+                    const filteredProjects = data.filter(project => project.Similarity !== "0.00%");
+                    // First, clear the existing table rows
+                    projectsTableBody.innerHTML = "";
+
+                    if (!filteredProjects.length) {
+                        projectsTableBody.innerHTML = `<tr><td colspan="5">No projects found</td></tr>`;
+                    } else {
+                        filteredProjects.forEach(project => {
+                            const similarity = project.Similarity || ""; // Handle missing similarity values
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${project.Supervisor || "N/A"}</td>
+                                <td>${project.College || "N/A"}</td>
+                                <td>${project.ProjectName || "N/A"}</td>
+                                <td>${similarity}</td>
+                                <td>
+                                    <button class="btn-icon show" onclick="showProjectDetails('${project.ProjectID}')">
+                                        <i class="fa fa-search"></i> Show
+                                    </button>
+                                </td>
+                            `;
+                            projectsTableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => {
+                    reject(error);
+                    console.log("Error in similarity score: " + error);
                 });
 
-    });
+        });
     }
 });
+
 
 // عرض تفاصيل المشروع في النافذة المنبثقة
 function showProjectDetails(projectId) {
     console.log("project id: ", projectId);
+    if (projectId == "N/A") {
+        alert("Project ID is not provided");
+        return;
+    }
     fetch(`http://localhost:4000/Projects/getProject/${projectId}`)
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+
+        })
         .then(data => {
-            document.getElementById("projectName").textContent = data.projectName || "No Name Provided";
-            document.getElementById("projectAbstract").textContent = data.projectIdea || "No Abstract Provided.";
+            console.log(data)
+            document.getElementById("projectName").textContent = data.project.projectName || "No Name Provided";
+            document.getElementById("projectAbstract").textContent = data.project.projectIdea || "No Abstract Provided.";
+            document.getElementById("pdf-file").innerHTML = `<div class="detail">
+                    <label>Project File:</label>
+                    <p>
+                        ${
+                            data.project.projectFile
+                                ? `<a href="http://localhost:4000/${data.project.projectFile.replace(
+                                      /\\/g,
+                                      "/"
+                                  )}" target="_blank">${data.project.projectName}</a>`
+                                : "No file uploaded."
+                        }
+                    </p>
+                </div>`
             document.getElementById("detailsModal").style.display = "block";
         })
         .catch(error => console.error("Error fetching project details:", error));
