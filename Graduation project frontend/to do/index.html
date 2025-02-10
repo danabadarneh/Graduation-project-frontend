@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body onload="loadTasks()">
@@ -61,15 +60,9 @@
     <div class="card" id="todoCard">
         <h3>To Do</h3>
         <div id="todoTasks">
-            <!-- <div class="task" id="task1" draggable="true" ondragstart="drag(event)"
-                onclick="openTaskForm('Task 1: Research')">Task 1: Research</div>
-            <div class="task" id="task2" draggable="true" ondragstart="drag(event)"
-                onclick="openTaskForm('Task 2: Write Report')">Task 2: Write Report</div>
-            <div class="task" id="task3" draggable="true" ondragstart="drag(event)"
-                onclick="openTaskForm('Task 3: Prepare Slides')">Task 3: Prepare Slides</div> -->
+            <!-- Tasks will be dynamically loaded here -->
         </div>
         <div class="add-task-container">
-            <!-- <input type="text" id="newTaskInput" placeholder="Add a new task..."> -->
             <button onclick="goToTaskForm()">Add Task</button>
         </div>
     </div>
@@ -85,135 +78,22 @@
     <!-- Done Card -->
     <div class="card" id="doneCard">
         <h3>Done</h3>
-        <div id="doneTasks">
-            <!-- Completed tasks will appear here -->
+        <div id="doneTasks" class="drop-zone" ondragover="allowDrop(event)" ondrop="drop(event)">
+            Drag tasks here
         </div>
     </div>
 
-
     <script>
-        async function loadTasks() {
-            try {
-                const response = await fetch('http://localhost:4000/Trello/getBoardById/67703bc89373083db43ba0f0');
-                const boardData = await response.json();
-
-                const todoTasks = document.getElementById('todoTasks');
-                const doingTasks = document.getElementById('doingTasks');
-                const doneTasks = document.getElementById('doneTasks');
-
-                boardData.cards.forEach(async card => {
-                    const cardResponse = await fetch(`http://localhost:4000/Trello/getCardById/${card._id}`);
-                    const cardData = await cardResponse.json();
-
-                    const taskElement = createTaskElement(cardData);
-                    if (card._id === '67703bc89373083db43ba0f2') {
-                        todoTasks.appendChild(taskElement);
-                    } else if (card._id === '67703bc89373083db43ba0f3') {
-                        doingTasks.appendChild(taskElement);
-                    } else if (card._id === '67703bc89373083db43ba0f4') {
-                        doneTasks.appendChild(taskElement);
-                    }
-                });
-            } catch (error) {
-                console.error('حدث خطأ أثناء جلب المهام:', error);
-            }
-        }
-
-
-        function createTaskElement(task) {
-            const taskElement = document.createElement('div');
-            taskElement.className = 'task';
-            taskElement.draggable = true;
-            taskElement.id = task._id;
-            taskElement.setAttribute('ondragstart', 'drag(event)');
-            taskElement.setAttribute('onclick', `openTaskForm('${task.name}')`);
-            taskElement.textContent = task.name;
-            return taskElement;
-        }
-
         function goToTaskForm() {
-            window.location.href = "/Graduation project frontend/to do/task_form.html";
-        }
-        
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.id);
-        }
+    // Redirect to the task form page
+    window.location.href = 'task_form.html';
+}
 
-        function allowDrop(event) {
-            event.preventDefault();
-        }
-
-        async function drop(event) {
-            event.preventDefault();
-            const taskId = event.dataTransfer.getData("text");
-            const task = document.getElementById(taskId);
-            const doingTasks = document.getElementById('doingTasks');
-
-            // Move the task to the Doing card
-            const finishButton = document.createElement('button');
-            finishButton.className = 'finish-button';
-            finishButton.innerText = 'Finished';
-            finishButton.onclick = function (event) {
-                event.stopPropagation(); // Prevent triggering the task click event
-                const allCompleted = task.Checklist.every(item => item.completed)
-                if (!allCompleted) {
-                    alert("sub Taska are not completed");
-                    return;
-                }
-
-                moveToDone(task);
-            };
-
-            try {
-                await fetch(`http://localhost:4000/Trello/getCardById/${taskId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        tasks: '67703bc89373083db43ba0f3'
-                    })
-                });
-            } catch (err) { console.error("error", err); }
-            // Append the task to the Doing card with the finish button
-            doingTasks.appendChild(task);
-            task.appendChild(finishButton);
-
-        }
-        async function moveToDone(task) {
-            const doneTasks = document.getElementById('doneTasks');
-            try {
-                await fetch(`http://localhost:4000/Trello/getCardById/67703bc89373083db43ba0f4`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        tasks: '67703bc89373083db43ba0f4'
-                    })
-                });
-            } catch (err) { console.error("error", err); }
-            // Move the task to the Done card
-            doneTasks.appendChild(task);
-
-            // Optionally, you can change the task's appearance to indicate it's done
-            // task.classList.add('task-completed'); // Add a class for styling if needed
-            const finishButton = task.querySelector('.finish-button');
-            if (finishButton) {
-                finishButton.remove(); // Remove the Finished button
-            }
-        }
-
-        function openTaskForm(taskName) {
-            // Redirect to task_form.html with the task name as a query parameter
-            window.location.href = `task_form.html?task=${encodeURIComponent(taskName)}`;
-        }
     </script>
-
+    <script src="taskManager.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 
 </html>

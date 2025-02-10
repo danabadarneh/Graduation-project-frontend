@@ -7,7 +7,6 @@
     <title>Task Form</title>
     <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
     <style>
         /* General Reset */
         body,
@@ -333,7 +332,16 @@
             });
         }
 
-        function submitTask() {
+        async function  submitTask() {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://localhost:4000/Trello/getBoardForStudent', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Seraj__${token}`, // Send the token in the request header
+        },
+        });
+          const boardData = await response.json();
             const checklist = [];
             const taskName = document.getElementById('newTaskInput').value.trim();
             const taskDetails = document.getElementById('taskDetails').value.trim();
@@ -358,12 +366,13 @@
 
             // // ✅ حفظ المهمة محليًا قبل الإرسال
             // localStorage.setItem('lastTask', JSON.stringify(data));
-
+              
             // ✅ إرسال الطلب إلى الخادم
-            fetch('http://localhost:4000/Trello/addTaskToToDo/67703bc89373083db43ba0f2', {
+            fetch(`http://localhost:4000/Trello/addTaskToToDo/${boardData.lists[0]._id}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                     Authorization: `Seraj__${token}`
                 },
                 body: JSON.stringify(data)
             })
