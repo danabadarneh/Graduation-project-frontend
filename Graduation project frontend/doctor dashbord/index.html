@@ -159,20 +159,18 @@
     <button onclick="window.history.back()" class="btn back-btn">Back</button>
 
     <script>
-        function getSupervisorId() {
-            console.log(localStorage.getItem('supervisorId'));
-
-            return localStorage.getItem('supervisorId'); // استرجاع ID المشرف مباشرة من localStorage
-        }
     
         async function fetchSupervisorGroups() {
             try {
-                const supervisorId = getSupervisorId();
-                if (!supervisorId) {
-                    throw new Error('Supervisor ID not found in localStorage');
-                }
+                const token = localStorage.getItem('token')
                 
-                const response = await fetch(`http://localhost:4000/Supervisor/GetSupervisorGroups/${supervisorId}`);
+                const response = await fetch(`http://localhost:4000/Supervisor/GetSupervisorGroups`,{
+                 method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                Authorization: `Seraj__${token}`, // Send the token in the request header
+            },
+        });
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
