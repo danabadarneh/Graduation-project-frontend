@@ -32,12 +32,3 @@ function showDescription(name, description, projectID) {
   
     modal.style.display = 'block';
 }
-
-function closeModal() {
-    const modal = document.getElementById('projectDescriptionModal');
-    modal.style.display = 'none';
-  
-    // document.getElementById('projectName').innerText = '';
-    // document.getElementById('projectDescription').innerText = '';
-    // document.getElementById('projectID').innerText = '';
-}

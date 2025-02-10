@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const fetchProjects = async () => {
   try {
-    console.log('test');
+    console.log('fetched projects');
     const token = localStorage.getItem("token");
     if (!token) {
       Swal.fire("Error", "User is not authenticated. Please log in.", "error");
@@ -39,7 +39,7 @@ const fetchProjects = async () => {
           <td>${project.department?.departmentName || "N/A"}</td>
           <td>${project.projectName || "N/A"}</td>
           <td>
-            <button class="view-btn" onclick="showProjectDescription('${project._id}')">View</button>
+            <button class="view-btn" onclick="showDescription('${project.projectName}','${project.projectIdea}','${project._id}')">View</button>
             <button class="view-btn" onclick="bookProject('${project._id}')">Book</button>
           </td>
         `;
@@ -51,6 +51,24 @@ const fetchProjects = async () => {
     Swal.fire("Error", "Failed to fetch projects. Please try again later.", "error");
   }
 };
+
+function showDescription(name, description, projectID) {
+  const modal = document.getElementById('projectDescriptionModal');
+  const projectNameElement = document.getElementById('projectName');
+  const projectDescriptionElement = document.getElementById('projectDescription');
+  const projectIDElement = document.getElementById('projectID');
+
+  projectNameElement.innerText = name;
+  projectDescriptionElement.innerText = description || "No description available.";
+  projectIDElement.innerText = "Project ID: " + projectID;
+
+  modal.style.display = 'block';
+}
+
+function closeProjectDescriptionModal() {
+  const modal = document.getElementById('projectDescriptionModal');
+  modal.style.display = 'none';
+}
 
 const bookProject = async (id) => {
   const modal = document.getElementById('bookingModal');
@@ -182,9 +200,4 @@ const showProjectDescription = async (id) => {
     console.error("Error fetching project details:", error);
     Swal.fire("Error", "Failed to load project details. Please try again later.", "error");
   }
-};
-
-// Function to close the modal
-const closeProjectDescriptionModal = () => {
-  document.getElementById("projectDescriptionModal").style.display = "none";
 };
