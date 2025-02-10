@@ -177,18 +177,19 @@
                 }
                 
                 const data = await response.json();
+                console.log(data)
                 const container = document.getElementById('my-groups-container');
                 container.innerHTML = ''; // مسح المحتوى الحالي قبل التحديث
                 
-                data.teams.forEach(group => {
+                data.groups.forEach(group => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="card-img-holder">
                             <img src="img/img1.png" alt="Blog image">
                         </div>
-                        <h3 class="blog-title">Project Name: ${group.projectName}</h3>
-                        <span class="blog-time">GROUP WORK<br>${group.members.join('<br>')}</span>
+                        <h3 class="blog-title">Project Name: ${group.teamName}</h3>
+                        <span class="blog-time">GROUP WORK<br>${group.members.map(m=>`<p>${m.name}</p>`)}</span>
                         <div class="options">
                             <span>Follow the team's progress</span>
                             <button class="btn" onclick="location.href='indextodo.html'">Show</button>
