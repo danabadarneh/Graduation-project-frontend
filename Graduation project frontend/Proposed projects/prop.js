@@ -39,7 +39,7 @@ const fetchProjects = async () => {
           <td>${project.department?.departmentName || "N/A"}</td>
           <td>${project.projectName || "N/A"}</td>
           <td>
-            <button class="view-btn" onclick="showDescription('${project.projectName}','${project.projectIdea}','${project._id}')">View</button>
+            <button class="view-btn" onclick="showProjectDescription('${project._id}')">View</button>
             <button class="view-btn" onclick="bookProject('${project._id}')">Book</button>
           </td>
         `;
@@ -182,8 +182,8 @@ const showProjectDescription = async (id) => {
     console.log(data);
 
     // Set project details in modal
-    htmlData = `<h4>Project Name</h4><input type="text" readonly value="${data.project.projectName}" >
-      <h4>Project Idea </h4><input type="text" readonly value="${data.project.projectIdea}">`
+    htmlData = `<h4>Project Name</h4><h3>${data.project.projectName}</h3>
+      <h4>Project Idea </h4><div>${data.project.projectIdea}</div>`
 
       Swal.fire({
         title: 'Project Details',
