@@ -57,23 +57,23 @@
                     <div class="box box1">
                         <ion-icon name="school-outline"></ion-icon>
                         <span class="text"> Number proposed projects</span>
-                        <span class="number">25</span>
+                        <span class="number">5</span>
 
                     </div>
                     <div class="box box2">
                         <ion-icon name="people-outline"></ion-icon>
                         <span class="text">Registered Students Count</span>
-                        <span class="number">60</span>
+                        <span class="number">30</span>
                     </div>
                     <div class="box box3">
                         <ion-icon name="chatbubbles-outline"></ion-icon>
                         <span class="text">Number of Requests</span>
-                        <span class="number">20</span>
+                        <span class="number">2</span>
                     </div>
                     <div class="box box4">
                         <ion-icon name="people-circle-outline"></ion-icon>
                         <span class="text">Graduation Students Groups</span>
-                        <span class="number">20</span>
+                        <span class="number">2</span>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                     </table>
                 </div>
             </div>
-        
+
 
             <!-- My Groups -->
             <div class="data-table activityTable">
@@ -109,44 +109,12 @@
                     <ion-icon name="time-outline"></ion-icon>
                     <span class="text">My Groups</span>
                 </div>
-                <div class="card-container">
-                    <div class="card">
-                        <div class="card-img-holder">
-                            <img src="img/img1.png" alt="Blog image">
-                        </div>
-                        <h3 class="blog-title">project name :Answer Flow</h3>
-                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-                        <div class="options">
-                            <span>Follow the team's progress</span>
-                            <button class="btn" onclick="window.location.href='indextodo.html'">Show</button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-img-holder">
-                            <img src="img/img1.png" alt="Blog image">
-                        </div>
-                        <h3 class="blog-title">Project Name : AI FOR ALL</h3>
-                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-                        <div class="options">
-                            <span>Follow the team's progress</span>
-                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-img-holder">
-                            <img src="img/img1.png" alt="Blog image">
-                        </div>
-                        <h3 class="blog-title">Project Name: seraj</h3>
-                        <span class="blog-time">GROUP WORK<br>Dana Badarneh<br>Inaam Khaled<br>Maqdes Ahmad</span>
-                        <div class="options">
-                            <span>Follow the team's progress</span>
-                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
-                        </div>
-                    </div>
-                    <!-- Add more cards as needed -->
+                <div class="card-container" id="my-groups-container">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
             </div>
-            <!-- suggested projects -->
+
+            <!-- Suggested projects -->
             <div class="data-table activityTable">
                 <div class="title">
                     <ion-icon name="server-outline"></ion-icon>
@@ -178,14 +146,66 @@
                             <button class="btn-cancel" onclick="closeModal('deleteModal')">No</button>
                         </div>
                     </div>
-            
+
                     <div class="loader" id="loader">
                         <div class="spinner"></div>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </section>
+
+    <!-- Back Button -->
+    <button onclick="window.history.back()" class="btn back-btn">Back</button>
+
+    <script>
+        function getSupervisorId() {
+            console.log(localStorage.getItem('supervisorId'));
+
+            return localStorage.getItem('supervisorId'); // استرجاع ID المشرف مباشرة من localStorage
+        }
+    
+        async function fetchSupervisorGroups() {
+            try {
+                const supervisorId = getSupervisorId();
+                if (!supervisorId) {
+                    throw new Error('Supervisor ID not found in localStorage');
+                }
+                
+                const response = await fetch(`http://localhost:4000/Supervisor/GetSupervisorGroups/${supervisorId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const container = document.getElementById('my-groups-container');
+                container.innerHTML = ''; // مسح المحتوى الحالي قبل التحديث
+                
+                data.teams.forEach(group => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <div class="card-img-holder">
+                            <img src="img/img1.png" alt="Blog image">
+                        </div>
+                        <h3 class="blog-title">Project Name: ${group.projectName}</h3>
+                        <span class="blog-time">GROUP WORK<br>${group.members.join('<br>')}</span>
+                        <div class="options">
+                            <span>Follow the team's progress</span>
+                            <button class="btn" onclick="location.href='indextodo.html'">Show</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching supervisor groups:', error);
+            }
+        }
+    
+        // استدعاء الوظيفة لجلب مجموعات المشرف عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', fetchSupervisorGroups);
+    </script>
 
     <!-- Sources for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

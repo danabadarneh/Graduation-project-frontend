@@ -80,37 +80,6 @@
             transform: scale(.99);
         }
     </style>
-    <!-- <script>
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                projectName: params.get('projectName'),
-                supervisor: params.get('supervisor'),
-                college: params.get('college'),
-                department: params.get('department'),
-                projectIdea: params.get('projectIdea')
-            };
-        }
-
-        window.onload = () => {
-            const { projectName, supervisor, college, department, projectIdea } = getQueryParams();
-            document.getElementById('projectName').value = projectName || 'ai for project';
-            document.getElementById('supervisor').value = supervisor || 'dr.nagham hamad';
-            document.getElementById('college').value = college || '';
-            document.getElementById('department').value = department || '';
-            document.getElementById('projectIdea').value = projectIdea || 'this project talked about the ai , and how to used it in our live ';
-        };
-        function navigateToIndex() {
-    // Show the loader
-    const loader = document.getElementById('loader');
-    loader.classList.add('active');
-
-    // Navigate to index.html after a small delay
-    setTimeout(() => {
-        window.location.href = "index.html"; // Replace with the correct path if needed
-    }, 500); // Adjust the delay as needed
-}
-</script> -->
 </head>
 
 <body>
@@ -132,7 +101,8 @@
         <label for="projectIdea">Project Idea</label>
         <textarea id="projectIdea" name="projectIdea" rows="4" readonly></textarea>
 
-        <button type="button" onclick="navigateToIndex()">Back</button>
+        <button type="button" onclick="window.history.back()">Back</button>
+
 
 
         <div class="loader" id="loader" style="display: none;">
@@ -141,7 +111,6 @@
 
         <script src="docDetails.js" type="module"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 
 </html>

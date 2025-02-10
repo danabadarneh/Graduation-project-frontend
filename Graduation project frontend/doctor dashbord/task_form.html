@@ -216,6 +216,12 @@
     <div class="form-container">
         <h2 id="taskName">Task Form</h2>
         <form onsubmit="return false;"> <!-- Prevent form submission -->
+            <label for="taskName">
+                <ion-icon name="create-outline" style="margin-right: 5px;"></ion-icon>
+                Task Name:
+            </label>
+            <input type="text" id="newTaskInput" required placeholder="Add a new task...">
+            <br><br>
             <label for="taskDetails">
                 <ion-icon name="list-outline" style="margin-right: 5px;"></ion-icon>
                 Detailed description:
