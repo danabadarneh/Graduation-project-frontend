@@ -68,7 +68,7 @@ async function handleAccept(projectId) {
 
         const result = await response.json();
         console.log("Project approved:", result);
-
+        alert("Project approved");
         // Optionally refresh the table
         fetchData();
     } catch (error) {
@@ -95,7 +95,7 @@ async function handleReject(projectId) {
 
         const result = await response.json();
         console.log("Project rejected:", result);
-
+        alert("Project rejected");
         // Optionally refresh the table
         fetchData();
     } catch (error) {

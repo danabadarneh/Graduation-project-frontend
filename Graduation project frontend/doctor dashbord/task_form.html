@@ -215,7 +215,7 @@
 <body>
     <div class="form-container">
         <h2 id="taskName">Task Form</h2>
-        <form onsubmit="return false;"> <!-- Prevent form submission -->
+        <form id="commentForm"> <!-- Prevent form submission -->
             <label for="taskName">
                 <ion-icon name="create-outline" style="margin-right: 5px;"></ion-icon>
                 Task Name:
@@ -323,132 +323,11 @@
                 }
             }
             //  ربط الأزرار مع وظائفها
-            submitButton.addEventListener("click", submitComment);
+          document.getElementById("commentForm").addEventListener("submit",sunmitComment);
             fetchTaskDetails();
         });
     </script>
 
-
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const taskNameElement = document.getElementById("taskName");
-            const taskDetailsInput = document.getElementById("taskDetails");
-            const progressBar = document.getElementById("progressBar");
-            const taskList = document.getElementById("taskList");
-            const commentInput = document.getElementById("activityContent");
-            const taskId = "6771a998c04ba5850d805d52";
-
-            async function fetchTaskDetails() {
-                try {
-                    const response = await fetch(`http://localhost:4000/Trello/getCardById/${taskId}`);
-                    if (!response.ok) throw new Error(`error: ${response.status}`);
-                    const data = await response.json();
-                    console.log("fetching task details", data);
-
-                    if (!data || !data.Checklist) {
-                        console.log("checklist is missing from the response", data);
-                    }
-                    taskNameElement.textContent = data.name || "Task from";
-                    taskDetailsInput.value = data.description || "";
-                    taskList.innerHTML = "";
-
-                    data.Checklist.forEach((item) => {
-                        const listItem = document.createElement("li");
-                        listItem.innerHTML = `
-                            <label>
-                                <input type="checkbox" class="task-checkbox" ${item.completed ? "checked" : ""} onchange="updateProgress()">
-                                ${item.description}
-                            </label>
-                        `;
-                        taskList.appendChild(listItem);
-                    });
-                    updateProgress();
-                } catch (error) {
-                    console.error("Error fetching task details:", error);
-                }
-            }
-            async function submitTask() {
-                let taskData = {
-                    name: "New Task", // يمكنك جعل المستخدم يحدد الاسم
-                    description: taskDetailsInput.value,
-                    Checklist: [...document.querySelectorAll(".task-checkbox")].map(checkbox => ({
-                        description: checkbox.parentElement.textContent.trim(),
-                        completed: checkbox.checked
-                    }))
-                };
-                try {
-                    await fetch(`http://localhost:4000/Trello/addTaskToToDo/${boardId}`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify((taskData)
-                            // name: taskNameElement.textContent,
-                            // description: taskDetailsInput.value
-                    )})
-                        .then(response => response.json())
-                        .then(data => {
-                            if (commentInput.value.trim()) {
-                                return await fetch(`http://localhost:4000/Trello/addCommentToCard/${taskId}`, {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify({ comment: commentInput.value.trim() })
-                                });
-                            }
-                        }).then(() => {
-                            Swal.fire('Success', 'Task and comments submitted successfully!', 'success');
-                        }).catch(error => {
-
-                            Swal.fire('Error', 'Failed to submit task and comments', 'error');
-                            console.error("Error submitting task and comments:", error);
-                        });
-                    }
-            }
-        function addTask() {
-                    Swal.fire({
-                        title: 'Add New Sub Task',
-                        input: 'text',
-                        inputPlaceholder: 'Enter sub task description',
-                        showCancelButton: true,
-                        preConfirm: (value) => {
-                            if (!value) {
-                                Swal.showValidationMessage('Please enter a description!');
-                                return false;
-                            }
-                            const listItem = document.createElement("li");
-                            listItem.innerHTML = `
-                    <label>
-                        <input type="checkbox" class="task-checkbox" onchange="updateProgress()"> ${value}
-                    </label>
-                `;
-                            taskList.appendChild(listItem);
-                            updateProgress();
-                        }
-                    });
-                }
-                function deleteChecked() {
-                    document.querySelectorAll(".task-checkbox:checked").forEach(item => item.closest("li").remove());
-                    updateProgress();
-                }
-
-                function updateProgress() {
-                    const checkboxes = document.querySelectorAll(".task-checkbox");
-                    const checked = document.querySelectorAll(".task-checkbox:checked").length;
-                    const progress = checkboxes.length > 0 ? (checked / checkboxes.length) * 100 : 0;
-                    progressBar.style.width = `${progress}%`;
-                }
-
-                function goBack() {
-                    window.history.back();
-                }
-
-                document.getElementById("addTaskBtn").addEventListener("click", addTask);
-                document.getElementById("deleteCheckedBtn").addEventListener("click", deleteChecked);
-                document.getElementById("submitTaskBtn").addEventListener("click", submitTask);
-                fetchTaskDetails();
-
-            });
-    </script> -->
-
-    <!-- <script>
     //     // Populate the task name from the query parameter
     //     const urlParams = new URLSearchParams(window.location.search);
     //     const taskName = urlParams.get('taskName');

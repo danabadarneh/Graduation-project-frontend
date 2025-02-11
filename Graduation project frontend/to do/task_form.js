@@ -41,60 +41,60 @@ function addTask() {
     });
 }
 
-async function submitTask() {
-    const response = await fetch('http://localhost:4000/Trello/getBoardForStudent', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Seraj__${token}`, // Send the token in the request header
-        },
-    });
-    const checklist = [];
-    const taskName = document.getElementById('newTaskInput').value.trim();
-    const taskDetails = document.getElementById('taskDetails').value.trim();
+// async function submitTask() {
+//     const response = await fetch('http://localhost:4000/Trello/getBoardForStudent', {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Seraj__${token}`, // Send the token in the request header
+//         },
+//     });
+//     const checklist = [];
+//     const taskName = document.getElementById('newTaskInput').value.trim();
+//     const taskDetails = document.getElementById('taskDetails').value.trim();
 
-    if (!taskName || !taskDetails) {
-        Swal.fire('Error!', 'please fill out all fields!', 'error');
-        return;
-    }
+//     if (!taskName || !taskDetails) {
+//         Swal.fire('Error!', 'please fill out all fields!', 'error');
+//         return;
+//     }
 
-    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-        checklist.push({
-            description: checkbox.parentElement.textContent.trim(),
-            completed: checkbox.checked
-        });
-    });
+//     document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+//         checklist.push({
+//             description: checkbox.parentElement.textContent.trim(),
+//             completed: checkbox.checked
+//         });
+//     });
 
-    const data = {
-        name: taskName,
-        description: taskDetails,
-        Checklist: checklist
-    };
+//     const data = {
+//         name: taskName,
+//         description: taskDetails,
+//         Checklist: checklist
+//     };
 
-    const token = localStorage.getItem('token');
+//     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:4000/Trello/addTaskToToDo/67a9d479bf0c3de035ce1a2a', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Seraj__${token}`
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Bad Request');
-        }
-        return response.json();
-    })
-    .then(data => {
-        Swal.fire('Success!', 'Task submitted successfully.', 'success');
-        setTimeout(() => {
-            window.location.back();
-        }, 2000);
-    })
-    .catch(error => {
-        Swal.fire('Error!', 'Failed to submit task. ' + error.message, 'error');
-    });
-    return false;
-}
+//     fetch('http://localhost:4000/Trello/addTaskToToDo/67a9d479bf0c3de035ce1a2a', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization: `Seraj__${token}`
+//         },
+//         body: JSON.stringify(data)
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Bad Request');
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         Swal.fire('Success!', 'Task submitted successfully.', 'success');
+//         setTimeout(() => {
+//             window.location.back();
+//         }, 2000);
+//     })
+//     .catch(error => {
+//         Swal.fire('Error!', 'Failed to submit task. ' + error.message, 'error');
+//     });
+//     return false;
+// }

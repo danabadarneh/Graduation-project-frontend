@@ -289,6 +289,30 @@
     </div>
 
     <script>
+         function deleteTask() {
+        const cardId = "67703cd88b6c25bb6aac3bb0"; // ID البطاقة المطلوب حذفها
+        const apiUrl = `http://localhost:4000/Trello/deleteCardById/${cardId}`;
+
+        fetch(apiUrl, {
+            method: "DELETE",
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Task deleted successfully!");
+            console.log("Success:", data);
+            // تحديث الواجهة بعد الحذف إذا لزم الأمر
+            location.reload();
+        })
+        .catch(error => {
+            console.error("Error deleting task:", error);
+            alert("Failed to delete task. Please try again.");
+        });
+    }
         function goBack() {
             window.history.back();
         }

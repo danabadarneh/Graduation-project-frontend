@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,18 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Full viewport height */
-            margin: 0; /* Remove default margin */
-            padding: 20px; /* Add padding if needed */
-            background-color: #E9EFEC; /* Optional background color */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            height: 100vh;
+            /* Full viewport height */
+            margin: 0;
+            /* Remove default margin */
+            padding: 20px;
+            /* Add padding if needed */
+            background-color: #E9EFEC;
+            /* Optional background color */
         }
 
         nav {
@@ -61,9 +68,11 @@
             min-height: 400px;
             background-color: #f9f9f9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px; /* Add margin for spacing between cards */
-            
+            margin: 10px;
+            /* Add margin for spacing between cards */
+
         }
+
         .task {
             background-color: #C4DAD2;
             border: 1px solid #C4DAD2;
@@ -102,37 +111,54 @@
             background-color: #5a8b76;
         }
 
- .add-task-container {
-            margin-bottom: 15px; /* Space below the add task container */
+        .add-task-container {
+            margin-bottom: 15px;
+            /* Space below the add task container */
         }
 
         .add-task-container input {
-            padding: 10px; /* Padding for the input field */
-            border: 1px solid #ccc; /* Border similar to other card elements */
-            border-radius: 3px; /* Rounded corners */
-            width: 100%; /* Full width to match the card */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            margin-bottom: 10px; /* Space below the input field */
+            padding: 10px;
+            /* Padding for the input field */
+            border: 1px solid #ccc;
+            /* Border similar to other card elements */
+            border-radius: 3px;
+            /* Rounded corners */
+            width: 100%;
+            /* Full width to match the card */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            margin-bottom: 10px;
+            /* Space below the input field */
             font-size: 1rem;
         }
 
         .add-task-container button {
-            padding: 10px; /* Padding for the button */
-            background-color: #6A9C89; /* Button background color */
-            color: white; /* Button text color */
-            border: none; /* No border */
-            border-radius: 3px; /* Rounded corners */
-            cursor: pointer; /* Pointer cursor on hover */
-            width: 100%; /* Full width to match the card */
-            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            padding: 10px;
+            /* Padding for the button */
+            background-color: #6A9C89;
+            /* Button background color */
+            color: white;
+            /* Button text color */
+            border: none;
+            /* No border */
+            border-radius: 3px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Pointer cursor on hover */
+            width: 100%;
+            /* Full width to match the card */
+            transition: background-color 0.3s;
+            /* Smooth transition for hover effect */
             font-size: 14px;
         }
 
         .add-task-container button:hover {
-            background-color: #5a8b76; /* Darker shade on hover */
+            background-color: #5a8b76;
+            /* Darker shade on hover */
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="logo">
@@ -165,7 +191,7 @@
             </ul>
         </div>
     </nav>
-  
+
     <!-- To Do Card -->
     <div class="card" id="todoCard">
         <h3>To Do</h3>
@@ -197,53 +223,74 @@
     </div>
 
     <script>
-        function addTask() {
-            const taskInput = document.getElementById('newTaskInput');
-            const taskName = taskInput.value.trim();
-            if (taskName) {
-                const newTask = document.createElement('div');
-                newTask.className = 'task';
-                newTask.draggable = true;
-                newTask.id = 'task' + (document.querySelectorAll('.task').length + 1);
-                newTask.setAttribute('ondragstart', 'drag(event)');
-                newTask.setAttribute('onclick', `openTaskForm('${taskName}')`);
-                newTask.textContent = taskName;
+        document.addEventListener("DOMContentLoaded", async function () {
+            await fetchBoardsForSupervisor();
+        });
 
-                const todoTasks = document.getElementById('todoTasks');
-                todoTasks.appendChild(newTask);
-                taskInput.value = ''; // Clear the input field
-            } else {
-                alert('Please enter a task name.');
+        async function fetchBoardsForSupervisor() {
+            const apiUrl = "http://localhost:4000/Trello/getAllBoardsForSupervisor";
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                displayBoards(data);
+            } catch (error) {
+                console.error("Error fetching boards:", error);
+                alert("Failed to load tasks. Please try again.");
             }
         }
+        
+        // function addTask() {
+        //     const taskInput = document.getElementById('newTaskInput');
+        //     const taskName = taskInput.value.trim();
+        //     if (taskName) {
+        //         const newTask = document.createElement('div');
+        //         newTask.className = 'task';
+        //         newTask.draggable = true;
+        //         newTask.id = 'task' + (document.querySelectorAll('.task').length + 1);
+        //         newTask.setAttribute('ondragstart', 'drag(event)');
+        //         newTask.setAttribute('onclick', `openTaskForm('${taskName}')`);
+        //         newTask.textContent = taskName;
 
-        function drag(event) {
-            event.dataTransfer.setData("text", event.target.id);
-        }
+        //         const todoTasks = document.getElementById('todoTasks');
+        //         todoTasks.appendChild(newTask);
+        //         taskInput.value = ''; // Clear the input field
+        //     } else {
+        //         alert('Please enter a task name.');
+        //     }
+        // }
 
-        function allowDrop(event) {
-            event.preventDefault();
-        }
+        // function drag(event) {
+        //     event.dataTransfer.setData("text", event.target.id);
+        // }
 
-        function drop(event) {
-            event.preventDefault();
-            const taskId = event.dataTransfer.getData("text");
-            const task = document.getElementById(taskId);
-            const doingTasks = document.getElementById('doingTasks');
+        // function allowDrop(event) {
+        //     event.preventDefault();
+        // }
 
-            // Move the task to the Doing card
-            const finishButton = document.createElement('button');
-            finishButton.className = 'finish-button';
-            finishButton.innerText = 'Finished';
-            finishButton.onclick = function(event) {
-                event.stopPropagation(); // Prevent triggering the task click event
-                moveToDone(task);
-            };
+        // function drop(event) {
+        //     event.preventDefault();
+        //     const taskId = event.dataTransfer.getData("text");
+        //     const task = document.getElementById(taskId);
+        //     const doingTasks = document.getElementById('doingTasks');
 
-            // Append the task to the Doing card with the finish button
-            doingTasks.appendChild(task);
-            task.appendChild(finishButton);
-        }
+        //     // Move the task to the Doing card
+        //     const finishButton = document.createElement('button');
+        //     finishButton.className = 'finish-button';
+        //     finishButton.innerText = 'Finished';
+        //     finishButton.onclick = function (event) {
+        //         event.stopPropagation(); // Prevent triggering the task click event
+        //         moveToDone(task);
+        //     };
+
+        //     // Append the task to the Doing card with the finish button
+        //     doingTasks.appendChild(task);
+        //     task.appendChild(finishButton);
+        // }
 
         function moveToDone(task) {
             const doneTasks = document.getElementById('doneTasks');
@@ -266,4 +313,5 @@
     </script>
     <script src="toDoDoc.js"></script>
 </body>
+
 </html>
